@@ -16,21 +16,24 @@ app.listen(3000, () => {
 app.use(express.static("public"));
 
 // Utility function - gets person data, and creates the file if it doesn't exist
-function getPeople() {
+function getPerson() {
   try {
-    const content = fs.readFileSync("people.json");
+    const content = fs.readFileSync("person.json");
     return JSON.parse(content);
   } catch (e) {
     // File non-existent
-    fs.writeFileSync("people.json", "[]");
+    fs.writeFileSync("person.json", "[]");
     return [];
   }
 }
 
 app.get("/", function (req, res) {
-  const people = getPeople();
-  if (people) {
-    res.send("Can confirm person exists");
+  const person = getPerson();
+  // Make sure we have a person file
+  if (person) {
+    const name = person.name;
+
+    res.send(`Welcome ${name}`);
   } else {
     res.send("There is no one to welcome");
   }
