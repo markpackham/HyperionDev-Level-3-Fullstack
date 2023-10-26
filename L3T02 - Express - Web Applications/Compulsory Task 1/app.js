@@ -18,6 +18,7 @@ app.listen(PORT, () => {
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
+  // Have try catch blocks in case my server dies
   try {
     const person = getPerson();
     // Make sure we have a person file
