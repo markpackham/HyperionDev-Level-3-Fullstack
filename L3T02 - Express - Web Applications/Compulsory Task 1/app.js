@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Make sure I am using Port 3000
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
@@ -21,7 +21,6 @@ const getPerson = () => {
     const content = fs.readFileSync("person.json");
     return JSON.parse(content);
   } catch (e) {
-    // File non-existent
     fs.writeFileSync("person.json", "[]");
     return [];
   }
