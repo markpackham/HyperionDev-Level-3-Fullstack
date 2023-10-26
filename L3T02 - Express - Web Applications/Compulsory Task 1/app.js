@@ -1,7 +1,8 @@
 const express = require("express");
-// File System - needed to read and write the person.json file
-const fs = require("fs");
 const path = require("path");
+// Keep helper functions out of my Express script
+const getPerson = require("./helpers/person");
+
 const app = express();
 
 // Either use the environment variable for Port or Port 3000 if there isn't one
@@ -13,25 +14,14 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+// Public facing static content
 app.use(express.static("public"));
-
-// Utility function - gets person data, and creates the file if it doesn't exist
-const getPerson = () => {
-  try {
-    const content = fs.readFileSync("person.json");
-    return JSON.parse(content);
-  } catch (e) {
-    fs.writeFileSync("person.json", "[]");
-    return [];
-  }
-};
 
 app.get("/", function (req, res) {
   const person = getPerson();
   // Make sure we have a person file
   if (person) {
     const name = person.name;
-
     res.send(`<h1>Welcome ${name}</h1>`);
   } else {
     res.send("There is no one to welcome");
