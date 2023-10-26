@@ -1,4 +1,6 @@
 const express = require("express");
+// File System - needed to read and write the person.json file
+const fs = require("fs");
 const path = require("path");
 const app = express();
 
@@ -12,6 +14,27 @@ app.listen(3000, () => {
 });
 
 app.use(express.static("public"));
+
+// Utility function - gets person data, and creates the file if it doesn't exist
+function getPeople() {
+  try {
+    const content = fs.readFileSync("people.json");
+    return JSON.parse(content);
+  } catch (e) {
+    // File non-existent
+    fs.writeFileSync("people.json", "[]");
+    return [];
+  }
+}
+
+app.get("/", function (req, res) {
+  const people = getPeople();
+  if (people) {
+    res.send("Can confirm person exists");
+  } else {
+    res.send("There is no one to welcome");
+  }
+});
 
 // Learned to use sendFile to get Html files from
 //262588213843476 (no date) ! .gitignore for Express App, Gist. Available at: https://gist.github.com/dphurley/182ddab5a2482fbdda2de3b09bff446a (Accessed: 26 October 2023).
