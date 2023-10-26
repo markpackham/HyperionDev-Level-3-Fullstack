@@ -9,3 +9,13 @@ app.get("/", function (req, res) {
 app.listen(8000, function () {
   console.log("Example app listening on port 8000!");
 });
+
+// Show environment variables if we have any
+// OBVIOUSLY never do this on a real site for security reasons
+// console.log("The value of process.env is:", process.env);
+
+// Show port being used
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
