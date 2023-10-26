@@ -18,13 +18,18 @@ app.listen(PORT, () => {
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-  const person = getPerson();
-  // Make sure we have a person file
-  if (person) {
-    const name = person.name;
-    res.send(`<h1>Welcome ${name}</h1>`);
-  } else {
-    res.send("There is no one to welcome");
+  try {
+    const person = getPerson();
+    // Make sure we have a person file
+    if (person) {
+      const name = person.name;
+      res.send(`<h1>Welcome ${name}</h1>`);
+    } else {
+      res.send("There is no one to welcome");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -34,22 +39,37 @@ app.get("/", function (req, res) {
 // Available at: https://www.digitalocean.com/community/tutorials/use-expressjs-to-deliver-html-files (Accessed: 26 October 2023).
 
 app.get("/about", function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/about.html"));
+  try {
+    res.sendFile(path.join(__dirname, "/public/about.html"));
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.get("/contact_us", function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/contact_us.html"));
+  try {
+    res.sendFile(path.join(__dirname, "/public/contact_us.html"));
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 // Error code for any route we cannot find
 app.get("*", function (req, res) {
-  let err = new Error("Page Not Found");
-  err.statusCode = 404;
-  // Notify myself of the 404 error but avoid the end user being scared off
-  // by all the sensitive error data on my site
-  console.log(err);
+  try {
+    let err = new Error("Page Not Found");
+    err.statusCode = 404;
+    // Notify myself of the 404 error but avoid the end user being scared off
+    // by all the sensitive error data on my site
+    console.log(err);
 
-  // Included "Sorry! Can’t find that resource. Please check your URL" in an html page
-  // along with a link to get back home so it's more end user friendly
-  res.sendFile(path.join(__dirname, "/public/404_error.html"));
+    // Included "Sorry! Can’t find that resource. Please check your URL" in an html page
+    // along with a link to get back home so it's more end user friendly
+    res.sendFile(path.join(__dirname, "/public/404_error.html"));
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
