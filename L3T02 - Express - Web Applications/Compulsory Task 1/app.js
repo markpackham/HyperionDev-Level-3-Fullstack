@@ -21,12 +21,12 @@ app.get("/", function (req, res) {
   // Have try catch blocks in case my server dies
   try {
     const person = getPerson();
-    // Make sure we have a person file
-    if (person) {
+    // Make sure we have a person with a name
+    if (person.name.length > 0) {
       const name = person.name;
       res.send(`<h1>Welcome ${name}</h1>`);
     } else {
-      res.send("There is no one to welcome");
+      res.send("<h1>There is no one to welcome</h1>");
     }
   } catch (error) {
     console.error(error);
