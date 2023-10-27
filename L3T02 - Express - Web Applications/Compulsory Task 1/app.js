@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
 // Keep helper functions out of my Express script
-const getPerson = require("./helpers/person");
 const errorHandler = require("./helpers/errors");
+const homeRoute = require("./routes/home");
 
 const app = express();
 
@@ -21,22 +21,9 @@ app.use(express.static("public"));
 // Middleware for Http 500 errors that will take effect on all routes
 app.use(errorHandler);
 
-// Express router used
-const homeRoute = express.Router();
 const aboutRoute = express.Router();
 const contactRoute = express.Router();
 const error404Route = express.Router();
-
-homeRoute.get("/", function (req, res) {
-  const person = getPerson();
-  // Make sure we have a person with a name
-  if (person.name.length > 0) {
-    const name = person.name;
-    res.send(`<h1>Welcome ${name}</h1>`);
-  } else {
-    res.send("<h1>There is no one to welcome</h1>");
-  }
-});
 
 // Learned to use sendFile to get Html files from
 //262588213843476 (no date) ! .gitignore for Express App, Gist. Available at: https://gist.github.com/dphurley/182ddab5a2482fbdda2de3b09bff446a (Accessed: 26 October 2023).
