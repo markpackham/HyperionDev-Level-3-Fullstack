@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 // Keep helper functions out of my Express script
 const getPerson = require("./helpers/person");
+const errorHandler = require("./helpers/errors");
 
 const app = express();
 
@@ -17,20 +18,17 @@ app.listen(PORT, () => {
 // Public facing static content
 app.use(express.static("public"));
 
+// Middleware for Http 500 errors that will take effect on all routes
+app.use(errorHandler);
+
 app.get("/", function (req, res) {
-  // Have try catch blocks in case my server dies
-  try {
-    const person = getPerson();
-    // Make sure we have a person with a name
-    if (person.name.length > 0) {
-      const name = person.name;
-      res.send(`<h1>Welcome ${name}</h1>`);
-    } else {
-      res.send("<h1>There is no one to welcome</h1>");
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
+  const person = getPerson();
+  // Make sure we have a person with a name
+  if (person.name.length > 0) {
+    const name = person.name;
+    res.send(`<h1>Welcome ${name}</h1>`);
+  } else {
+    res.send("<h1>There is no one to welcome</h1>");
   }
 });
 
@@ -40,37 +38,22 @@ app.get("/", function (req, res) {
 // Available at: https://www.digitalocean.com/community/tutorials/use-expressjs-to-deliver-html-files (Accessed: 26 October 2023).
 
 app.get("/about", function (req, res) {
-  try {
-    res.sendFile(path.join(__dirname, "/public/about.html"));
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
+  res.sendFile(path.join(__dirname, "/public/about.html"));
 });
 
 app.get("/contact_us", function (req, res) {
-  try {
-    res.sendFile(path.join(__dirname, "/public/contact_us.html"));
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
+  res.sendFile(path.join(__dirname, "/public/contact_us.html"));
 });
 
 // Error code for any route we cannot find
 app.get("*", function (req, res) {
-  try {
-    let err = new Error("Page Not Found");
-    err.statusCode = 404;
-    // Notify myself of the 404 error but avoid the end user being scared off
-    // by all the sensitive error data on my site
-    console.log(err);
+  let err = new Error("Page Not Found");
+  err.statusCode = 404;
+  // Notify myself of the 404 error but avoid the end user being scared off
+  // by all the sensitive error data on my site
+  console.log(err);
 
-    // Included "Sorry! Can’t find that resource. Please check your URL" in an html page
-    // along with a link to get back home so it's more end user friendly
-    res.sendFile(path.join(__dirname, "/public/404_error.html"));
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
+  // Included "Sorry! Can’t find that resource. Please check your URL" in an html page
+  // along with a link to get back home so it's more end user friendly
+  res.sendFile(path.join(__dirname, "/public/404_error.html"));
 });
