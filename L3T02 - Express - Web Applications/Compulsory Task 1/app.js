@@ -21,7 +21,13 @@ app.use(express.static("public"));
 // Middleware for Http 500 errors that will take effect on all routes
 app.use(errorHandler);
 
-app.get("/", function (req, res) {
+// Express router used
+const homeRoute = express.Router();
+const aboutRoute = express.Router();
+const contactRoute = express.Router();
+const error404Route = express.Router();
+
+homeRoute.get("/", function (req, res) {
   const person = getPerson();
   // Make sure we have a person with a name
   if (person.name.length > 0) {
@@ -37,16 +43,16 @@ app.get("/", function (req, res) {
 //Sev, C. (2021) How to deliver HTML files with Express, DigitalOcean.
 // Available at: https://www.digitalocean.com/community/tutorials/use-expressjs-to-deliver-html-files (Accessed: 26 October 2023).
 
-app.get("/about", function (req, res) {
+aboutRoute.get("/about", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/about.html"));
 });
 
-app.get("/contact_us", function (req, res) {
+contactRoute.get("/contact_us", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/contact_us.html"));
 });
 
 // Error code for any route we cannot find
-app.get("*", function (req, res) {
+error404Route.get("*", function (req, res) {
   let err = new Error("Page Not Found");
 
   if (res.status(404)) {
@@ -57,3 +63,8 @@ app.get("*", function (req, res) {
   // along with a link to get back home so it's more end user friendly
   res.sendFile(path.join(__dirname, "/public/404_error.html"));
 });
+
+app.use(homeRoute);
+app.use(aboutRoute);
+app.use(contactRoute);
+app.use(error404Route);
