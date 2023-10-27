@@ -48,10 +48,10 @@ app.get("/contact_us", function (req, res) {
 // Error code for any route we cannot find
 app.get("*", function (req, res) {
   let err = new Error("Page Not Found");
-  err.statusCode = 404;
-  // Notify myself of the 404 error but avoid the end user being scared off
-  // by all the sensitive error data on my site
-  console.log(err);
+
+  if (res.status(404)) {
+    console.log(err);
+  }
 
   // Included "Sorry! Can’t find that resource. Please check your URL" in an html page
   // along with a link to get back home so it's more end user friendly
