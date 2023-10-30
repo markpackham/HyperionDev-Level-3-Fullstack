@@ -45,3 +45,23 @@ db.cars.insertMany([
     Address: "999 Street, London, England",
   },
 ]);
+
+db.cars.find().pretty();
+
+db.people.updateOne(
+  { name: "Sue Bailey" },
+  {
+    $set: {
+      Address: "21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa",
+    },
+  }
+);
+
+db.people.updateOne(
+  { name: "Sue Bailey" },
+  {
+    $set: {
+      name: "Sue Smith",
+    },
+  }
+);
