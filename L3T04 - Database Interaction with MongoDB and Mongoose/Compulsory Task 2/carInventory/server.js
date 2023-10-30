@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 // Import routes
-const getBlogs = require("./routes/getBlogs");
+const getCars = require("./routes/getCars");
 
 // Initialize express
 const app = express();
@@ -35,8 +35,8 @@ mongoose.connect(uri, { useNewUrlParser: true }).then(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Set up routes to be handled from: http://localhost:8080/blogs
-app.use("/blogs", getBlogs);
+// Set up routes to be handled from: http://localhost:8080/cars
+app.use("/cars", getCars);
 
 // Start up express server
 app.listen(PORT, () => {

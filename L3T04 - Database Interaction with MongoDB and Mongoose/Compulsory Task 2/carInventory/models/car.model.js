@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
-// Initialize our schema
+// Car model
 const carSchema = mongoose.Schema({
+  // We can use number rather than date since we are only dealing in years eg 2005
   Model: {
-    // Sets the data type of the title field to be a string
     type: Number,
-    // Sets the title field to be required
     required: true
   },
   Make: {
