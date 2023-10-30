@@ -42,6 +42,23 @@ exports.findAll = (req, res) => {
         });
 };
 
+exports.findOlderThan5Years = (req, res) => {
+    // Use the "find" method to return all cars
+    Car.find({ Model: { $lt: 2018 } })
+        .then(cars => {
+            // Send the retrieved cars as a success response
+            res.send(cars);
+        })
+        .catch(err => {
+            // Error response
+            console.log(err);
+            res.status(500).send({
+                message: "An error occurred while retrieving cars"
+            });
+        });
+};
+
+
 
 exports.updateById = async (req, res) => {
     try {
