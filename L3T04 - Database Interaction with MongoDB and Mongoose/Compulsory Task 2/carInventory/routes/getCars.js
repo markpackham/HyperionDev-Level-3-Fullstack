@@ -20,8 +20,8 @@ router.get('/olderThan5', carController.findOlderThan5Years);
 
 // Update a car with new details
 // PUT
-// http://localhost:8080/cars/update-car
-router.put('/update-car', carController.updateByReg);
+// http://localhost:8080/cars/update-car/123
+router.put('/update-car/:reg', carController.updateByReg);
 
 // Delete a car with specified id (make sure I create it first)
 // DELETE

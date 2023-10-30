@@ -63,16 +63,17 @@ exports.findOlderThan5Years = (req, res) => {
 
 exports.updateByReg = async (req, res) => {
     try {
-        // Define the query to find cars with the specified reg
-        const query = { Registration: '999' };
+        // Grab specific car to update by reg
+        const reg = req.params.reg;
 
         // Define the new data to update the owner
-        const update = { Owner: 'Richard York' };
+        const update = { Owner: 'Richard Liverpool' };
 
         /* Use the "findOneAndUpdate" method to update a car with the
         specified reg and set the "new" option to true to get the
         updated document as the result */
-        const updatedCar = await Car.findOneAndUpdate(query, update, { new: true });
+        // The find part requires an object rather than a string
+        const updatedCar = await Car.findOneAndUpdate({Registration: reg}, update, { new: true });
 
         if (updatedCar) {
             res.send("Updated successfully");
@@ -88,7 +89,7 @@ exports.updateByReg = async (req, res) => {
 exports.deleteByReg = async (req, res) => {
     try {
         const reg = req.params.reg;
-        // Remove a car with the specified reg
+        // Remove a car with the specified reg gained from the url sent ":reg"
         const deleteResult = await Car.deleteOne({ Registration: reg });
 
         if (deleteResult.deletedCount > 0) {
