@@ -51,3 +51,7 @@ db.cars.find().pretty();
 db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Address: "21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa" } });
 
 db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Owner: "Sue Smith" } });
+
+db.cars.find( { Model: { $lt: 2018 } } ).pretty()
+
+db.cars.insertOne({Model: 2015, Make: "Ford Fiesta", Owner: "Sue Smith",  Registration: "FAKE SUE GP", Address: "FAKE SUE SMITH Street, Manchester",})
