@@ -23,10 +23,11 @@ router.get('/olderThan5', carController.findOlderThan5Years);
 // http://localhost:8080/cars/update-car
 router.put('/update-car', carController.updateByReg);
 
-// Delete a car with specified id
+// Delete a car with specified id (make sure I create it first)
 // DELETE
-// http://localhost:8080/cars/delete-car
-router.delete('/delete-car', carController.deleteByReg);
+// http://localhost:8080/cars/delete-car/ZZZ111
+router.delete('/cars/delete-car/:reg', carController.deleteByReg);
+
 
 
 module.exports = router;

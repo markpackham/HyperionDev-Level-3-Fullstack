@@ -87,11 +87,12 @@ exports.updateByReg = async (req, res) => {
 
 exports.deleteByReg = async (req, res) => {
     try {
+        const reg = req.params.reg;
         // Remove a car with the specified reg
-        const deleteResult = await Car.deleteOne({ Registration: 'ZZZ111' });
+        const deleteResult = await Car.deleteOne({ Registration: reg });
 
         if (deleteResult.deletedCount > 0) {
-            res.send("Successfully car.");
+            res.send("Successfully deleted the car.");
         } else {
             res.send("Car not found...");
         }
@@ -100,4 +101,5 @@ exports.deleteByReg = async (req, res) => {
         res.status(500).send("An error occurred while removing car.");
     }
 };
+
 
