@@ -1,6 +1,7 @@
 // Convert to single line for terminal
 // https://lingojam.com/TexttoOneLine
 
+// Insert all the cars using the same attributes that Sue has
 db.cars.insertMany([
   {
     Model: 2005,
@@ -46,17 +47,30 @@ db.cars.insertMany([
   },
 ]);
 
+// Show all cars
 db.cars.find().pretty();
 
+// Update Sue's address
 db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Address: "21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa" } });
 
+// Update Sue's surname
 db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Owner: "Sue Smith" } });
 
+// Find cars older than 5 years
 db.cars.find( { Model: { $lt: 2018 } } ).pretty()
 
+// Insert another Sue with the same surname to cause confusion
 db.cars.insertOne({Model: 2015, Make: "Ford Fiesta", Owner: "Sue Smith",  Registration: "FAKE SUE GP", Address: "FAKE SUE SMITH Street, Manchester",})
 
-db.cars.deleteOne({})
-
-// target the Object id (kind of like SQL Primary Keys) and not the name so only the correct Sue is removed
+// Target the unique Object id (kind of like an SQL Primary Key) and not the name so only the correct Sue is removed
 db.cars.deleteOne( { "_id" : ObjectId("653f70e9740510cd44a47ff4") } );
+
+// Add list of previous owners to a car
+db.cars.updateOne(
+  { "_id" : ObjectId("653f70e9740510cd44a47ff9") },
+  { $set: { "Previous Owners": ["Jane Smith", "Paul Smith", "Billy Corgan", "Hulk Hogan", "Vince Russo"] } }
+)
+
+// Show the previous owners
+db.cars.find({_id : ObjectId("653f70e9740510cd44a47ff9")});
+
