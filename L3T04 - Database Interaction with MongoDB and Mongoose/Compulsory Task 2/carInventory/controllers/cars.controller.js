@@ -2,7 +2,7 @@ const Car = require("../models/car.model");
 
 exports.create = async (req, res) => {
   try {
-    // Create a new car, use params submitted from user's POST
+    // Create a new car, use params submitted from user's POST based off Car model
     const carModel = new Car({
       Model: req.body.Model,
       Make: req.body.Make,
@@ -65,7 +65,13 @@ exports.updateByReg = async (req, res) => {
     const reg = req.params.reg;
 
     // Define the new data to update the owner
-    const update = { Owner: "Richard Liverpool" };
+    const update = {
+      Model: req.body.Model,
+      Make: req.body.Make,
+      Owner: req.body.Owner,
+      Registration: req.body.Registration,
+      Address: req.body.Address,
+    };
 
     /* Use the "findOneAndUpdate" method to update a car with the
         specified reg and set the "new" option to true to get the
