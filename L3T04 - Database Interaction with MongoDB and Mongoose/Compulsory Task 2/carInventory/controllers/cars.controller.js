@@ -2,62 +2,64 @@ const Car = require('../models/car.model');
 
 exports.create = async (req, res) => {
     try {
-        // Create a new blog
-        const blogModel = new Blog({
-            title: 'Example Code',
-            text: 'Demonstrating how to add data to a database using Mongoose',
-            author: 'HyperionDev'
+        // Create a new car
+        const carModel = new Car({
+            Model: 2020,
+            Make: 'Flying Car',
+            Owner: 'Neil Jameson',
+            Registration: 'ZZZ111',
+            Address: '11 Park Lane, London England',
         });
 
-        // Save the new blog
-        const savedBlog = await blogModel.save();
+        // Save the new car
+        const saveCar = await carModel.save();
 
         // Success response
-        console.log(savedBlog);
-        res.send('The blog has been added');
+        console.log(saveCar);
+        res.send('The car has been added');
     } catch (error) {
         // Error response
         console.error(error);
         res.status(500).send({
-            message: "Some error occurred while creating the blog."
+            message: "Some error occurred while creating the car."
         });
     }
 };
 
 exports.findAll = (req, res) => {
-    // Use the "find" method to return all blogs
-    Blog.find()
-        .then(blogs => {
-            // Send the retrieved blogs as a success response
-            res.send(blogs);
+    // Use the "find" method to return all cars
+    Car.find()
+        .then(cars => {
+            // Send the retrieved cars as a success response
+            res.send(cars);
         })
         .catch(err => {
             // Error response
             console.log(err);
             res.status(500).send({
-                message: "An error occurred while retrieving blogs"
+                message: "An error occurred while retrieving cars"
             });
         });
 };
 
 
-exports.updateByAuthor = async (req, res) => {
+exports.updateById = async (req, res) => {
     try {
-        // Define the query to find blogs with the specified author
-        const query = { author: 'HyperionDev' };
+        // Define the query to find cars with the specified id
+        const query = { id: '653f70e9740510cd44a47ff5' };
 
-        // Define the new data to update the author
-        const update = { author: 'NewAuthorName' };
+        // Define the new data to update the owner
+        const update = { Owner: 'Richard York' };
 
-        /* Use the "findOneAndUpdate" method to update a blog with the
-        specified author and set the "new" option to true to get the
+        /* Use the "findOneAndUpdate" method to update a car with the
+        specified id and set the "new" option to true to get the
         updated document as the result */
-        const updatedBlog = await Blog.findOneAndUpdate(query, update, { new: true });
+        const updatedCar = await Car.findOneAndUpdate(query, update, { new: true });
 
-        if (updatedBlog) {
+        if (updatedCar) {
             res.send("Updated successfully");
         } else {
-            res.status(404).send("Blog not found");
+            res.status(404).send("Car not found");
         }
     } catch (error) {
         console.error("Something went wrong when updating data.", error);
@@ -65,19 +67,19 @@ exports.updateByAuthor = async (req, res) => {
     }
 };
 
-exports.deleteBlogsByAuthor = async (req, res) => {
+exports.deleteById = async (req, res) => {
     try {
-        // Remove all blogs with the specified author name
-        const deleteResult = await Blog.deleteMany({ author: 'NewAuthorName' });
+        // Remove a car with the specified id
+        const deleteResult = await Car.deleteOne({ id: '653f70e9740510cd44a47ff6' });
 
         if (deleteResult.deletedCount > 0) {
-            res.send("Successfully deleted all blogs from author.");
+            res.send("Successfully car.");
         } else {
-            res.send("Author not found...");
+            res.send("Car not found...");
         }
     } catch (error) {
-        console.error("An error occurred while removing blogs.", error);
-        res.status(500).send("An error occurred while removing blogs.");
+        console.error("An error occurred while removing car.", error);
+        res.status(500).send("An error occurred while removing car.");
     }
 };
 
