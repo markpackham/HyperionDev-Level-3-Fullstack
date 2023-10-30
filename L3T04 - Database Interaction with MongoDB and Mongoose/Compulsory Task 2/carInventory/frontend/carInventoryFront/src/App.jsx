@@ -17,11 +17,16 @@ function App() {
       <ul>
         {cars.map((car) => (
           <li key={car._id}>
-            <input id="carModel" type="text" value={car.Model} />
-            <input id="carMake" type="text" value={car.Make} />
+            <input id="carModel" size="6" type="text" value={car.Model} />
+            <input id="carMake" size="14" type="text" value={car.Make} />
             <input id="carOwner" type="text" value={car.Owner} />
-            <input id="carRegistration" type="text" value={car.Registration} />
-            <input id="carAddress" type="text" value={car.Address} />
+            <input
+              id="carRegistration"
+              size="14"
+              type="text"
+              value={car.Registration}
+            />
+            <input id="carAddress" size="35" type="text" value={car.Address} />
             <button className="btn btn-warning">Update</button>
             <button className="btn btn-danger">Delete</button>
           </li>
