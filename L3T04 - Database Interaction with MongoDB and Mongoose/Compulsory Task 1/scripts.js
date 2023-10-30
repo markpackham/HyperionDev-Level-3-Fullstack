@@ -48,20 +48,6 @@ db.cars.insertMany([
 
 db.cars.find().pretty();
 
-db.people.updateOne(
-  { name: "Sue Bailey" },
-  {
-    $set: {
-      Address: "21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa",
-    },
-  }
-);
+db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Address: "21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa" } });
 
-db.people.updateOne(
-  { name: "Sue Bailey" },
-  {
-    $set: {
-      name: "Sue Smith",
-    },
-  }
-);
+db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Owner: "Sue Smith" } });
