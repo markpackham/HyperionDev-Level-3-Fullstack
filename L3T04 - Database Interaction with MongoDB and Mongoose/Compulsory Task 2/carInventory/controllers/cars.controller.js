@@ -12,17 +12,17 @@ exports.create = async (req, res) => {
         });
 
         // Save the new car
-        const saveCar = await carModel.save();
+    const saveCar = await carModel.save();
 
-        // Success response
-        console.log(saveCar);
-        res.send('The car has been added');
-    } catch (error) {
-        // Error response
-        console.error(error);
-        res.status(500).send({
-            message: "Some error occurred while creating the car."
-        });
+    // Success response
+    console.log(saveCar);
+    res.send('The car has been added');
+} catch (error) {
+    // Error response
+    console.error(error);
+    res.status(500).send({
+        message: "Some error occurred while creating the car."
+    });
     }
 };
 
