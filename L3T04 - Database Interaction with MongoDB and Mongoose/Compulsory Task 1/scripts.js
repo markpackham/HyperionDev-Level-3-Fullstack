@@ -55,3 +55,8 @@ db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Owner: "Sue Smith" } });
 db.cars.find( { Model: { $lt: 2018 } } ).pretty()
 
 db.cars.insertOne({Model: 2015, Make: "Ford Fiesta", Owner: "Sue Smith",  Registration: "FAKE SUE GP", Address: "FAKE SUE SMITH Street, Manchester",})
+
+db.cars.deleteOne({})
+
+// target the Object id (kind of like SQL Primary Keys) and not the name so only the correct Sue is removed
+db.cars.deleteOne( { "_id" : ObjectId("653f70e9740510cd44a47ff4") } );
