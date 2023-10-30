@@ -87,8 +87,8 @@ exports.updateByReg = async (req, res) => {
 
 exports.deleteByReg = async (req, res) => {
     try {
-        // Remove a car with the specified id
-        const deleteResult = await Car.deleteOne({ id: '653f70e9740510cd44a47ff6' });
+        // Remove a car with the specified reg
+        const deleteResult = await Car.deleteOne({ Registration: 'ZZZ111' });
 
         if (deleteResult.deletedCount > 0) {
             res.send("Successfully car.");
