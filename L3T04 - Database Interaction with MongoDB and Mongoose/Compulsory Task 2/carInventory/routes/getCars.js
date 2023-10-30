@@ -26,7 +26,7 @@ router.put('/update-car', carController.updateByReg);
 // Delete a car with specified id (make sure I create it first)
 // DELETE
 // http://localhost:8080/cars/delete-car/ZZZ111
-router.delete('/cars/delete-car/:reg', carController.deleteByReg);
+router.delete('/delete-car/:reg', carController.deleteByReg);
 
 
 
