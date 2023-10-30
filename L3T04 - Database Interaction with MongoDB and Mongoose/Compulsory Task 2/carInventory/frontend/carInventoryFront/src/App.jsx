@@ -17,7 +17,13 @@ function App() {
       <ul>
         {cars.map((car) => (
           <li key={car._id}>
-            {car.Model} {car.Make} {car.Owner}
+            <input id="carModel" type="text" value={car.Model} />
+            <input id="carMake" type="text" value={car.Make} />
+            <input id="carOwner" type="text" value={car.Owner} />
+            <input id="carRegistration" type="text" value={car.Registration} />
+            <input id="carAddress" type="text" value={car.Address} />
+            <button className="btn btn-warning">Update</button>
+            <button className="btn btn-danger">Delete</button>
           </li>
         ))}
       </ul>

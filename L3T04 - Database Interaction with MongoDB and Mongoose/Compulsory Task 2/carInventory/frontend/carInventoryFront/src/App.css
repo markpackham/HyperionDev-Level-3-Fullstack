@@ -22,9 +22,21 @@ a:hover {
   color: hsl(59, 34%, 24%);
 }
 
+button,
+.btn {
+  box-shadow: var(--box-shadow-secondary);
+  height: 40px;
+  margin: 5px;
+}
+
+
 h1,
 h2 {
   text-align: center;
+}
+
+input {
+  margin: 5px;
 }
 
 label {
