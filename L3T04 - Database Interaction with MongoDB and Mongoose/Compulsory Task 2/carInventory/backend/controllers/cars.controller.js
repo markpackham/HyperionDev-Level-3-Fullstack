@@ -64,7 +64,7 @@ exports.updateByReg = async (req, res) => {
     // Grab specific car to update by reg
     const reg = req.params.reg;
 
-    // Define the new data to update the owner
+    // Define the new data to update
     const update = {
       Model: req.body.Model,
       Make: req.body.Make,
@@ -84,6 +84,35 @@ exports.updateByReg = async (req, res) => {
     );
 
     if (updatedCar) {
+      res.send("Updated successfully");
+    } else {
+      res.status(404).send("Car not found");
+    }
+  } catch (error) {
+    console.error("Something went wrong when updating data.", error);
+    res.status(500).send("An error occurred while updating.");
+  }
+};
+
+// While registrations are unique an owner can have multiple cars
+exports.updateByOwner = async (req, res) => {
+  try {
+    // Grab specific cars to update by owner
+    const owner = req.params.owner;
+
+    const update = {
+      Model: req.body.Model,
+      Make: req.body.Make,
+      Owner: req.body.Owner,
+      Registration: req.body.Registration,
+      Address: req.body.Address,
+    };
+
+    // Use update many
+    // https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/
+    const updatedCars = await Car.updateMany({ Owner: owner }, update);
+
+    if (updatedCars.nModified > 0) {
       res.send("Updated successfully");
     } else {
       res.status(404).send("Car not found");

@@ -33,6 +33,12 @@ router.get("/olderThan5", carController.findOlderThan5Years);
 //
 router.put("/update-car/:reg", carController.updateByReg);
 
+// Provider 1 user who has multiple cars and update them all with identical details
+// demo use of db.collection.updateMany()
+// PUT
+//http://localhost:8080/cars/update-car/Timmy
+router.put("update-many/:owner", carController.updateByOwner);
+
 // Delete a car with specified id (make sure I create it first)
 // DELETE
 // http://localhost:8080/cars/delete-car/ZZZ111
