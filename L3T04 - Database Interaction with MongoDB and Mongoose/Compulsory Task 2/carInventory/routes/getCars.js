@@ -21,12 +21,12 @@ router.get('/olderThan5', carController.findOlderThan5Years);
 // Update a car with new details
 // PUT
 // http://localhost:8080/cars/update-car
-router.put('/update-car', carController.updateById);
+router.put('/update-car', carController.updateByReg);
 
 // Delete a car with specified id
 // DELETE
 // http://localhost:8080/cars/delete-car
-router.delete('/delete-car', carController.deleteById);
+router.delete('/delete-car', carController.deleteByReg);
 
 
 module.exports = router;
