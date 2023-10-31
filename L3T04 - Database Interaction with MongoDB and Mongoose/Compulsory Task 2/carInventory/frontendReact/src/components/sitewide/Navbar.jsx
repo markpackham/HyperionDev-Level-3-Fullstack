@@ -9,17 +9,18 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home
+                Home <i className="fa-solid fa-house"></i>
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/olderThan5">
-                Cars Older Than 5 Years
+                Older Cars <i className="fa-solid fa-car"></i>
               </Link>
             </li>
           </ul>
         </div>
       </nav>
+      <hr />
     </>
   );
 };

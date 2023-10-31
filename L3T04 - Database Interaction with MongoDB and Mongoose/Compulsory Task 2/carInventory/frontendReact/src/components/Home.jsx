@@ -141,6 +141,12 @@ function Home() {
     <div className="container">
       <CarAdd handleAddCar={handleAddCar} />
 
+      <h4>Mass Update on Owner</h4>
+      <p>
+        If you have multiple cars with the same owner this lets you update them
+        all with identical details - not advised but proves that MongoDB
+        function, updateMany works.
+      </p>
       <form className="form-group">
         <label htmlFor="carModelUpdateAll">Model/Year:</label>
         <input
@@ -178,7 +184,7 @@ function Home() {
           className="form-control"
         />
         <button onClick={handleUpdateAllOwner} className="btn btn-warning">
-          Update All Cars based on Owner
+          Update All on Owner
         </button>
       </form>
 
