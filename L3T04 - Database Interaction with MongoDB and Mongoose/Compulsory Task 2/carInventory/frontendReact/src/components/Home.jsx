@@ -13,7 +13,7 @@ function Home() {
   // Fetch All cars
   useEffect(() => {
     fetch(`${ulrPath}`)
-      .then((response) => response.json())
+      .then((res) => res.json())
       // Show latest additions first
       .then((data) => setCars(data.reverse()));
   }, []);
@@ -58,8 +58,8 @@ function Home() {
       },
       body: JSON.stringify(car),
     })
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        console.log(res);
         Swal.fire({
           title: `Car created!`,
           icon: "success",

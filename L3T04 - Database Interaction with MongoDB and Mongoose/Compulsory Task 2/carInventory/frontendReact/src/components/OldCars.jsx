@@ -7,7 +7,7 @@ function OldCars() {
   // Fetch All cars older than 5 years
   useEffect(() => {
     fetch("http://localhost:8080/cars/olderThan5")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => setCars(data));
   }, []);
 
