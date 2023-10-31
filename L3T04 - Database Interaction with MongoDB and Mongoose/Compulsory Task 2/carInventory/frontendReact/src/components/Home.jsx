@@ -64,7 +64,6 @@ function Home() {
 
   // UPDATE
   const updateCar = (reg) => {
-    console.log("Clicked!");
     const updatedCars = cars.map((car) => {
       if (car.Registration === reg) {
         return {
