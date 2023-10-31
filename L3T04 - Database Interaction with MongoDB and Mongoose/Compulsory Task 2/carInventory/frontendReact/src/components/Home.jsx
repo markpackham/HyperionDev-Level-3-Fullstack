@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 function Home() {
   const [cars, setCars] = useState([]);
@@ -13,7 +14,8 @@ function Home() {
 
   // CREATE / POST
   // Add a car
-  const handleAddCar = () => {
+  const handleAddCar = (event) => {
+    event.preventDefault();
     const car = {
       Model: document.getElementById("carModelAdd").value,
       Make: document.getElementById("carMakeAdd").value,
@@ -31,6 +33,10 @@ function Home() {
     })
       .then((response) => {
         console.log(response);
+        Swal.fire({
+          title: `Car created!`,
+          icon: "success",
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -42,9 +48,12 @@ function Home() {
     const url = `http://localhost:8080/cars/delete-car/${registration}`;
     const response = await fetch(url, { method: "DELETE" });
     if (response.ok) {
-      alert(`Car with registration ${registration} has been deleted.`);
+      Swal.fire({
+        title: `Car with reg: ${registration} deleted.`,
+        icon: "info",
+      });
     } else {
-      console.error(`Failed to delete car with registration ${registration}.`);
+      console.error(`Failed to delete car reg: ${registration}.`);
     }
   };
 
