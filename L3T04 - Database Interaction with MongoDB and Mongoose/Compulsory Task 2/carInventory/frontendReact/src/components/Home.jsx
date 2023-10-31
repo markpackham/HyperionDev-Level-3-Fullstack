@@ -36,7 +36,10 @@ function Home() {
       reg.length < 1 ||
       address.length < 1
     ) {
-      alert("All fields are required");
+      Swal.fire({
+        title: `All fields required!`,
+        icon: "error",
+      });
       return;
     }
 
