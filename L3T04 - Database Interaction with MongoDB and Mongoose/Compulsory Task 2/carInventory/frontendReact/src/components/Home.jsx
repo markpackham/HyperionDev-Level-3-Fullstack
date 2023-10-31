@@ -64,6 +64,7 @@ function Home() {
 
   // UPDATE
   const updateCar = (reg) => {
+    console.log("Clicked!");
     const updatedCars = cars.map((car) => {
       if (car.Registration === reg) {
         return {
@@ -78,6 +79,7 @@ function Home() {
         return car;
       }
     });
+    console.log(updatedCars);
     setCars(updatedCars);
 
     // PUT request to Express
@@ -89,7 +91,7 @@ function Home() {
       },
       body: JSON.stringify(updatedCars.find((car) => car.Registration === reg)),
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
   };
@@ -119,7 +121,7 @@ function Home() {
             <input
               id="carModel"
               size="6"
-              type="text"
+              type="number"
               defaultValue={car.Model}
             />
             <input id="carMake" size="14" type="text" defaultValue={car.Make} />
