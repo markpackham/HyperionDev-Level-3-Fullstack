@@ -13,6 +13,21 @@ function Home() {
 
   return (
     <div className="container">
+      <form>
+        <h4>Add Car</h4>
+        <label htmlFor="carModelAdd">Model</label>
+        <input id="carModelAdd" size="6" type="number" />
+        <label htmlFor="carMakeAdd">Make</label>
+        <input id="carMakeAdd" size="14" type="text" />
+        <label htmlFor="carOwnerAdd">Owner</label>
+        <input id="carOwnerAdd" size="14" type="text" />
+        <label htmlFor="carRegistrationAdd">Registration</label>
+        <input id="carRegistrationAdd" size="14" type="text" />
+        <label htmlFor="carAddressAdd">Address</label>
+        <input id="carAddressAdd" size="35" type="text" />
+        <button className="btn btn-success">Create</button>
+      </form>
+
       <ul>
         {cars.map((car) => (
           <li key={car._id}>
