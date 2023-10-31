@@ -66,6 +66,15 @@ function Home() {
 
   // UPDATE
   const updateCar = (reg) => {
+    console.log(document.getElementById(`carModel-${reg}`).value);
+    const myCar = {
+      Model: Number(document.getElementById(`carModel-${reg}`).value),
+      Make: document.getElementById(`carMake-${reg}`).value,
+      Owner: document.getElementById(`carOwner-${reg}`).value,
+      Registration: document.getElementById(`carRegistration-${reg}`).value,
+      Address: document.getElementById(`carAddress-${reg}`).value,
+    };
+
     const updatedCar = cars.find((car) => car.Registration === reg);
     console.log(updatedCar);
     setCars(cars.map((car) => (car.Registration === reg ? updatedCar : car)));
@@ -76,7 +85,7 @@ function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedCar),
+      body: JSON.stringify(myCar),
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -122,21 +131,30 @@ function Home() {
         {cars.map((car) => (
           <li key={car.Registration}>
             <input
-              id="carModel"
+              id={`carModel-${car.Registration}`}
               size="6"
               type="number"
               defaultValue={car.Model}
             />
-            <input id="carMake" size="14" type="text" defaultValue={car.Make} />
             <input
-              id="carRegistration"
+              id={`carMake-${car.Registration}`}
+              size="14"
+              type="text"
+              defaultValue={car.Make}
+            />
+            <input
+              id={`carRegistration-${car.Registration}`}
               size="14"
               type="text"
               defaultValue={car.Registration}
             />
-            <input id="carOwner" type="text" defaultValue={car.Owner} />
             <input
-              id="carAddress"
+              id={`carOwner-${car.Registration}`}
+              type="text"
+              defaultValue={car.Owner}
+            />
+            <input
+              id={`carAddress-${car.Registration}`}
               size="35"
               type="text"
               defaultValue={car.Address}
