@@ -103,7 +103,7 @@ function Home() {
   };
 
   // UPDATE ALL based on Owner
-  const handleUpdateAllOwner = (owner) => {
+  const handleUpdateAllOwner = (event, owner) => {
     event.preventDefault();
     console.log(owner);
   };
@@ -154,7 +154,7 @@ function Home() {
               document.getElementById(`carOwnerUpdateAll`).value
             )
           }
-          className="btn btn-success"
+          className="btn btn-warning"
         >
           Update All Cars based on Owner
         </button>

@@ -39,7 +39,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
               />
               <button
                 onClick={() => updateCar(car.Registration)}
-                className="btn btn-warning"
+                className="btn btn-info"
               >
                 Update
               </button>
