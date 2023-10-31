@@ -5,7 +5,7 @@ import * as Yup from "yup";
 const CarAdd = ({ handleAddCar, handleClearAddCar }) => {
   // Use Formik and Yup to tell user off for not filling in fields
   const validationSchema = Yup.object({
-    carModelAdd: Yup.number().required("Model/Year is required"),
+    carModelAdd: Yup.number().moreThan(1900).required("Model/Year is required"),
     carMakeAdd: Yup.string().required("Make is required"),
     carRegistrationAdd: Yup.string().required("Registration is required"),
     carOwnerAdd: Yup.string().required("Owner is required"),

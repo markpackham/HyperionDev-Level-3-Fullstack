@@ -30,7 +30,7 @@ function Home() {
     let address = document.getElementById("carAddressAdd").value;
 
     if (
-      model < 1800 ||
+      model < 1900 ||
       make.length < 1 ||
       owner.length < 1 ||
       reg.length < 1 ||
@@ -40,6 +40,7 @@ function Home() {
         title: `All fields required!`,
         icon: "error",
       });
+      // Escape method if user has failed to provide all fields
       return;
     }
 
@@ -145,7 +146,7 @@ function Home() {
     let address = document.getElementById("carAddressUpdateAll").value;
 
     if (
-      model < 1800 ||
+      model < 1900 ||
       make.length < 1 ||
       owner.length < 1 ||
       reg.length < 1 ||
