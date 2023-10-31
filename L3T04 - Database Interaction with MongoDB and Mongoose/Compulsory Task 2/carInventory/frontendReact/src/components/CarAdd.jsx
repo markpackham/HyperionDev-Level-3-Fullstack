@@ -113,7 +113,7 @@ const CarAdd = ({ handleAddCar, handleClearAddCar }) => {
           Add Car
         </button>
 
-        <button onClick={handleClearAddCar} className="btn btn-success">
+        <button onClick={handleClearAddCar} className="btn btn-primary">
           Clear
         </button>
       </form>
