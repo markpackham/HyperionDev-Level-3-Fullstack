@@ -89,7 +89,7 @@ exports.updateByReg = async (req, res) => {
     );
 
     if (updatedCar) {
-      res.send("Updated successfully");
+      res.status(200);
     } else {
       res.status(404).send("Car not found");
     }
@@ -118,8 +118,10 @@ exports.updateByOwner = async (req, res) => {
     // https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/
     const updatedCars = await Car.updateMany({ Owner: owner }, update);
 
+    // nModified is the number modified from MongoDB
+    // https://www.mongodb.com/docs/manual/reference/command/update/
     if (updatedCars.nModified > 0) {
-      res.send("Updated successfully");
+      res.status(200);
     } else {
       res.status(404).send("Car not found");
     }
