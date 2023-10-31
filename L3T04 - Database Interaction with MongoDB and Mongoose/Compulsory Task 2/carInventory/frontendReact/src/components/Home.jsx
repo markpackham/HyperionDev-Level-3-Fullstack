@@ -11,6 +11,7 @@ function Home() {
   useEffect(() => {
     fetch(`${ulrPath}`)
       .then((response) => response.json())
+      // Show latest additions first
       .then((data) => setCars(data.reverse()));
   }, []);
 
