@@ -11,7 +11,7 @@ function Home() {
   useEffect(() => {
     fetch(`${ulrPath}`)
       .then((response) => response.json())
-      .then((data) => setCars(data));
+      .then((data) => setCars(data.reverse()));
   }, []);
 
   // CREATE / POST
@@ -41,7 +41,7 @@ function Home() {
         });
 
         // Update state with new car
-        setCars([...cars, car]);
+        setCars([car, ...cars]);
       })
       .catch((error) => {
         console.log(error);
@@ -131,7 +131,7 @@ function Home() {
 
       <ul>
         {cars.map((car) => (
-          <li key={car._id}>
+          <li key={car.Registration}>
             <input
               id="carModel"
               size="6"
