@@ -15,7 +15,7 @@ function Home() {
   // Add a car
   const handleAddCar = () => {
     const car = {
-      ModelYear: document.getElementById("carModelAdd").value,
+      Model: document.getElementById("carModelAdd").value,
       Make: document.getElementById("carMakeAdd").value,
       Owner: document.getElementById("carOwnerAdd").value,
       Registration: document.getElementById("carRegistrationAdd").value,
