@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import CarItem from "./CarItem";
+import CarAdd from "./CarAdd";
 
 const ulrPath = "http://localhost:8080/cars";
 
@@ -103,36 +104,7 @@ function Home() {
 
   return (
     <div className="container">
-      <form className="form-group">
-        <label htmlFor="carModelAdd">Model/Year:</label>
-        <input
-          required
-          id="carModelAdd"
-          type="number"
-          className="form-control"
-        />
-        <label htmlFor="carMakeAdd">Make:</label>
-        <input required id="carMakeAdd" type="text" className="form-control" />
-        <label htmlFor="carRegistrationAdd">Registration:</label>
-        <input
-          required
-          id="carRegistrationAdd"
-          type="text"
-          className="form-control"
-        />
-        <label htmlFor="carOwnerAdd">Owner:</label>
-        <input required id="carOwnerAdd" type="text" className="form-control" />
-        <label htmlFor="carAddressAdd">Address:</label>
-        <input
-          required
-          id="carAddressAdd"
-          type="text"
-          className="form-control"
-        />
-        <button onClick={handleAddCar} className="btn btn-success">
-          Add Car
-        </button>
-      </form>
+      <CarAdd handleAddCar={handleAddCar} />
 
       <CarItem cars={cars} updateCar={updateCar} deleteCar={deleteCar} />
     </div>
