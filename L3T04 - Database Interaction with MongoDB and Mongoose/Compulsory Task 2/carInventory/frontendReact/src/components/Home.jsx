@@ -135,7 +135,25 @@ function Home() {
   const handleUpdateAllOwner = (event) => {
     event.preventDefault();
 
-    const owner = document.getElementById(`carOwnerUpdateAll`).value;
+    let model = Number(document.getElementById("carModelUpdateAll").value);
+    let make = document.getElementById("carMakeUpdateAll").value;
+    let owner = document.getElementById("carOwnerUpdateAll").value;
+    let reg = document.getElementById("carRegistrationUpdateAll").value;
+    let address = document.getElementById("carAddressUpdateAll").value;
+
+    if (
+      model < 1800 ||
+      make.length < 1 ||
+      owner.length < 1 ||
+      reg.length < 1 ||
+      address.length < 1
+    ) {
+      Swal.fire({
+        title: `All fields required!`,
+        icon: "error",
+      });
+      return;
+    }
 
     const upCar = {
       Model: Number(document.getElementById(`carModelUpdateAll`).value),
