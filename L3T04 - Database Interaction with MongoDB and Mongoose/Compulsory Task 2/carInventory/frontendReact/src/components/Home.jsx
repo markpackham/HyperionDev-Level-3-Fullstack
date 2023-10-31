@@ -97,18 +97,33 @@ function Home() {
 
   return (
     <div className="container">
-      <form>
+      <form className="form-group">
         <h4>Add Car</h4>
-        <label htmlFor="carModelAdd">Model/Year</label>
-        <input id="carModelAdd" size="6" type="number" />
-        <label htmlFor="carMakeAdd">Make</label>
-        <input id="carMakeAdd" size="14" type="text" />
-        <label htmlFor="carOwnerAdd">Owner</label>
-        <input id="carOwnerAdd" size="14" type="text" />
-        <label htmlFor="carRegistrationAdd">Registration</label>
-        <input id="carRegistrationAdd" size="14" type="text" />
-        <label htmlFor="carAddressAdd">Address</label>
-        <input id="carAddressAdd" size="35" type="text" />
+        <label htmlFor="carModelAdd">Model/Year:</label>
+        <input
+          required
+          id="carModelAdd"
+          type="number"
+          className="form-control"
+        />
+        <label htmlFor="carMakeAdd">Make:</label>
+        <input required id="carMakeAdd" type="text" className="form-control" />
+        <label htmlFor="carOwnerAdd">Owner:</label>
+        <input required id="carOwnerAdd" type="text" className="form-control" />
+        <label htmlFor="carRegistrationAdd">Registration:</label>
+        <input
+          required
+          id="carRegistrationAdd"
+          type="text"
+          className="form-control"
+        />
+        <label htmlFor="carAddressAdd">Address:</label>
+        <input
+          required
+          id="carAddressAdd"
+          type="text"
+          className="form-control"
+        />
         <button onClick={handleAddCar} className="btn btn-success">
           Create
         </button>
