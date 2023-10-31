@@ -110,8 +110,6 @@ function Home() {
         />
         <label htmlFor="carMakeAdd">Make:</label>
         <input required id="carMakeAdd" type="text" className="form-control" />
-        <label htmlFor="carOwnerAdd">Owner:</label>
-        <input required id="carOwnerAdd" type="text" className="form-control" />
         <label htmlFor="carRegistrationAdd">Registration:</label>
         <input
           required
@@ -119,6 +117,8 @@ function Home() {
           type="text"
           className="form-control"
         />
+        <label htmlFor="carOwnerAdd">Owner:</label>
+        <input required id="carOwnerAdd" type="text" className="form-control" />
         <label htmlFor="carAddressAdd">Address:</label>
         <input
           required
@@ -131,6 +131,7 @@ function Home() {
         </button>
       </form>
 
+      <h4 className="mb-2">Model - Make - Registration - Owner - Address</h4>
       <ul>
         {cars.map((car) => (
           <li key={car.Registration}>
@@ -141,13 +142,13 @@ function Home() {
               defaultValue={car.Model}
             />
             <input id="carMake" size="14" type="text" defaultValue={car.Make} />
-            <input id="carOwner" type="text" defaultValue={car.Owner} />
             <input
               id="carRegistration"
               size="14"
               type="text"
               defaultValue={car.Registration}
             />
+            <input id="carOwner" type="text" defaultValue={car.Owner} />
             <input
               id="carAddress"
               size="35"
