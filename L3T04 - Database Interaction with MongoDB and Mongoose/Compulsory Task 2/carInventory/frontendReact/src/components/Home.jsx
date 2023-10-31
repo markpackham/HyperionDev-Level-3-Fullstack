@@ -51,8 +51,8 @@ function Home() {
   // DELETE
   const deleteCar = async (reg) => {
     const url = `${ulrPath}/delete-car/${reg}`;
-    const response = await fetch(url, { method: "DELETE" });
-    if (response.ok) {
+    const res = await fetch(url, { method: "DELETE" });
+    if (res.ok) {
       Swal.fire({
         title: `Car with reg: ${reg} deleted.`,
         icon: "info",
@@ -66,7 +66,8 @@ function Home() {
 
   // UPDATE
   const updateCar = (reg) => {
-    console.log(document.getElementById(`carModel-${reg}`).value);
+    // All input fields have unique ids thanks to the reg being unique
+    // so basic input field name + reg thus only the correct car is updated
     const myCar = {
       Model: Number(document.getElementById(`carModel-${reg}`).value),
       Make: document.getElementById(`carMake-${reg}`).value,
@@ -75,10 +76,11 @@ function Home() {
       Address: document.getElementById(`carAddress-${reg}`).value,
     };
 
+    // Find car we want to update
     const updatedCar = cars.find((car) => car.Registration === reg);
-    console.log(updatedCar);
     setCars(cars.map((car) => (car.Registration === reg ? updatedCar : car)));
 
+    // PUT request to server
     const url = `${ulrPath}/update-car/${reg}`;
     fetch(url, {
       method: "PUT",
@@ -128,51 +130,52 @@ function Home() {
 
       <h4 className="mb-2">Model - Make - Registration - Owner - Address</h4>
       <ul>
-        {cars.map((car) => (
-          <li key={car.Registration}>
-            <input
-              id={`carModel-${car.Registration}`}
-              size="6"
-              type="number"
-              defaultValue={car.Model}
-            />
-            <input
-              id={`carMake-${car.Registration}`}
-              size="14"
-              type="text"
-              defaultValue={car.Make}
-            />
-            <input
-              id={`carRegistration-${car.Registration}`}
-              size="14"
-              type="text"
-              defaultValue={car.Registration}
-            />
-            <input
-              id={`carOwner-${car.Registration}`}
-              type="text"
-              defaultValue={car.Owner}
-            />
-            <input
-              id={`carAddress-${car.Registration}`}
-              size="35"
-              type="text"
-              defaultValue={car.Address}
-            />
-            <button
-              onClick={() => updateCar(car.Registration)}
-              className="btn btn-warning"
-            >
-              Update
-            </button>
-            <button
-              onClick={() => deleteCar(car.Registration)}
-              className="btn btn-danger"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+        {(cars.length > 0 &&
+          cars.map((car) => (
+            <li key={car.Registration}>
+              <input
+                id={`carModel-${car.Registration}`}
+                size="6"
+                type="number"
+                defaultValue={car.Model}
+              />
+              <input
+                id={`carMake-${car.Registration}`}
+                size="14"
+                type="text"
+                defaultValue={car.Make}
+              />
+              <input
+                id={`carRegistration-${car.Registration}`}
+                size="14"
+                type="text"
+                defaultValue={car.Registration}
+              />
+              <input
+                id={`carOwner-${car.Registration}`}
+                type="text"
+                defaultValue={car.Owner}
+              />
+              <input
+                id={`carAddress-${car.Registration}`}
+                size="35"
+                type="text"
+                defaultValue={car.Address}
+              />
+              <button
+                onClick={() => updateCar(car.Registration)}
+                className="btn btn-warning"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => deleteCar(car.Registration)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
+            </li>
+          ))) || <h3>Loading ...</h3>}
       </ul>
     </div>
   );
