@@ -66,31 +66,17 @@ function Home() {
 
   // UPDATE
   const updateCar = (reg) => {
-    const updatedCars = cars.map((car) => {
-      if (car.Registration === reg) {
-        return {
-          ...car,
-          Model: document.getElementById("carModel").value,
-          Make: document.getElementById("carMake").value,
-          Owner: document.getElementById("carOwner").value,
-          Registration: document.getElementById("carRegistration").value,
-          Address: document.getElementById("carAddress").value,
-        };
-      } else {
-        return car;
-      }
-    });
-    console.log(updatedCars);
-    setCars(updatedCars);
+    const updatedCar = cars.find((car) => car.Registration === reg);
+    console.log(updatedCar);
+    setCars(cars.map((car) => (car.Registration === reg ? updatedCar : car)));
 
-    // PUT request to Express
     const url = `${ulrPath}/update-car/${reg}`;
     fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedCars.find((car) => car.Registration === reg)),
+      body: JSON.stringify(updatedCar),
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
