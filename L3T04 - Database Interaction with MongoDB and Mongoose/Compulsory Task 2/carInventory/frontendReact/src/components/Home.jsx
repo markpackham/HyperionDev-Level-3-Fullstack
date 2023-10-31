@@ -22,12 +22,30 @@ function Home() {
   // Add a car
   const handleAddCar = (event) => {
     event.preventDefault();
+
+    let model = Number(document.getElementById("carModelAdd").value);
+    let make = document.getElementById("carMakeAdd").value;
+    let owner = document.getElementById("carOwnerAdd").value;
+    let reg = document.getElementById("carRegistrationAdd").value;
+    let address = document.getElementById("carAddressAdd").value;
+
+    if (
+      model < 1800 ||
+      make.length < 1 ||
+      owner.length < 1 ||
+      reg.length < 1 ||
+      address.length < 1
+    ) {
+      alert("All fields are required");
+      return;
+    }
+
     const car = {
-      Model: document.getElementById("carModelAdd").value,
-      Make: document.getElementById("carMakeAdd").value,
-      Owner: document.getElementById("carOwnerAdd").value,
-      Registration: document.getElementById("carRegistrationAdd").value,
-      Address: document.getElementById("carAddressAdd").value,
+      Model: model,
+      Make: make,
+      Owner: owner,
+      Registration: reg,
+      Address: address,
     };
     // Send Post method to Express
     fetch(`${ulrPath}/add`, {
@@ -48,11 +66,11 @@ function Home() {
         setCars([car, ...cars]);
 
         // Clear out fields
-        document.getElementById("carModelAdd").value = 0;
-        document.getElementById("carMakeAdd").value = "";
-        document.getElementById("carOwnerAdd").value = "";
-        document.getElementById("carRegistrationAdd").value = "";
-        document.getElementById("carAddressAdd").value = "";
+        model = 0;
+        make = "";
+        owner = "";
+        reg = "";
+        address = "";
       })
       .catch((error) => {
         console.log(error);
