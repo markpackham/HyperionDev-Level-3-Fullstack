@@ -132,8 +132,9 @@ function Home() {
   };
 
   // UPDATE ALL based on Owner
-  const handleUpdateAllOwner = (event) => {
-    event.preventDefault();
+  const handleUpdateAllOwner = () => {
+    // Allow for page refresh rather than preventing default
+    // too tricky to update state a cleaner way
 
     let model = Number(document.getElementById("carModelUpdateAll").value);
     let make = document.getElementById("carMakeUpdateAll").value;
@@ -182,6 +183,9 @@ function Home() {
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
   };
+
+  // Trigger useEffect if we have changed the cars area via handleUpdateAllOwner();
+  useEffect(() => {}, [cars]);
 
   return (
     <div className="container">
