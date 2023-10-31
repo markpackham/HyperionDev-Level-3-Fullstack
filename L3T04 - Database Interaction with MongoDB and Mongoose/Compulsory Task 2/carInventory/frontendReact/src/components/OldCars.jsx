@@ -17,16 +17,8 @@ function OldCars() {
       <ul>
         {cars.map((car) => (
           <li key={car._id}>
-            <input id="carModel" size="6" type="number" value={car.Model} />
-            <input id="carMake" size="14" type="text" value={car.Make} />
-            <input id="carOwner" type="text" value={car.Owner} />
-            <input
-              id="carRegistration"
-              size="14"
-              type="text"
-              value={car.Registration}
-            />
-            <input id="carAddress" size="35" type="text" value={car.Address} />
+            {car.Model} - {car.Make} - {car.Owner} - {car.Registration} -{" "}
+            {car.Address}
           </li>
         ))}
       </ul>
