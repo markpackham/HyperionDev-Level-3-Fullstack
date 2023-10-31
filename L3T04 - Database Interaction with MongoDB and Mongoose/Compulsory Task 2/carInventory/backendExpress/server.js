@@ -5,14 +5,13 @@ const password = process.env.MONGODB_PASSWORD;
 
 // Import dependencies
 const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 // Handle Cors errors when I have both React & Express running
 // Cors (no date) Express cors middleware.
 //Available at: https://expressjs.com/en/resources/middleware/cors.html (Accessed: 30 October 2023).
 const cors = require("cors");
-
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 
 // Import routes
 const getCars = require("./routes/getCars");

@@ -21,20 +21,11 @@ router.get("/olderThan5", carController.findOlderThan5Years);
 // Update a car with new details
 // PUT
 // http://localhost:8080/cars/update-car/123
-
-// Example body code
-// {
-//     "Model": 2023,
-//     "Make": "Very Slow Car",
-//     "Owner": "Bobby Blue Gold",
-//     "Registration": "123ZZ",
-//     "Address": "Gold Street, York, England"
-// }
-//
 router.put("/update-car/:reg", carController.updateByReg);
 
 // Provider 1 user who has multiple cars and update them all with identical details
-// demo use of db.collection.updateMany()
+// demo use of db.collection.updateMany() - in the real World I'd only trust a database admin
+// with this amount of power and not an end user
 // PUT
 //http://localhost:8080/cars/update-car/Timmy
 router.put("update-many/:owner", carController.updateByOwner);
