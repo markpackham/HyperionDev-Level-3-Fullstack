@@ -165,6 +165,12 @@ function Home() {
 
     //PUT request to server
     const url = `${ulrPath}/update-many/${owner}`;
+
+    Swal.fire({
+      title: `Mass update done!`,
+      icon: "info",
+    });
+
     fetch(url, {
       method: "PUT",
       headers: {
