@@ -28,8 +28,8 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
       <h4>Mass Update on Owner</h4>
       <p>
         If you have multiple cars with the same owner this lets you update them
-        all with identical details - not advised but proves that MongoDB
-        function, updateMany works.
+        all with identical details - not advised but proves that the MongoDB
+        function, &quot;updateMany&quot; works.
       </p>
       <form className="form-group">
         <label htmlFor="carModelUpdateAll">Model/Year:</label>
