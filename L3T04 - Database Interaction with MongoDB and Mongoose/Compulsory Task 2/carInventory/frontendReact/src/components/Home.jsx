@@ -55,7 +55,7 @@ function Home() {
     if (res.ok) {
       Swal.fire({
         title: `Car with reg: ${reg} deleted.`,
-        icon: "info",
+        icon: "warning",
       });
       // Update the state to avoid having to refresh
       setCars(cars.filter((car) => car.Registration !== reg));
@@ -79,6 +79,11 @@ function Home() {
     // Find car we want to update
     const updatedCar = cars.find((car) => car.Registration === reg);
     setCars(cars.map((car) => (car.Registration === reg ? updatedCar : car)));
+
+    Swal.fire({
+      title: `Car with reg: ${reg} updated.`,
+      icon: "info",
+    });
 
     // PUT request to server
     const url = `${ulrPath}/update-car/${reg}`;
