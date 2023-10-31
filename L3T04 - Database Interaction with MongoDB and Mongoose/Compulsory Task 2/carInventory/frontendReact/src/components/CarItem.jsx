@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const CarItem = ({ cars, updateCar, deleteCar }) => {
   return (
     <>
@@ -52,6 +54,12 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
       </ul>
     </>
   );
+};
+
+CarItem.propTypes = {
+  cars: PropTypes.array.isRequired,
+  updateCar: PropTypes.func.isRequired,
+  deleteCar: PropTypes.func.isRequired,
 };
 
 export default CarItem;
