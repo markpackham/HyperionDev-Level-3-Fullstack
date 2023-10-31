@@ -45,6 +45,13 @@ function Home() {
 
         // Update state with new car
         setCars([car, ...cars]);
+
+        // Clear out fields
+        document.getElementById("carModelAdd").value = 0;
+        document.getElementById("carMakeAdd").value = "";
+        document.getElementById("carOwnerAdd").value = "";
+        document.getElementById("carRegistrationAdd").value = "";
+        document.getElementById("carAddressAdd").value = "";
       })
       .catch((error) => {
         console.log(error);
@@ -71,7 +78,7 @@ function Home() {
   const updateCar = (reg) => {
     // All input fields have unique ids thanks to the reg being unique
     // so basic input field name + reg thus only the correct car is updated
-    const myCar = {
+    const upCar = {
       Model: Number(document.getElementById(`carModel-${reg}`).value),
       Make: document.getElementById(`carMake-${reg}`).value,
       Owner: document.getElementById(`carOwner-${reg}`).value,
@@ -95,7 +102,7 @@ function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(myCar),
+      body: JSON.stringify(upCar),
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -103,9 +110,31 @@ function Home() {
   };
 
   // UPDATE ALL based on Owner
-  const handleUpdateAllOwner = (event, owner) => {
+  const handleUpdateAllOwner = (event) => {
     event.preventDefault();
-    console.log(owner);
+
+    const owner = document.getElementById(`carOwnerUpdateAll`).value;
+
+    const upCar = {
+      Model: Number(document.getElementById(`carModelUpdateAll`).value),
+      Make: document.getElementById(`carMakeUpdateAll`).value,
+      Owner: owner,
+      Registration: document.getElementById(`carRegistrationUpdateAll`).value,
+      Address: document.getElementById(`carAddressUpdateAll`).value,
+    };
+
+    //PUT request to server
+    const url = `${ulrPath}/update-many/${owner}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(upCar),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -148,14 +177,7 @@ function Home() {
           type="text"
           className="form-control"
         />
-        <button
-          onClick={() =>
-            handleUpdateAllOwner(
-              document.getElementById(`carOwnerUpdateAll`).value
-            )
-          }
-          className="btn btn-warning"
-        >
+        <button onClick={handleUpdateAllOwner} className="btn btn-warning">
           Update All Cars based on Owner
         </button>
       </form>

@@ -28,7 +28,7 @@ router.put("/update-car/:reg", carController.updateByReg);
 // with this amount of power and not an end user
 // PUT
 //http://localhost:8080/cars/update-car/Timmy
-router.put("update-many/:owner", carController.updateByOwner);
+router.put("/update-many/:owner", carController.updateByOwner);
 
 // Delete a car with specified id (make sure I create it first)
 // DELETE

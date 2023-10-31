@@ -7,7 +7,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
       <ul>
         {(cars.length > 0 &&
           cars.map((car) => (
-            <li key={car.Registration}>
+            <li key={car.Registration + car._id}>
               <input
                 id={`carModel-${car.Registration}`}
                 size="6"
