@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const CarAdd = ({ handleAddCar }) => {
+  // Use Formik and Yup to tell user off for not filling in fields
   const validationSchema = Yup.object({
     carModelAdd: Yup.number().required("Model/Year is required"),
     carMakeAdd: Yup.string().required("Make is required"),
@@ -39,27 +40,80 @@ const CarAdd = ({ handleAddCar }) => {
         />
 
         {formik.touched.carModelAdd && formik.errors.carModelAdd ? (
-          <div>{formik.errors.carModelAdd}</div>
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.carModelAdd}
+          </div>
         ) : null}
 
         <label htmlFor="carMakeAdd">Make:</label>
-        <input required id="carMakeAdd" type="text" className="form-control" />
+        <input
+          required
+          id="carMakeAdd"
+          type="text"
+          className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.carMakeAdd}
+        />
+
+        {formik.touched.carMakeAdd && formik.errors.carMakeAdd ? (
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.carMakeAdd}
+          </div>
+        ) : null}
+
         <label htmlFor="carRegistrationAdd">Registration:</label>
         <input
           required
           id="carRegistrationAdd"
           type="text"
           className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.carRegistrationAdd}
         />
+
+        {formik.touched.carRegistrationAdd &&
+        formik.errors.carRegistrationAdd ? (
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.carRegistrationAdd}
+          </div>
+        ) : null}
+
         <label htmlFor="carOwnerAdd">Owner:</label>
-        <input required id="carOwnerAdd" type="text" className="form-control" />
+        <input
+          required
+          id="carOwnerAdd"
+          type="text"
+          className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.carOwnerAdd}
+        />
+
+        {formik.touched.carOwnerAdd && formik.errors.carOwnerAdd ? (
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.carOwnerAdd}
+          </div>
+        ) : null}
+
         <label htmlFor="carAddressAdd">Address:</label>
         <input
           required
           id="carAddressAdd"
           type="text"
           className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.carAddressAdd}
         />
+
+        {formik.touched.carAddressAdd && formik.errors.carAddressAdd ? (
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.carAddressAdd}
+          </div>
+        ) : null}
+
         <button onClick={handleAddCar} className="btn btn-success">
           Add Car
         </button>
