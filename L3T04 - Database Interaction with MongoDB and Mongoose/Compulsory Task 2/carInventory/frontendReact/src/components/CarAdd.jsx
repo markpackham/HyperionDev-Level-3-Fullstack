@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 const CarAdd = ({ handleAddCar }) => {
   return (
     <>
+      <h4>Add Car</h4>
+
       <form className="form-group">
         <label htmlFor="carModelAdd">Model/Year:</label>
         <input

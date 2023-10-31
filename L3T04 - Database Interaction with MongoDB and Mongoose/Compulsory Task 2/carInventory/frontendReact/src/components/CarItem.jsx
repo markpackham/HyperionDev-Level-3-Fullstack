@@ -41,13 +41,13 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                 onClick={() => updateCar(car.Registration)}
                 className="btn btn-info"
               >
-                Update based on Reg
+                Update
               </button>
               <button
                 onClick={() => deleteCar(car.Registration)}
                 className="btn btn-danger"
               >
-                Delete based on Reg
+                Delete
               </button>
             </li>
           ))) || <h3>Loading ...</h3>}
