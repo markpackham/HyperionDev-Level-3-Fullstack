@@ -57,6 +57,8 @@ function Home() {
         title: `Car with reg: ${reg} deleted.`,
         icon: "info",
       });
+      // Update the state to avoid having to refresh
+      setCars(cars.filter((car) => car.Registration !== reg));
     } else {
       console.error(`Failed to delete car reg: ${reg}.`);
     }
