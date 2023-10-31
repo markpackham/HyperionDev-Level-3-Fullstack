@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
+const ulrPath = "http://localhost:8080/cars";
+
 function Home() {
   const [cars, setCars] = useState([]);
 
   // READ / GET
   // Fetch All cars
   useEffect(() => {
-    fetch("http://localhost:8080/cars")
+    fetch(`${ulrPath}`)
       .then((response) => response.json())
       .then((data) => setCars(data));
   }, []);
@@ -24,7 +26,7 @@ function Home() {
       Address: document.getElementById("carAddressAdd").value,
     };
     // Send Post method to Express
-    fetch("http://localhost:8080/cars/add", {
+    fetch(`${ulrPath}/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,16 +49,16 @@ function Home() {
   };
 
   // DELETE
-  const deleteCar = async (registration) => {
-    const url = `http://localhost:8080/cars/delete-car/${registration}`;
+  const deleteCar = async (reg) => {
+    const url = `${ulrPath}/delete-car/${reg}`;
     const response = await fetch(url, { method: "DELETE" });
     if (response.ok) {
       Swal.fire({
-        title: `Car with reg: ${registration} deleted.`,
+        title: `Car with reg: ${reg} deleted.`,
         icon: "info",
       });
     } else {
-      console.error(`Failed to delete car reg: ${registration}.`);
+      console.error(`Failed to delete car reg: ${reg}.`);
     }
   };
 
