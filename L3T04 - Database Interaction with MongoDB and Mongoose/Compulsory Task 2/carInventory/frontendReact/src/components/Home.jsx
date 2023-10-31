@@ -102,9 +102,63 @@ function Home() {
       .catch((error) => console.error(error));
   };
 
+  // UPDATE ALL based on Owner
+  const handleUpdateAllOwner = (owner) => {
+    event.preventDefault();
+    console.log(owner);
+  };
+
   return (
     <div className="container">
       <CarAdd handleAddCar={handleAddCar} />
+
+      <form className="form-group">
+        <label htmlFor="carModelUpdateAll">Model/Year:</label>
+        <input
+          required
+          id="carModelUpdateAll"
+          type="number"
+          className="form-control"
+        />
+        <label htmlFor="carMakeUpdateAll">Make:</label>
+        <input
+          required
+          id="carMakeUpdateAll"
+          type="text"
+          className="form-control"
+        />
+        <label htmlFor="carRegistrationUpdateAll">Registration:</label>
+        <input
+          required
+          id="carRegistrationUpdateAll"
+          type="text"
+          className="form-control"
+        />
+        <label htmlFor="carOwnerUpdateAll">Owner:</label>
+        <input
+          required
+          id="carOwnerUpdateAll"
+          type="text"
+          className="form-control"
+        />
+        <label htmlFor="carAddressUpdateAll">Address:</label>
+        <input
+          required
+          id="carAddressUpdateAll"
+          type="text"
+          className="form-control"
+        />
+        <button
+          onClick={() =>
+            handleUpdateAllOwner(
+              document.getElementById(`carOwnerUpdateAll`).value
+            )
+          }
+          className="btn btn-success"
+        >
+          Update All Cars based on Owner
+        </button>
+      </form>
 
       <CarItem cars={cars} updateCar={updateCar} deleteCar={deleteCar} />
     </div>
