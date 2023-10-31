@@ -62,6 +62,38 @@ function Home() {
     }
   };
 
+  // UPDATE
+  const updateCar = (reg) => {
+    const updatedCars = cars.map((car) => {
+      if (car.Registration === reg) {
+        return {
+          ...car,
+          Model: document.getElementById("carModel").value,
+          Make: document.getElementById("carMake").value,
+          Owner: document.getElementById("carOwner").value,
+          Registration: document.getElementById("carRegistration").value,
+          Address: document.getElementById("carAddress").value,
+        };
+      } else {
+        return car;
+      }
+    });
+    setCars(updatedCars);
+
+    // PUT request to Express
+    const url = `${ulrPath}/update-car/${reg}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedCars.find((car) => car.Registration === reg)),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="container">
       <form>
@@ -104,7 +136,12 @@ function Home() {
               type="text"
               defaultValue={car.Address}
             />
-            <button className="btn btn-warning">Update</button>
+            <button
+              onClick={() => updateCar(car.Registration)}
+              className="btn btn-warning"
+            >
+              Update
+            </button>
             <button
               onClick={() => deleteCar(car.Registration)}
               className="btn btn-danger"
