@@ -44,10 +44,7 @@ app.use(bodyParser.json());
 // Set up routes to be handled from: http://localhost:8080/cars
 app.use("/cars", getCars);
 
-// Start up Express server
+// Start up express server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-// How to kill a port if it's currently in use eg
-// npx kill-port 8080
