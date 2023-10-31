@@ -13,8 +13,8 @@ function OldCars() {
 
   return (
     <div className="container">
-      <h2>Cars Older Than 5 Years</h2>
-      <h4 className="mb-2">Model - Make - Registration - Owner - Address</h4>
+      <h2 className="mb-2">Cars Older Than 5 Years</h2>
+      <h5 className="mb-2">Model - Make - Registration - Owner - Address</h5>
       <ul className="text-center">
         {cars.map((car) => (
           <li key={car._id} className="mb-2">

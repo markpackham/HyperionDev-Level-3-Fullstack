@@ -103,7 +103,6 @@ function Home() {
   return (
     <div className="container">
       <form className="form-group">
-        <h4>Add Car</h4>
         <label htmlFor="carModelAdd">Model/Year:</label>
         <input
           required
@@ -130,11 +129,11 @@ function Home() {
           className="form-control"
         />
         <button onClick={handleAddCar} className="btn btn-success">
-          Create
+          Add Car
         </button>
       </form>
 
-      <h4 className="mb-2">Model - Make - Registration - Owner - Address</h4>
+      <h5 className="mb-2">Model - Make - Registration - Owner - Address</h5>
       <ul>
         {(cars.length > 0 &&
           cars.map((car) => (
