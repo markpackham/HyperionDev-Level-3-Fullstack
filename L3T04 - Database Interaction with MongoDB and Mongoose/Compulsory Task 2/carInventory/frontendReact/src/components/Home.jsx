@@ -37,6 +37,9 @@ function Home() {
           title: `Car created!`,
           icon: "success",
         });
+
+        // Update state with new car
+        setCars([...cars, car]);
       })
       .catch((error) => {
         console.log(error);
