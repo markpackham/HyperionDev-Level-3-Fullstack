@@ -5,6 +5,8 @@ import "./App.css";
 function App() {
   const [cars, setCars] = useState([]);
 
+  // READ / GET
+  // Fetch All cars
   useEffect(() => {
     fetch("http://localhost:8080/cars")
       .then((response) => response.json())
