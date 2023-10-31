@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
       Address: req.body.Address,
     });
 
-    // Save the new car
+    // Save the new car in the database
     const saveCar = await carModel.save();
 
     // Success response
