@@ -42,7 +42,7 @@ function Home() {
     const url = `http://localhost:8080/cars/delete-car/${registration}`;
     const response = await fetch(url, { method: "DELETE" });
     if (response.ok) {
-      console.log(`Car with registration ${registration} has been deleted.`);
+      alert(`Car with registration ${registration} has been deleted.`);
     } else {
       console.error(`Failed to delete car with registration ${registration}.`);
     }
