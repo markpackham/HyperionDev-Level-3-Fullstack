@@ -67,17 +67,19 @@ function Home() {
 
         // Update state with new car
         setCars([car, ...cars]);
-
-        // Clear out fields
-        model = 0;
-        make = "";
-        owner = "";
-        reg = "";
-        address = "";
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  // CLEAR ADD CAR Form
+  const handleClearAddCar = () => {
+    document.getElementById("carModelAdd").value = 0;
+    document.getElementById("carMakeAdd").value = "";
+    document.getElementById("carOwnerAdd").value = "";
+    document.getElementById("carRegistrationAdd").value = "";
+    document.getElementById("carAddressAdd").value = "";
   };
 
   // DELETE
@@ -184,12 +186,12 @@ function Home() {
       .catch((error) => console.error(error));
   };
 
-  // Trigger useEffect if we have changed the cars area via handleUpdateAllOwner();
-  useEffect(() => {}, [cars]);
-
   return (
     <div className="container">
-      <CarAdd handleAddCar={handleAddCar} />
+      <CarAdd
+        handleAddCar={handleAddCar}
+        handleClearAddCar={handleClearAddCar}
+      />
 
       <CarUpdateAll handleUpdateAllOwner={handleUpdateAllOwner} />
 

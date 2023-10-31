@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const CarAdd = ({ handleAddCar }) => {
+const CarAdd = ({ handleAddCar, handleClearAddCar }) => {
   // Use Formik and Yup to tell user off for not filling in fields
   const validationSchema = Yup.object({
     carModelAdd: Yup.number().required("Model/Year is required"),
@@ -30,7 +30,6 @@ const CarAdd = ({ handleAddCar }) => {
       <form className="form-group">
         <label htmlFor="carModelAdd">Model/Year:</label>
         <input
-          required
           id="carModelAdd"
           type="number"
           className="form-control"
@@ -47,7 +46,6 @@ const CarAdd = ({ handleAddCar }) => {
 
         <label htmlFor="carMakeAdd">Make:</label>
         <input
-          required
           id="carMakeAdd"
           type="text"
           className="form-control"
@@ -64,7 +62,6 @@ const CarAdd = ({ handleAddCar }) => {
 
         <label htmlFor="carRegistrationAdd">Registration:</label>
         <input
-          required
           id="carRegistrationAdd"
           type="text"
           className="form-control"
@@ -82,7 +79,6 @@ const CarAdd = ({ handleAddCar }) => {
 
         <label htmlFor="carOwnerAdd">Owner:</label>
         <input
-          required
           id="carOwnerAdd"
           type="text"
           className="form-control"
@@ -99,7 +95,6 @@ const CarAdd = ({ handleAddCar }) => {
 
         <label htmlFor="carAddressAdd">Address:</label>
         <input
-          required
           id="carAddressAdd"
           type="text"
           className="form-control"
@@ -117,6 +112,10 @@ const CarAdd = ({ handleAddCar }) => {
         <button onClick={handleAddCar} className="btn btn-success">
           Add Car
         </button>
+
+        <button onClick={handleClearAddCar} className="btn btn-success">
+          Clear
+        </button>
       </form>
     </>
   );
@@ -124,6 +123,7 @@ const CarAdd = ({ handleAddCar }) => {
 
 CarAdd.propTypes = {
   handleAddCar: PropTypes.func.isRequired,
+  handleClearAddCar: PropTypes.func.isRequired,
 };
 
 export default CarAdd;

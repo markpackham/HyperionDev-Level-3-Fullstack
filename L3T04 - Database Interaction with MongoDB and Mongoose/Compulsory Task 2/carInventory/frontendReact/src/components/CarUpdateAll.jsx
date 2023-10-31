@@ -34,7 +34,6 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
       <form className="form-group">
         <label htmlFor="carModelUpdateAll">Model/Year:</label>
         <input
-          required
           id="carModelUpdateAll"
           type="number"
           className="form-control"
@@ -50,7 +49,6 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
 
         <label htmlFor="carMakeUpdateAll">Make:</label>
         <input
-          required
           id="carMakeUpdateAll"
           type="text"
           className="form-control"
@@ -66,7 +64,6 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
 
         <label htmlFor="carRegistrationUpdateAll">Registration:</label>
         <input
-          required
           id="carRegistrationUpdateAll"
           type="text"
           className="form-control"
@@ -83,7 +80,6 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
 
         <label htmlFor="carOwnerUpdateAll">Owner:</label>
         <input
-          required
           id="carOwnerUpdateAll"
           type="text"
           className="form-control"
@@ -99,7 +95,6 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
 
         <label htmlFor="carAddressUpdateAll">Address:</label>
         <input
-          required
           id="carAddressUpdateAll"
           type="text"
           className="form-control"
