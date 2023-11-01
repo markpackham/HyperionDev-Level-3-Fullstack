@@ -21,17 +21,21 @@ function OldCars() {
         {cars.map((car) => (
           <div key={car._id} className="list-group-item list-group-item-action">
             <div className="row">
-              <div className="col-sm-6 col-md-3">
+              <div className="col-sm-6 col-md-3" title="model">
                 <i>{car.Model}</i>
               </div>
-              <div className="col-sm-6 col-md-3">
+              <div className="col-sm-6 col-md-3" title="make">
                 <strong>{car.Make}</strong>
               </div>
-              <div className="col-sm-6 col-md-3">{car.Registration}</div>
-              <div className="col-sm-6 col-md-3">
+              <div className="col-sm-6 col-md-3" title="registration">
+                {car.Registration}
+              </div>
+              <div className="col-sm-6 col-md-3" title="owner">
                 <strong>{car.Owner}</strong>
               </div>
-              <div className="col-sm-6 col-md-3">{car.Address}</div>
+              <div className="col-sm-6 col-md-3" title="address">
+                {car.Address}
+              </div>
             </div>
           </div>
         ))}

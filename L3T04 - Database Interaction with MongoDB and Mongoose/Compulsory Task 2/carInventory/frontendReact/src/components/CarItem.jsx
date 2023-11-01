@@ -28,6 +28,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     className="form-control"
                     type="number"
                     defaultValue={car.Model}
+                    title="model"
                   />
                 </div>
                 <div className="col-sm-6 col-md-3">
@@ -36,6 +37,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     className="form-control"
                     type="text"
                     defaultValue={car.Make}
+                    title="make"
                   />
                 </div>
                 <div className="col-sm-6 col-md-3">
@@ -44,6 +46,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     className="form-control"
                     type="text"
                     defaultValue={car.Registration}
+                    title="registration"
                   />
                 </div>
                 <div className="col-sm-6 col-md-3">
@@ -52,6 +55,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     className="form-control"
                     type="text"
                     defaultValue={car.Owner}
+                    title="owner"
                   />
                 </div>
               </div>
@@ -62,6 +66,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     className="form-control"
                     type="text"
                     defaultValue={car.Address}
+                    title="address"
                   />
                 </div>
                 <div className="col-sm-12 col-md-3">
