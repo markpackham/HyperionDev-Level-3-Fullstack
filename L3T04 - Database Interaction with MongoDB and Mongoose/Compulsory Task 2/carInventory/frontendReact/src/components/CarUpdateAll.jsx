@@ -16,7 +16,7 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
 
   const formik = useFormik({
     initialValues: {
-      carModelUpdateAll: 0,
+      carModelUpdateAll: 2000,
       carMakeUpdateAll: "",
       carRegistrationUpdateAll: "",
       carOwnerUpdateAll: "",

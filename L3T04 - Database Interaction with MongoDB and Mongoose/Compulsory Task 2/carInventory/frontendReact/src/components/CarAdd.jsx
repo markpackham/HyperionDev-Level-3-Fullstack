@@ -14,7 +14,7 @@ const CarAdd = ({ handleAddCar, handleClearAddCar }) => {
 
   const formik = useFormik({
     initialValues: {
-      carModelAdd: 0,
+      carModelAdd: 2000,
       carMakeAdd: "",
       carRegistrationAdd: "",
       carOwnerAdd: "",
