@@ -2,10 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 function App() {
-  const [data, setData] = useState({}); // State to store fetched data
+  // State to store fetched data
+  const [data, setData] = useState({});
+
+  // Custom message
+  const [customMessage, setCustomMessage] = useState("");
+
+  // Fetch data each time the component loads
   useEffect(() => {
-    fetchData(); // Fetch data each time the component loads
+    fetchData();
   }, []);
+
   // Function to fetch data from the server
   const fetchData = async () => {
     try {
