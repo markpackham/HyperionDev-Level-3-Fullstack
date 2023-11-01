@@ -14,8 +14,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
             // car.Registration which should be unique, adding the car._id to is is a safe guard
             // against user data entry
             cars.map((car) => (
-              <a
-                href="#"
+              <div
                 className="list-group-item list-group-item-action"
                 key={car.Registration + car._id}
               >
@@ -77,7 +76,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     </button>
                   </div>
                 </div>
-              </a>
+              </div>
             ))) || <h3>Loading ...</h3>}
         </div>
       </ul>
