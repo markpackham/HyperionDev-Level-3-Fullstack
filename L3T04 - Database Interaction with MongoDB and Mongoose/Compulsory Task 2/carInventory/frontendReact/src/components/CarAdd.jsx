@@ -28,7 +28,7 @@ const CarAdd = ({ handleAddCar, handleClearAddCar }) => {
       <h4>Add Car</h4>
 
       <form className="form-group">
-        <label htmlFor="carModelAdd">Model Year:</label>
+        <label htmlFor="carModelAdd">Model Year (older than 1900):</label>
         <input
           id="carModelAdd"
           type="number"

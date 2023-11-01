@@ -35,7 +35,7 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
         &quot;updateMany&quot; works.
       </p>
       <form className="form-group">
-        <label htmlFor="carModelUpdateAll">Model Year:</label>
+        <label htmlFor="carModelUpdateAll">Model Year (older than 1900):</label>
         <input
           id="carModelUpdateAll"
           type="number"
