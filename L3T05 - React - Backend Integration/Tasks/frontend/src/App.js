@@ -17,13 +17,17 @@ function App() {
   const fetchData = async () => {
     try {
       /* Sends a GET request to
-  'http://localhost:5000//api/data' (backend server) */
+  'http://localhost:5000/api/data' (backend server) */
       const response = await axios.get("/api/data");
       setData(response.data); // Update state with fetched data
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
+  // Custom message
+  // http://localhost:5000/api/message
+
   return (
     <div className="App">
       <header className="App-header">
