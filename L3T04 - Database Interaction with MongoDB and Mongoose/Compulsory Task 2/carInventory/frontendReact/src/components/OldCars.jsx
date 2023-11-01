@@ -17,14 +17,25 @@ function OldCars() {
       <h5 className="mb-2">
         Model Year - Make - Registration - Owner - Address
       </h5>
-      <ul className="text-center">
+      <div className="list-group">
         {cars.map((car) => (
-          <li key={car._id} className="mb-2">
-            <i>{car.Model}</i> - <strong>{car.Make}</strong> -{" "}
-            {car.Registration} - <strong>{car.Owner}</strong> - {car.Address}
-          </li>
+          <div key={car._id} className="list-group-item list-group-item-action">
+            <div className="row">
+              <div className="col-sm-6 col-md-3">
+                <i>{car.Model}</i>
+              </div>
+              <div className="col-sm-6 col-md-3">
+                <strong>{car.Make}</strong>
+              </div>
+              <div className="col-sm-6 col-md-3">{car.Registration}</div>
+              <div className="col-sm-6 col-md-3">
+                <strong>{car.Owner}</strong>
+              </div>
+              <div className="col-sm-6 col-md-3">{car.Address}</div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
