@@ -17,7 +17,8 @@ const customMessage = "Hi there I am a custom message!";
 // Send a custom message if all is well due to an http 200
 app.get("/api/message", function (req, res) {
   if (res.status(200)) {
-    res.send(`${customMessage}`);
+    const data = { message: customMessage };
+    res.json(data);
   } else {
     // Throw out an error message
     // Error handling (no date) Express error handling.

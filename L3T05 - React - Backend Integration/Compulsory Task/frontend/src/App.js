@@ -6,11 +6,13 @@ function App() {
   const [data, setData] = useState({});
 
   // Custom message
-  const [customMessage, setCustomMessage] = useState("");
+  const [customMessage, setCustomMessage] = useState({});
 
   // Fetch data each time the component loads
   useEffect(() => {
     fetchData();
+    // Grab our custom message
+    fetchCustomMessage();
   }, []);
 
   // Function to fetch data from the server
@@ -25,14 +27,21 @@ function App() {
     }
   };
 
-  // Custom message
-  // http://localhost:5000/api/message
+  const fetchCustomMessage = async () => {
+    // GET custom message using axios
+    // http://localhost:5000/api/message
+    const res = await axios.get("/api/message");
+    // Update state with fetched data
+    setCustomMessage(res.data);
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         {/* Display the message, or 'Loading...' if data is not yet fetched*/}
         <h1>{data.message || "Loading..."}</h1>
+        <h2>Custom message below!</h2>
+        <p>{customMessage.message || "Loading..."}</p>
       </header>
     </div>
   );
