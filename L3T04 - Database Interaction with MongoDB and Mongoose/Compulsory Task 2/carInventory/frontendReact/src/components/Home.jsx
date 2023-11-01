@@ -61,13 +61,14 @@ function Home() {
     })
       .then((res) => {
         console.log(res);
+        // Update state with new car
+        setCars([car, ...cars]);
+      })
+      .then(() => {
         Swal.fire({
           title: `Car created!`,
           icon: "success",
         });
-
-        // Update state with new car
-        setCars([car, ...cars]);
       })
       .catch((error) => {
         console.log(error);

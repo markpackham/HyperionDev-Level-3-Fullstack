@@ -121,6 +121,7 @@ const CarAdd = ({ handleAddCar, handleClearAddCar }) => {
   );
 };
 
+// Make sure all the correct functions are supplied to this component
 CarAdd.propTypes = {
   handleAddCar: PropTypes.func.isRequired,
   handleClearAddCar: PropTypes.func.isRequired,
