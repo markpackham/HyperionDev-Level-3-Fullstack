@@ -35,7 +35,7 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
         &quot;updateMany&quot; works.
       </p>
       <form className="form-group">
-        <label htmlFor="carModelUpdateAll">Model/Year:</label>
+        <label htmlFor="carModelUpdateAll">Model Year:</label>
         <input
           id="carModelUpdateAll"
           type="number"
@@ -113,7 +113,7 @@ const CarUpdateAll = ({ handleUpdateAllOwner }) => {
         ) : null}
 
         <button onClick={handleUpdateAllOwner} className="btn btn-warning">
-          Update All on Owner
+          Update All by Owner
         </button>
       </form>
     </>

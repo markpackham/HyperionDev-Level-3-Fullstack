@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 const CarItem = ({ cars, updateCar, deleteCar }) => {
   return (
     <>
-      <h5 className="mb-2">Model - Make - Registration - Owner - Address</h5>
+      <h5 className="mb-2">
+        Model Year - Make - Registration - Owner - Address
+      </h5>
       <ul>
         {(cars.length > 0 &&
           // Ideally the car._id that MongoDB creates on its own would be enough for the key
