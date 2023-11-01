@@ -22,7 +22,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
               key={car.Registration + car._id}
             >
               <div className="row">
-                <div className="col-sm-6 col-md-3">
+                <div className="col-sm-6 col-md-2">
                   <input
                     id={`carModel-${car.Registration}`}
                     className="form-control"
@@ -40,7 +40,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     title="make"
                   />
                 </div>
-                <div className="col-sm-6 col-md-3">
+                <div className="col-sm-6 col-md-2">
                   <input
                     id={`carRegistration-${car.Registration}`}
                     className="form-control"
@@ -49,7 +49,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     title="registration"
                   />
                 </div>
-                <div className="col-sm-6 col-md-3">
+                <div className="col-sm-6 col-md-2">
                   <input
                     id={`carOwner-${car.Registration}`}
                     className="form-control"
@@ -60,7 +60,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-sm-12 col-md-9">
+                <div className="col-sm-12 col-md-6">
                   <input
                     id={`carAddress-${car.Registration}`}
                     className="form-control"
@@ -69,7 +69,7 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
                     title="address"
                   />
                 </div>
-                <div className="col-sm-12 col-md-3">
+                <div className="col-sm-12 col-md-4">
                   <button
                     onClick={() => updateCar(car.Registration)}
                     className="btn btn-info"
