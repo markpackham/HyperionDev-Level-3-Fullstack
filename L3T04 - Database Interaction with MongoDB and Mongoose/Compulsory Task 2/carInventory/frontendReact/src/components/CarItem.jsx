@@ -22,13 +22,13 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
               />
               <input
                 id={`carMake-${car.Registration}`}
-                size="14"
+                size="10"
                 type="text"
                 defaultValue={car.Make}
               />
               <input
                 id={`carRegistration-${car.Registration}`}
-                size="14"
+                size="10"
                 type="text"
                 defaultValue={car.Registration}
               />
