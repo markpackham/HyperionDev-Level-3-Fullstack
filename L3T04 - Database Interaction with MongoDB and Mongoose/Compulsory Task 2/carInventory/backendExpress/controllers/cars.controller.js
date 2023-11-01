@@ -47,9 +47,9 @@ exports.findOlderThan5Years = (req, res) => {
   // Take the current year and minus 5
   let currentDate = new Date();
   let currentYear = currentDate.getFullYear() - 5;
-  console.log(currentYear);
 
   // Use the "find" method to return all cars
+  // to find old cars check if Model year is less than current year minus 5
   Car.find({ Model: { $lt: currentYear } })
     .then((cars) => {
       // Send the retrieved cars as a success response

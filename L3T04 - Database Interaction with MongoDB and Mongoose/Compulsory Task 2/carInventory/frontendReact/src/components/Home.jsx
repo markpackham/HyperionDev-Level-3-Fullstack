@@ -160,11 +160,11 @@ function Home() {
     }
 
     const upCar = {
-      Model: Number(document.getElementById(`carModelUpdateAll`).value),
-      Make: document.getElementById(`carMakeUpdateAll`).value,
+      Model: model,
+      Make: make,
       Owner: owner,
-      Registration: document.getElementById(`carRegistrationUpdateAll`).value,
-      Address: document.getElementById(`carAddressUpdateAll`).value,
+      Registration: reg,
+      Address: address,
     };
 
     //PUT request to server
