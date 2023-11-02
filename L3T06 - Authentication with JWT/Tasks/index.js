@@ -31,6 +31,21 @@ app.post("/login", (req, res) => {
   }
 });
 
+// Resource endpoint
+// http://localhost:8000/resource
+app.get("/resource", (req, res) => {
+  const auth = req.headers["authorization"];
+  const token = auth.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, "jwt-secret");
+    res.send({
+      msg: `Hello, ${decoded.name}! Your JSON Web Token has been verified.`,
+    });
+  } catch (err) {
+    res.status(401).send({ err: "Bad JWT!" });
+  }
+});
+
 // Start the server
 app.listen(PORT, () =>
   console.log(`Now listening at http://localhost:${PORT}`)
