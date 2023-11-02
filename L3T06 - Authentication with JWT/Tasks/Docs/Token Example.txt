@@ -1,0 +1,10 @@
+Token example
+
+Key in Header of Postman
+Authorization
+
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiemFtYSIsImFkbWluIjpmYWxzZX0.KTo5xXD2ecZWEaABPny6Y2Z6dM0AxPcdtWAAW_TcKTM
+
+
+This is the token if we set admin status to "true" when a user logs in
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiemFtYSIsImFkbWluIjp0cnVlfQ.758eGOxM1vRHKCqtjN-JslEooXTBfIm_8ysyQ6SBetY
