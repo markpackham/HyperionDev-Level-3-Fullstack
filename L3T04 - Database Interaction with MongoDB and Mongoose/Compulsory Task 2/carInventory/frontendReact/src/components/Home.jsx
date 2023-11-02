@@ -106,11 +106,19 @@ function Home() {
     // All input fields have unique ids thanks to the reg being unique
     // so basic input field name + reg thus only the correct car is updated
     const upCar = {
-      Model: Number(document.getElementById(`carModel-${reg}`).value),
-      Make: document.getElementById(`carMake-${reg}`).value,
-      Owner: document.getElementById(`carOwner-${reg}`).value,
-      Registration: document.getElementById(`carRegistration-${reg}`).value,
-      Address: document.getElementById(`carAddress-${reg}`).value,
+      Model: DOMPurify.sanitize(
+        Number(document.getElementById(`carModel-${reg}`).value)
+      ),
+      Make: DOMPurify.sanitize(document.getElementById(`carMake-${reg}`).value),
+      Owner: DOMPurify.sanitize(
+        document.getElementById(`carOwner-${reg}`).value
+      ),
+      Registration: DOMPurify.sanitize(
+        document.getElementById(`carRegistration-${reg}`).value
+      ),
+      Address: DOMPurify.sanitize(
+        document.getElementById(`carAddress-${reg}`).value
+      ),
     };
 
     // Find car we want to update
