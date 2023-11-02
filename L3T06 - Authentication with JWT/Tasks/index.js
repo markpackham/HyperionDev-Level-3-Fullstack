@@ -5,6 +5,7 @@ const PORT = 8000;
 // Allows us to parse the body of a request
 app.use(bodyParser.json());
 // User login
+// http://localhost:8000/login
 app.post("/login", (req, res) => {
   // Req.body is sent by the client
   const usr = req.body.username;
