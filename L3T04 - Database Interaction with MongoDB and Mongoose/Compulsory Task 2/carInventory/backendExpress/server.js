@@ -20,6 +20,13 @@ const getCars = require("./routes/getCars");
 const app = express();
 app.use(cors());
 
+// Global error handler middleware
+// ensures that server doesn't crash on unhandled exceptions
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Internal Server Error");
+});
+
 // Set up port for server to listen on
 const PORT = process.env.PORT || 8080;
 
