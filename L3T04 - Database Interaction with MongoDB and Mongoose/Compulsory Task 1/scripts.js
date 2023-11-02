@@ -1,4 +1,4 @@
-// Convert to single line for terminal
+// Convert to single line for terminal or it won't work with MongoDB
 // https://lingojam.com/TexttoOneLine
 
 // Insert all the cars using the same attributes that Sue has
@@ -51,26 +51,70 @@ db.cars.insertMany([
 db.cars.find().pretty();
 
 // Update Sue's address
-db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Address: "21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa" } });
+db.cars.updateOne(
+  { Owner: "Sue Bailey" },
+  {
+    $set: {
+      Address: "21 Maureen Street, Bluewater Bay, Port Elizabeth, South Africa",
+    },
+  }
+);
 
 // Update Sue's surname
 db.cars.updateOne({ Owner: "Sue Bailey" }, { $set: { Owner: "Sue Smith" } });
 
 // Find cars older than 5 years
-db.cars.find( { Model: { $lt: 2018 } } ).pretty()
+db.cars.find({ Model: { $lt: 2018 } }).pretty();
 
 // Insert another Sue with the same surname to cause confusion
-db.cars.insertOne({Model: 2015, Make: "Ford Fiesta", Owner: "Sue Smith",  Registration: "FAKE SUE GP", Address: "FAKE SUE SMITH Street, Manchester",})
+db.cars.insertOne({
+  Model: 2015,
+  Make: "Ford Fiesta",
+  Owner: "Sue Smith",
+  Registration: "FAKE SUE GP",
+  Address: "FAKE SUE SMITH Street, Manchester",
+});
 
 // Target the unique Object id (kind of like an SQL Primary Key) and not the name so only the correct Sue is removed
-db.cars.deleteOne( { "_id" : ObjectId("653f70e9740510cd44a47ff4") } );
+db.cars.deleteOne({ _id: ObjectId("653f70e9740510cd44a47ff4") });
 
-// Add list of previous owners to a car
+// Add list of previous owners to a car (wipes out everything in "Previous Owners" then adds)
 db.cars.updateOne(
-  { "_id" : ObjectId("653f70e9740510cd44a47ff9") },
-  { $set: { "Previous Owners": ["Jane Smith", "Paul Smith", "Billy Corgan", "Hulk Hogan", "Vince Russo"] } }
-)
+  { _id: ObjectId("653f70e9740510cd44a47ff9") },
+  {
+    $set: {
+      "Previous Owners": [
+        "Jane Smith",
+        "Paul Smith",
+        "Billy Corgan",
+        "Hulk Hogan",
+        "Vince Russo",
+      ],
+    },
+  }
+);
+
+// How to do an update with previous owners added using $push and $each instead of the above solution
+// $push operator to append the previous owners to an array
+// $each operator can be used to add the name of each owner separately
+db.cars.updateOne(
+  { _id: ObjectId("653f70e9740510cd44a47ff9") },
+  {
+    $push: {
+      "Previous Owners": {
+        $each: [
+          "Jane Smith",
+          "Paul Smith",
+          "Bayley Cook",
+          "Billy Corgan",
+          "Hulk Hogan",
+          "Vince 'Vinnie' Russo",
+          "Jonathan Davis",
+        ],
+      },
+    },
+  }
+);
 
 // Show the previous owners
-db.cars.find({_id : ObjectId("653f70e9740510cd44a47ff9")});
-
+db.cars.find({ _id: ObjectId("653f70e9740510cd44a47ff9") });
