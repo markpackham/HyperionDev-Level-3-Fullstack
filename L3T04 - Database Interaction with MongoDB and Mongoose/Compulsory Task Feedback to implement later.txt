@@ -1,0 +1,12 @@
+Aspects of the submission that could be improved
+💠Compulsory task 1: An alternate approach to add previous owners:
+Kindly note that to update an existing car, you can use the $push operator to append the previous owners to an array. 
+The $each operator can be used to add the name of each owner separately. For additional information about the update operators, 
+you may refer to these resources for further insight: https://www.mongodbtutorial.org/mongodb-crud/mongodb-updatemany/ and https://www.mongodb.com/docs/manual/reference/operator/update/
+
+💠Compulsory task 2:
+● Creating readme files: I encourage you to start creating readme files for your full stack applications. 
+Kindly note that the purpose of the readme file is to communicate information to other viewers about all the details of the project thereby making it easier for them to understand how it was built and how to use it. 
+Therefore, the readme file can contain the table of contents, the project's title, description, frontend and backend installation, usage, screenshots of the application in action, credits etc. 
+You may follow the guidelines outlined here to start creating this file: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes 
+and https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/
