@@ -170,11 +170,11 @@ function Home() {
     }
 
     const upCar = {
-      Model: model,
-      Make: make,
-      Owner: owner,
-      Registration: reg,
-      Address: address,
+      Model: DOMPurify.sanitize(model),
+      Make: DOMPurify.sanitize(make),
+      Owner: DOMPurify.sanitize(owner),
+      Registration: DOMPurify.sanitize(reg),
+      Address: DOMPurify.sanitize(address),
     };
 
     //PUT request to server
