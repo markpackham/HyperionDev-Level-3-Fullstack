@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 // User login
 // http://localhost:8000/login
 app.post("/login", (req, res) => {
+  console.log(req.body);
   // Req.body is sent by the client
   const usr = req.body.username;
   const pwd = req.body.password;
