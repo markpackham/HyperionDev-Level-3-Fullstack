@@ -5,6 +5,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 // Enable Cross-Origin Resource Sharing
 app.use(cors());
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Internal Server Error");
+});
+
 // Define the route to retrieve the message
 app.get("/api/data", (req, res) => {
   const data = { message: "Hello from the back end!" };
