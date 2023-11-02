@@ -1,12 +1,15 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+// bodyParser obsolete, use Express build in middleware for json
+// const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 
 const app = express();
 const PORT = 8000;
 
 // Allows us to parse the body of a request
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+// use Express' build in middleware for json
+app.use(express.json());
 
 // User login
 // POST
