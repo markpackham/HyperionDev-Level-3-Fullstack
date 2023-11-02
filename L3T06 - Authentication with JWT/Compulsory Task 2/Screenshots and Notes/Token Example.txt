@@ -1,10 +1,17 @@
 Token example
 
-Key in Header of Postman
-Authorization
+Key in Header of Postman must be "Authorization"
+
+The Value below is what should be added all on 1 line.
 
 Bearer eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiemFtYSIsImFkbWluIjpmYWxzZX0.KTo5xXD2ecZWEaABPny6Y2Z6dM0AxPcdtWAAW_TcKTM
 
 
-This is the token if we set admin status to "true" when a user logs in
+This is the token if we set admin status to "true" when a user logs in.
+
 Bearer eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiemFtYSIsImFkbWluIjp0cnVlfQ.758eGOxM1vRHKCqtjN-JslEooXTBfIm_8ysyQ6SBetY
+
+
+This is an invalid token that I tampered with by putting a "Z" at the end - Unauthorized
+
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiemFtYSIsImFkbWluIjp0cnVlfQ.758eGOxM1vRHKCqtjN-JslEooXTBfIm_8ysyQ6SBetYZ

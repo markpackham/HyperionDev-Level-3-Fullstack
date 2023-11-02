@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+
 const app = express();
 const PORT = 8000;
 
@@ -12,16 +13,16 @@ app.use(bodyParser.json());
 // http://localhost:8000/login
 app.post("/login", (req, res) => {
   console.log(req.body);
+
   // Req.body is sent by the client
   const usr = req.body.username;
   const pwd = req.body.password;
-  //res.send(`Username: ${usr}, Password: ${pwd}`);
 
   if (usr === "zama" && pwd === "secret") {
-    // Make JWT and chose if user has admin access
+    // Make JWT and chose if user has admin access based on true/false
     payload = {
       name: usr,
-      admin: true,
+      admin: false,
     };
     // Create JMT
     const token = jwt.sign(JSON.stringify(payload), "jwt-secret", {
@@ -60,11 +61,9 @@ app.get("/admin_resource", (req, res) => {
     if (decoded.admin) {
       res.send({ msg: `Success! Welcome admin ${decoded.name}` });
     } else {
-      res
-        .status(403)
-        .send({
-          msg: `Your JWT was verified ${decoded.name}, but you are not an admin.`,
-        });
+      res.status(403).send({
+        msg: `Your JWT was verified ${decoded.name}, but you are not an admin.`,
+      });
     }
   } catch (e) {
     res.sendStatus(401);
