@@ -13,7 +13,13 @@ app.post("/login", (req, res) => {
   // Req.body is sent by the client
   const usr = req.body.username;
   const pwd = req.body.password;
-  res.send(`Username: ${usr}, Password: ${pwd}`);
+  //res.send(`Username: ${usr}, Password: ${pwd}`);
+
+  if (usr === "zama" && pwd === "secret") {
+    // To-do
+  } else {
+    res.status(403).send({ err: "Incorrect login!" });
+  }
 });
 
 // Start the server
