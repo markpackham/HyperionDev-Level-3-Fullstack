@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
 import CarItem from "./CarItem";
 import CarAdd from "./CarAdd";
@@ -45,11 +46,11 @@ function Home() {
     }
 
     const car = {
-      Model: model,
-      Make: make,
-      Owner: owner,
-      Registration: reg,
-      Address: address,
+      Model: DOMPurify.sanitize(model),
+      Make: DOMPurify.sanitize(make),
+      Owner: DOMPurify.sanitize(owner),
+      Registration: DOMPurify.sanitize(reg),
+      Address: DOMPurify.sanitize(address),
     };
     // Send Post method to Express
     fetch(`${ulrPath}/add`, {
