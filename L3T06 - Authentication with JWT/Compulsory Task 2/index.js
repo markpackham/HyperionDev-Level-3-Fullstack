@@ -8,6 +8,7 @@ const PORT = 8000;
 app.use(bodyParser.json());
 
 // User login
+// POST
 // http://localhost:8000/login
 app.post("/login", (req, res) => {
   console.log(req.body);
@@ -22,6 +23,7 @@ app.post("/login", (req, res) => {
       name: usr,
       admin: true,
     };
+    // Create JMT
     const token = jwt.sign(JSON.stringify(payload), "jwt-secret", {
       algorithm: "HS256",
     });
@@ -33,6 +35,7 @@ app.post("/login", (req, res) => {
 
 // Resource endpoint
 // http://localhost:8000/resource
+// checks the JWT in the auth header and displays a message with the username.
 app.get("/resource", (req, res) => {
   const auth = req.headers["authorization"];
   const token = auth.split(" ")[1];
@@ -47,17 +50,21 @@ app.get("/resource", (req, res) => {
 });
 
 // Admin Only Section
+// checks the JWT and displays a message if the token
+// is verified and the token holder is an admin.
 app.get("/admin_resource", (req, res) => {
   const token = req.headers["authorization"].split(" ")[1];
   try {
     const decoded = jwt.verify(token, "jwt-secret");
     // Check if they are an admin
     if (decoded.admin) {
-      res.send({ msg: "Success!" });
+      res.send({ msg: `Success! Welcome admin ${decoded.name}` });
     } else {
       res
         .status(403)
-        .send({ msg: "Your JWT was verified, but you are not an admin." });
+        .send({
+          msg: `Your JWT was verified ${decoded.name}, but you are not an admin.`,
+        });
     }
   } catch (e) {
     res.sendStatus(401);
