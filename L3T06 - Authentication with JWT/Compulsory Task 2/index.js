@@ -15,14 +15,15 @@ app.post("/login", (req, res) => {
   console.log(req.body);
 
   // Req.body is sent by the client
-  const usr = req.body.username;
-  const pwd = req.body.password;
+  // destruct values instead of const pwd = req.body.password
+  const { username } = req.body;
+  const { password } = req.body;
 
-  if (usr === "zama" && pwd === "secret") {
+  if (username === "zama" && password === "secret") {
     // Make JWT and chose if user has admin access based on true/false
     payload = {
-      name: usr,
-      admin: false,
+      name: username,
+      admin: true,
     };
     // Create JMT
     const token = jwt.sign(JSON.stringify(payload), "jwt-secret", {
