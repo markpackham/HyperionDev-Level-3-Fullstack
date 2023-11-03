@@ -11,11 +11,14 @@ app.use((err, req, res, next) => {
   res.status(500).send("Internal Server Error");
 });
 
+// import the login route
+const loginRoute = require("./routes/loginRoute.js");
+
 // import the myLoggerRoute
 const myLoggerRoute = require("./routes/myLoggerRoute");
 
 // Step 1: call the myLoggerRoute function and pass in the app object as an argument
-
+loginRoute(app);
 myLoggerRoute(app);
 // ==> From here go to routes/myLoggerRoute.js
 
