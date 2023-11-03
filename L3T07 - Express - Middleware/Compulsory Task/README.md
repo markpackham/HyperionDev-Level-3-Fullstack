@@ -9,6 +9,7 @@ It includes the following:
 - Express to run as the backend server
 - Formik for form validation feedback
 - Jsonwebtoken to identify users and their access rights
+- Mongoose to connect to Mongo DB
 - Nodemon to save the dev from having to constantly restart the server after changes
 - React is used for the frontend created via Vite
 - React Router Dom for site navigation
@@ -18,7 +19,7 @@ It includes the following:
 
 ## App Purpose
 
-Demo use of JMT with access to a todo list.
+Demo use of JMT with access to a todo list that has CRUD functionality.
 
 
 ## Requirements
@@ -45,6 +46,6 @@ npm start
 
 #### Second from within this directory start the React frontend
 ```
-cd backend
+cd frontend
 npm start
 ```

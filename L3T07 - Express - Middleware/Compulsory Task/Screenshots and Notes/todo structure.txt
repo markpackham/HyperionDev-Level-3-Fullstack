@@ -1,0 +1,10 @@
+todo id created by JavaScript - use as key
+
+let uuid = self.crypto.randomUUID();
+
+
+id: uuid
+name: string name of task
+description: string task description
+
+Just allow tasks to be created, deleted and use can Update task description and name.
