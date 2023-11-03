@@ -4,6 +4,7 @@ It includes the following:
 
 - Bootstrap is used for modals and styling and included via the React Bootstrap UI library
 - Concurrently so a simple "npm start" will install all modules and run the app at the same time
+- Cors is added to prevent issues with both frontend and backend running locally
 - DOMPurify is used to remove malicious code injections when dealing with forms
 - Express to run as the backend server
 - Formik for form validation feedback
