@@ -1,0 +1,5 @@
+user1 and password1 token example
+{
+    "message": "Welcome back user1",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidXNlcjEiLCJhZG1pbiI6ZmFsc2V9.P_hQOvAmRKZpzMD0KMQ44iAZ9tqd-4YaAeHaCAUCr9o"
+}
