@@ -1,6 +1,5 @@
 // middleware/jwtMiddleware.js
 const jwt = require("jsonwebtoken");
-
 // Define a secured middleware function
 function jwtMiddleware(req, res, next) {
   // Get the token from the request headers
@@ -19,6 +18,5 @@ function jwtMiddleware(req, res, next) {
     res.status(403).json({ message: "Invalid token" });
   }
 }
-
 // Export the middleware to be used in userDataRoute.js
 module.exports = { jwtMiddleware };
