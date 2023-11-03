@@ -32,7 +32,7 @@ const userController = (req, res) => {
 // Define the user data controller function
 const getTodos = (req, res) => {
   // extract username for the payload
-  const { username, admin } = req.payload;
+  const { username } = req.payload;
   //Find the user in the database - checking if the username and password matches
   const user = userInformation.find((user) => user.username === username);
   // If the user is found, return the user's todos
