@@ -17,7 +17,7 @@ const loginRoute = require("./routes/loginRoute.js");
 // import the myLoggerRoute
 const myLoggerRoute = require("./routes/myLoggerRoute");
 
-// import the userData route
+// import the secure userData route
 const userDataRoute = require("./routes/secure/userDataRoute");
 userDataRoute(app);
 
