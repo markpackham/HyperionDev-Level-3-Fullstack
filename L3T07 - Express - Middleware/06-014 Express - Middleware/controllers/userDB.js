@@ -12,7 +12,6 @@ const userInformation = [
     password: "password2",
     todos: ["By groceries", "Food the dog", "Make dinner"],
   },
-  // ... other user data
 ];
 // Export the userInformation array to be used in userController.js
 module.exports = userInformation;
