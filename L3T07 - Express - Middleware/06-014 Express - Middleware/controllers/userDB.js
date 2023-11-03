@@ -13,5 +13,5 @@ const userInformation = [
     todos: ["By groceries", "Food the dog", "Make dinner"],
   },
 ];
-// Export the userInformation array to be used in userController.js
+// export the userInformation array to be used in userController.js
 module.exports = userInformation;
