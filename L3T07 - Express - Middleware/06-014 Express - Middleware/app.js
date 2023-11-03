@@ -17,6 +17,10 @@ const loginRoute = require("./routes/loginRoute.js");
 // import the myLoggerRoute
 const myLoggerRoute = require("./routes/myLoggerRoute");
 
+// import the userData route
+const userDataRoute = require("./routes/secure/userDataRoute");
+userDataRoute(app);
+
 // Step 1: call the myLoggerRoute function and pass in the app object as an argument
 loginRoute(app);
 myLoggerRoute(app);
