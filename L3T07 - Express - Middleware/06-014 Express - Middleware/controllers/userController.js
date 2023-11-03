@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 // Define the login controller functions
 const userController = (req, res) => {
   //Get the username and password from the request query
+  // They are destructed instead of req.query.username and req.query.password
   const { username, password } = req.query;
   //Find the user in the database - returns a boolean
   const user = userInformation.find(
