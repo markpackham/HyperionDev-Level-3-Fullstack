@@ -1,10 +1,11 @@
 // middleware/jwtMiddleware.js
 const jwt = require("jsonwebtoken");
+
 // Define a secured middleware function
 function jwtMiddleware(req, res, next) {
   // Get the token from the request headers
   const jwtToken = req.headers["authorization"];
-  //Split the token from the Bearer prefix
+  //Split the token from the Bearer
   const tokenExtract = jwtToken.split(" ")[1];
   try {
     // Verify the token using the secret key

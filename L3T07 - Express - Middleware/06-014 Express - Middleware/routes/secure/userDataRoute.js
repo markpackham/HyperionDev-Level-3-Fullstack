@@ -1,7 +1,5 @@
 // routes/userDataRoute.js
-
 const { jwtMiddleware } = require("../../middleware/jwtMiddleware");
-
 // get the userController's getTodos
 const { getTodos } = require("../../controllers/userController");
 const userDataRoute = (app) => {
