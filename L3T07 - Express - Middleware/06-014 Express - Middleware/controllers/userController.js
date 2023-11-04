@@ -32,21 +32,26 @@ const userController = (req, res) => {
 // Define the user data controller function
 const getTodos = (req, res) => {
   // extract username for the payload
-  const { name, admin } = req.payload;
-  //Find the user in the database - checking if the username and password matches
-  const user = userInformation.find((user) => user.username === name);
-  // If the user is found, return the user's todos
-  if (user) {
-    return res.send(user.todos);
+  //const { name, admin } = req.body;
+  console.log(req.payload);
+
+  // Check for users if allowed to do CRUD - token needs to go to frontend
+  if (req.payload != undefined) {
+    const { name } = req.payload;
+    console.log(name);
+
+    // Find the user in the database - checking if the username and password matches
+    const user = userInformation.find((user) => user.username === name);
+    // If the user is found, return the user's todos
+    if (user) {
+      return res.send(user.todos);
+    }
+  } else {
+    res.send("User not found.");
   }
 };
 //export controller functions to be used on the myLoggerRoute.js/routes
 module.exports = {
   userController,
   getTodos,
-};
-
-//export controller functions to be used on the myLoggerRoute.js/routes
-module.exports = {
-  userController,
 };
