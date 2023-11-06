@@ -16,11 +16,11 @@ const Login = ({ ulrPath }) => {
     });
 
     if (res.status === 403) {
-      console.log(res.status);
+      alert(res.data.message);
     }
 
     if (res.status === 200 && res.data != "Incorrect user credentials") {
-      alert(res.data.token);
+      alert(res.data.message);
       setToken[res.data.token];
     }
   };

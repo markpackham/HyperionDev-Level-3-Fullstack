@@ -18,7 +18,8 @@ const userController = (req, res) => {
   // Check username ends with @gmail.com
   // if not throw out a 403
   if (!emailRegex.test(username)) {
-    return res.status(403);
+    res.send({ message: `403 Error!` });
+    res.status(403);
   }
 
   //Find the user in the database - returns a boolean
