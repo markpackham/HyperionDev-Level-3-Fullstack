@@ -70,6 +70,7 @@ const Home = () => {
         <label>
           Todo Name:
           <input
+            id="add_todo_name"
             type="text"
             name="todo_name"
             value={todo.todo_name}
@@ -80,6 +81,7 @@ const Home = () => {
         <label>
           Todo Description:
           <input
+            id="add_todo_description"
             type="text"
             name="todo_description"
             value={todo.todo_description}
@@ -89,6 +91,7 @@ const Home = () => {
         <br />
         <button type="submit">Add Todo</button>
       </form>
+
       <ul>
         {todos.map((todo) => (
           <li key={todo.todo_id}>
