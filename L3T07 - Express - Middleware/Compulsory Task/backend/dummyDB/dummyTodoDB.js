@@ -11,13 +11,4 @@ const todosDB = [
   },
 ];
 
-const userDB = {
-  user_id: 1,
-  username: "user",
-  password: "password1",
-};
-
-module.exports = {
-  todosDB,
-  userDB,
-};
+module.exports = todosDB;

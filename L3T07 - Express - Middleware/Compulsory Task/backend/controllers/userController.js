@@ -1,6 +1,11 @@
+const dotenv = require("dotenv");
+dotenv.config();
+const jwt_key = process.env.JWT_KEY;
+
 // userController.js
-// Require the user data from simulated database
-const userInformation = require("../dummyDB/dummyDB");
+// Require the user data from simulated database & todo database data
+const userInformation = require("../dummyDB/dummyUserDB");
+const todoInformation = require("../dummyDB/dummyTodoDB");
 const jwt = require("jsonwebtoken");
 
 // Define the login controller functions
@@ -17,11 +22,10 @@ const userController = (req, res) => {
   }
   // Create a JWT token - payload
   payload = {
-    name: username,
-    admin: false,
+    username: username,
   };
   // sign(payload, secretOrPrivateKey, [options, callback])
-  const token = jwt.sign(JSON.stringify(payload), "HyperionDev", {
+  const token = jwt.sign(JSON.stringify(payload), jwt_key, {
     algorithm: "HS256",
   });
   //The res.send() function sends a string to the client
@@ -37,14 +41,14 @@ const getTodos = (req, res) => {
 
   // Check for users if allowed to do CRUD - token needs to go to frontend
   if (req.payload != undefined) {
-    const { name } = req.payload;
-    console.log(name);
+    const { username } = req.payload;
+    console.log(username);
 
     // Find the user in the database - checking if the username and password matches
-    const user = userInformation.find((user) => user.username === name);
+    const user = userInformation.find((user) => user.username === username);
     // If the user is found, return the user's todos
     if (user) {
-      return res.send(user.todos);
+      console.log(todoInformation);
     }
   } else {
     res.send("User not found.");
