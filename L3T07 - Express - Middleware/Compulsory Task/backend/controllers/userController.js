@@ -10,7 +10,8 @@ const jwt = require("jsonwebtoken");
 // Define the login controller functions
 const userController = (req, res) => {
   //Get the username and password from the request query
-  const { username, password } = req.query;
+  const { username, password } = req.body;
+
   //Find the user in the database - returns a boolean
   const user = userInformation.find(
     (user) => user.username === username && user.password === password
