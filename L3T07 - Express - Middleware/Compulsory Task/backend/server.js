@@ -14,6 +14,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Import routes
+const loginRoute = require("./routes/loginRoute.js");
+const userDataRoute = require("./routes/secure/userDataRoute");
+loginRoute(app);
+userDataRoute(app);
+
 // Set up port for server to listen on
 const PORT = process.env.PORT || 8080;
 
