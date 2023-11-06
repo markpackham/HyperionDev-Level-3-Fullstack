@@ -72,7 +72,9 @@ const Home = () => {
       username,
       password,
     });
-    console.log(res.data);
+    if (res.status === 200 && res.data != "Incorrect user credentials") {
+      alert("You logged in!");
+    }
   };
 
   return (
