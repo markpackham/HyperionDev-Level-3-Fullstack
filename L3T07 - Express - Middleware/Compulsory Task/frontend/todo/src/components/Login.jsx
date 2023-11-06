@@ -26,27 +26,30 @@ const Login = ({ ulrPath }) => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <label>
-        Username (user@gmail.com):
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Password (password1):
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <br />
-      <button type="submit">Login</button>
-    </form>
+    <>
+      <h4>Login</h4>
+      <form onSubmit={handleLogin}>
+        <label>
+          Username (user@gmail.com):
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Password (password1):
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Login</button>
+      </form>
+    </>
   );
 };
 

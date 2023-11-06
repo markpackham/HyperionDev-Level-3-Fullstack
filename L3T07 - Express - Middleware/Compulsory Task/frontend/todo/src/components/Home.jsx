@@ -44,6 +44,7 @@ const Home = () => {
   const addTodo = (event) => {
     event.preventDefault();
     setTodos([...todos, { ...todo, todo_id: self.crypto.randomUUID() }]);
+    clearAddForm();
   };
   // Delete todo
   const deleteTodo = (id) => {
@@ -64,11 +65,21 @@ const Home = () => {
     });
   };
 
+  // Clear out Add Todo Fields
+  const clearAddForm = () => {
+    setTodo({
+      todo_id: "",
+      todo_name: "",
+      todo_description: "",
+    });
+  };
+
   return (
     <div>
       <Register ulrPath={ulrPath} />
       <Login ulrPath={ulrPath} />
 
+      <h4>Add Todo</h4>
       <form onSubmit={addTodo}>
         <label>
           Todo Name:
@@ -95,6 +106,7 @@ const Home = () => {
         <button type="submit">Add Todo</button>
       </form>
 
+      <h4>Todos</h4>
       <ul>
         {todos.map((todo) => (
           <li key={todo.todo_id}>

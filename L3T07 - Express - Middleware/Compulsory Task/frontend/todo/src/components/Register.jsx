@@ -20,8 +20,8 @@ const Register = ({ ulrPath }) => {
   };
 
   return (
-    <div>
-      {" "}
+    <>
+      <h4>Register</h4>
       <form onSubmit={handleSubmit}>
         <label>
           Username Email:
@@ -41,7 +41,7 @@ const Register = ({ ulrPath }) => {
         </label>
         <button type="submit">Register</button>
       </form>
-    </div>
+    </>
   );
 };
 
