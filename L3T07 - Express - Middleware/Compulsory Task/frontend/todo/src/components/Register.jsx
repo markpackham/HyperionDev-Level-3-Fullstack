@@ -4,8 +4,9 @@
 
 import { useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
-const Register = () => {
+const Register = ({ ulrPath }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -42,6 +43,10 @@ const Register = () => {
       </form>
     </div>
   );
+};
+
+Register.propTypes = {
+  ulrPath: PropTypes.string,
 };
 
 export default Register;
