@@ -47,7 +47,9 @@ const Login = ({ ulrPath }) => {
           />
         </label>
         <br />
-        <button type="submit">Login</button>
+        <button type="submit" className="btn btn-success">
+          Login
+        </button>
       </form>
     </>
   );

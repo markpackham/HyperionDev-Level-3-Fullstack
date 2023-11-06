@@ -39,7 +39,9 @@ const Register = ({ ulrPath }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button type="submit">Register</button>
+        <button type="submit" className="btn btn-info">
+          Register
+        </button>
       </form>
     </>
   );

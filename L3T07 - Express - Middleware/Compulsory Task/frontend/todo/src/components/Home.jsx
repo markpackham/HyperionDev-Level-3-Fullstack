@@ -103,7 +103,9 @@ const Home = () => {
           />
         </label>
         <br />
-        <button type="submit">Add Todo</button>
+        <button type="submit" className="btn btn-primary">
+          Add Todo
+        </button>
       </form>
 
       <h4>Todos</h4>
@@ -140,7 +142,12 @@ const Home = () => {
               />
             </label>
             <br />
-            <button onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
+            <button
+              onClick={() => deleteTodo(todo.todo_id)}
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
             <button
               onClick={() =>
                 updateTodo(todo.todo_id, {
@@ -149,6 +156,7 @@ const Home = () => {
                   todo_description: todo.todo_description,
                 })
               }
+              className="btn btn-warning"
             >
               Update
             </button>
