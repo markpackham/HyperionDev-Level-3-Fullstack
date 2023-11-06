@@ -67,9 +67,46 @@ const Home = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.todo_id}>
-            {todo.todo_id} - {todo.todo_name} - {todo.todo_description}
+            <label>
+              Todo Name:
+              <input
+                type="text"
+                name="todo_name"
+                value={todo.todo_name}
+                onChange={(event) =>
+                  updateTodo(todo.todo_id, {
+                    ...todo,
+                    todo_name: event.target.value,
+                  })
+                }
+              />
+            </label>
+            <br />
+            <label>
+              Todo Description:
+              <input
+                type="text"
+                name="todo_description"
+                value={todo.todo_description}
+                onChange={(event) =>
+                  updateTodo(todo.todo_id, {
+                    ...todo,
+                    todo_description: event.target.value,
+                  })
+                }
+              />
+            </label>
+            <br />
             <button onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
-            <button onClick={() => updateTodo(todo.todo_id, todo)}>
+            <button
+              onClick={() =>
+                updateTodo(todo.todo_id, {
+                  ...todo,
+                  todo_name: todo.todo_name,
+                  todo_description: todo.todo_description,
+                })
+              }
+            >
               Update
             </button>
           </li>
