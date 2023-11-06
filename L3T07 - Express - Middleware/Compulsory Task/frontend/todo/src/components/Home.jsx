@@ -18,9 +18,8 @@ const Home = () => {
   // Add todo
   const addTodo = (event) => {
     event.preventDefault();
-    setTodos([...todos, todo]);
+    setTodos([...todos, { ...todo, todo_id: self.crypto.randomUUID() }]);
   };
-
   // Delete todo
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.todo_id !== id));
@@ -43,16 +42,6 @@ const Home = () => {
   return (
     <div>
       <form onSubmit={addTodo}>
-        <label>
-          Todo ID:
-          <input
-            type="number"
-            name="todo_id"
-            value={todo.todo_id}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
         <label>
           Todo Name:
           <input
@@ -78,7 +67,7 @@ const Home = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.todo_id}>
-            {todo.todo_name} - {todo.todo_description}
+            {todo.todo_id} - {todo.todo_name} - {todo.todo_description}
             <button onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
             <button onClick={() => updateTodo(todo.todo_id, todo)}>
               Update
