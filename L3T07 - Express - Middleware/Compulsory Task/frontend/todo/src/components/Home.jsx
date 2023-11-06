@@ -73,6 +73,11 @@ const Home = () => {
       username,
       password,
     });
+
+    if (res.status === 403) {
+      console.log(res.status);
+    }
+
     if (res.status === 200 && res.data != "Incorrect user credentials") {
       alert(res.data.token);
       setToken[res.data.token];

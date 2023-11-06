@@ -7,10 +7,19 @@ const userInformation = require("../dummyDB/dummyUserDB");
 const todoInformation = require("../dummyDB/dummyTodoDB");
 const jwt = require("jsonwebtoken");
 
+// Regular Expression for @gmail.com
+const emailRegex = /@gmail.com$/;
+
 // Define the login controller functions
 const userController = (req, res) => {
   //Get the username and password from the request query
   const { username, password } = req.body;
+
+  // Check username ends with @gmail.com
+  // if not throw out a 403
+  if (!emailRegex.test(username)) {
+    return res.status(403);
+  }
 
   //Find the user in the database - returns a boolean
   const user = userInformation.find(
