@@ -2,8 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const jwt_key = process.env.JWT_KEY;
 
-// userController.js
-// Require the user data from simulated database & todo database data
+// Require databases & jwt
 const userInformation = require("../dummyDB/dummyUserDB");
 const todoInformation = require("../dummyDB/dummyTodoDB");
 const jwt = require("jsonwebtoken");
@@ -36,7 +35,6 @@ const userController = (req, res) => {
 // Define the user data controller function
 const getTodos = (req, res) => {
   // extract username for the payload
-  //const { name, admin } = req.body;
   console.log(req.payload);
 
   // Check for users if allowed to do CRUD - token needs to go to frontend
@@ -46,7 +44,7 @@ const getTodos = (req, res) => {
 
     // Find the user in the database - checking if the username and password matches
     const user = userInformation.find((user) => user.username === username);
-    // If the user is found, return the user's todos
+    // If the user is found, return the todos
     if (user) {
       console.log(todoInformation);
     }
