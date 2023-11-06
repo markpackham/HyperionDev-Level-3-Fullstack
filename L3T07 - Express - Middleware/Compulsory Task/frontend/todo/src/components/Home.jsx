@@ -40,6 +40,7 @@ const Home = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
 
   // Add todo
   const addTodo = (event) => {
@@ -73,7 +74,8 @@ const Home = () => {
       password,
     });
     if (res.status === 200 && res.data != "Incorrect user credentials") {
-      alert("You logged in!");
+      alert(res.data.token);
+      setToken[res.data.token];
     }
   };
 
