@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Register from "./Register";
 
 const Home = () => {
   const ulrPath = "http://localhost:8080/";
@@ -86,6 +87,8 @@ const Home = () => {
 
   return (
     <div>
+      <Register />
+
       <form onSubmit={handleLogin}>
         <label>
           Username (user@gmail.com):
