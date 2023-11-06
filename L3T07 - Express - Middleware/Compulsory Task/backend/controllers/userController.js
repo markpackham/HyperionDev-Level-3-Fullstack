@@ -18,8 +18,7 @@ const userController = (req, res) => {
   // Check username ends with @gmail.com
   // if not throw out a 403
   if (!emailRegex.test(username)) {
-    res.send({ message: `403 Error!` });
-    res.status(403);
+    return res.status(403).send({ message: `403 Error!` });
   }
 
   //Find the user in the database - returns a boolean
@@ -28,7 +27,7 @@ const userController = (req, res) => {
   );
   //If the user is not found, return an error message - end the request
   if (!user) {
-    return res.send("Incorrect user credentials");
+    return res.status(401).send({ message: "Incorrect user credentials" });
   }
   // Create a JWT token - payload
   payload = {
