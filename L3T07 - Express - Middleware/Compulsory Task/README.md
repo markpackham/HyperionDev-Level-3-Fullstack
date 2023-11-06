@@ -2,6 +2,7 @@
 
 It includes the following:
 
+- Axios is used for React to fetch data from Express
 - Bootstrap is used for modals and styling and included via the React Bootstrap UI library
 - Concurrently so a simple "npm start" will install all modules and run the app at the same time
 - Cors is added to prevent issues with both frontend and backend running locally

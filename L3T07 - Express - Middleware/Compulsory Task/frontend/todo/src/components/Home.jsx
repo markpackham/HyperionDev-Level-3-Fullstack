@@ -39,6 +39,8 @@ const Home = () => {
     });
   };
 
+  console.log(todos);
+
   return (
     <div>
       <form onSubmit={addTodo}>
