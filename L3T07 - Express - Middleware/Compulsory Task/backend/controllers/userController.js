@@ -46,7 +46,7 @@ const getTodos = (req, res) => {
     const user = userInformation.find((user) => user.username === username);
     // If the user is found, return the todos
     if (user) {
-      console.log(todoInformation);
+      return res.send(todoInformation);
     }
   } else {
     res.send("User not found.");
