@@ -1,6 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
+  const ulrPath = "http://localhost:8080/";
+
+  // Axios grab todos
+  useEffect(() => {
+    axios
+      .get(`${ulrPath}login/data`, {
+        headers: {
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJAZ21haWwuY29tIn0.tsLERQIYGO9HiohxL677uVFuK-Am-6WmrEfufRnBUcU",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setTodos([...todos, res.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const [todos, setTodos] = useState([
     {
       todo_id: 1,

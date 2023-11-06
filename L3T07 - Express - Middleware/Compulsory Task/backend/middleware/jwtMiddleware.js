@@ -15,8 +15,6 @@ function jwtMiddleware(req, res, next) {
     const payload = jwt.verify(tokenExtract, jwtKey);
     // Attach the payload to the request object
     req.payload = payload;
-    // Proceed to the protected route
-    console.log(payload);
     next();
   } catch (error) {
     // If token verification fails, return a forbidden response
