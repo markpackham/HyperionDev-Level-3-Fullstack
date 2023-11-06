@@ -9,6 +9,11 @@ const todosDB = [
     todo_name: "shopping",
     todo_description: "buy bread, ham and cheese",
   },
+  {
+    todo_id: 3,
+    todo_name: "water plants",
+    todo_description: "water plants in living room",
+  },
 ];
 
 module.exports = todosDB;

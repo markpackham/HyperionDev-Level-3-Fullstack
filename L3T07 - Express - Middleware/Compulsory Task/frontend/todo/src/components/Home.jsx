@@ -15,22 +15,23 @@ const Home = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
-        setTodos([...todos, res.data]);
+        setTodos(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  // Full todos list
   const [todos, setTodos] = useState([
     {
-      todo_id: 1,
+      todo_id: self.crypto.randomUUID(),
       todo_name: "mow lawn",
       todo_description: "mow lawn in garden",
     },
   ]);
 
+  // Todo Structure
   const [todo, setTodo] = useState({
     todo_id: "",
     todo_name: "",

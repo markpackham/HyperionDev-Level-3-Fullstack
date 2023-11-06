@@ -1,0 +1,25 @@
+{
+    "message": "Welcome back user@gmail.com",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJAZ21haWwuY29tIn0.tsLERQIYGO9HiohxL677uVFuK-Am-6WmrEfufRnBUcU"
+}
+
+
+
+  // Axios grab todos
+  useEffect(() => {
+    axios
+      .get(`${ulrPath}login/data`, {
+        headers: {
+          Authorization:
+            "Bearer " +
+            "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJAZ21haWwuY29tIn0.tsLERQIYGO9HiohxL677uVFuK-Am-6WmrEfufRnBUcU",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setTodos([...todos, res.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
