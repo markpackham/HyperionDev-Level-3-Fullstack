@@ -31,12 +31,15 @@ const Home = () => {
     },
   ]);
 
-  // Todo Structure
+  // State variables
   const [todo, setTodo] = useState({
     todo_id: "",
     todo_name: "",
     todo_description: "",
   });
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   // Add todo
   const addTodo = (event) => {
@@ -62,10 +65,40 @@ const Home = () => {
     });
   };
 
-  console.log(todos);
+  // Login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const res = await axios.post(`${ulrPath}login`, {
+      username,
+      password,
+    });
+    console.log(res.data);
+  };
 
   return (
     <div>
+      <form onSubmit={handleLogin}>
+        <label>
+          Username (user@gmail.com):
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <br />
+        <label>
+          Password (password1):
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <br />
+        <button type="submit">Login</button>
+      </form>
+
       <form onSubmit={addTodo}>
         <label>
           Todo Name:
