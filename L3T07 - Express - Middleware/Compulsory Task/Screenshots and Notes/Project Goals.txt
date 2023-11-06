@@ -1,0 +1,24 @@
+Compulsory Task
+
+● You will be required to develop a full-stack React to-do list application
+for this task.
+
+● A user will need to register and log in to the application.
+
+● Ensure a user can add/edit/remove/read tasks.
+
+● Write middleware to:
+
+○ Respond with an HTTP 403 to all requests by users whose
+usernames don’t end with the substring ‘@gmail.com’.
+○ Reject the addition of tasks that exceed 140 characters.
+○ Reject any requests that are not of the JSON content type. You
+can test against image content types.
+
+● The user will only have the capabilities mentioned above if logged in.
+
+● Please remember to submit your code files in the relevant task folder.
+
+● Tip: Ensure that all relevant endpoints to a to-do list route are secure.
+
+● Optional: Use MongoDB as the database management system.

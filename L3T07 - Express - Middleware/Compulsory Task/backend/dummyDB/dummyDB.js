@@ -1,16 +1,23 @@
-const dummyDB = [
+const todosDB = [
   {
-    id: 1,
-    username: "user1",
-    password: "password1",
-    todos: ["eat", "sleep", "code"],
+    task_id: 1,
+    task_name: "mow lawn",
+    task_description: "mow lawn in garden",
   },
   {
-    id: 2,
-    username: "user2",
-    password: "password2",
-    todos: ["By groceries", "Food the dog", "Make dinner"],
+    task_id: 2,
+    task_name: "shopping",
+    task_description: "buy bread, ham and cheese",
   },
 ];
 
-module.exports = dummyDB;
+const userDB = {
+  user_id: 1,
+  username: "user",
+  password: "password1",
+};
+
+module.exports = {
+  todosDB,
+  userDB,
+};
