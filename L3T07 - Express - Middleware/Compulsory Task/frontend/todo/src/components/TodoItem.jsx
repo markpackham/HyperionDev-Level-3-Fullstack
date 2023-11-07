@@ -1,75 +1,45 @@
 import PropTypes from "prop-types";
 
-const TodoItem = ({ todos, updateCar, deleteCar }) => {
+const TodoItem = ({ todos, updateTodo, deleteTodo }) => {
   return (
     <>
-      <h5 className="mb-2">
-        Model Year - Make - Registration - Owner - Address
-      </h5>
+      <h5 className="mb-2">Name - Description</h5>
       <div className="list-group">
         {(todos.length > 0 &&
-          cars.map((car) => (
+          todos.map((todo) => (
             <div
               className="list-group-item list-group-item-action"
-              key={car.Registration + car._id}
+              key={todo.todo_id}
             >
               <div className="row">
                 <div className="col-sm-6 col-md-2">
                   <input
-                    id={`carModel-${car.Registration}`}
+                    id={`todo_name-${todo.todo_id}`}
                     className="form-control"
                     type="number"
-                    defaultValue={car.Model}
-                    title="model"
+                    defaultValue={todo.todo_name}
+                    title="todo_name"
                   />
                 </div>
                 <div className="col-sm-6 col-md-3">
                   <input
-                    id={`carMake-${car.Registration}`}
+                    id={`todo_description-${todo.todo_id}`}
                     className="form-control"
                     type="text"
-                    defaultValue={car.Make}
-                    title="make"
+                    defaultValue={todo.todo_description}
+                    title="todo_description"
                   />
                 </div>
-                <div className="col-sm-6 col-md-2">
-                  <input
-                    id={`carRegistration-${car.Registration}`}
-                    className="form-control"
-                    type="text"
-                    defaultValue={car.Registration}
-                    title="registration"
-                  />
-                </div>
-                <div className="col-sm-6 col-md-2">
-                  <input
-                    id={`carOwner-${car.Registration}`}
-                    className="form-control"
-                    type="text"
-                    defaultValue={car.Owner}
-                    title="owner"
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm-12 col-md-6">
-                  <input
-                    id={`carAddress-${car.Registration}`}
-                    className="form-control"
-                    type="text"
-                    defaultValue={car.Address}
-                    title="address"
-                  />
-                </div>
+
                 <div className="col-sm-12 col-md-4">
                   <button
-                    onClick={() => updateCar(car.Registration)}
+                    onClick={() => updateTodo(todo.todo_id)}
                     className="btn btn-info"
                   >
                     Update
                   </button>
                   <button
-                    onClick={() => deleteCar(car.Registration)}
+                    onClick={() => deleteTodo(todo.todo_id)}
                     className="btn btn-danger"
                   >
                     Delete
@@ -84,9 +54,9 @@ const TodoItem = ({ todos, updateCar, deleteCar }) => {
 };
 
 TodoItem.propTypes = {
-  cars: PropTypes.array.isRequired,
-  updateCar: PropTypes.func.isRequired,
-  deleteCar: PropTypes.func.isRequired,
+  todos: PropTypes.array.isRequired,
+  updateTodo: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
 };
 
 export default TodoItem;
