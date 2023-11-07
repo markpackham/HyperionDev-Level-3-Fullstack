@@ -35,7 +35,6 @@ const TodoItem = ({ todos, updateTodo, deleteTodo }) => {
                       />
                     </div>
 
-                    {todo.todo_id}
                     <div className="col-sm-12 col-md-4">
                       <button
                         onClick={() => updateTodo(todo.todo_id)}

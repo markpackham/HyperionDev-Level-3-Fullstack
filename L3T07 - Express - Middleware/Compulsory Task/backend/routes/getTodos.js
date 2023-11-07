@@ -13,10 +13,10 @@ router.post("/add", todoController.create);
 
 // PUT
 // /update-todo/123
-router.put("/update-todo/:id", todoController.updateById);
+router.put("/update-todo/:todo_id", todoController.updateById);
 
 // DELETE
 // /delete-todo/ZZZ111
-router.delete("/delete-todo/:id", todoController.deleteById);
+router.delete("/delete-todo/:todo_id", todoController.deleteById);
 
 module.exports = router;
