@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom";
+import { useFormik } from "formik";
 import { useState } from "react";
+import * as Yup from "yup";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import PropTypes from "prop-types";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { Link } from "react-router-dom";
 
 const Login = () => {
   const [token, setToken] = useState("");
@@ -29,6 +29,7 @@ const Login = () => {
   // Login
   const handleLogin = async (e) => {
     e.preventDefault();
+    // DOMPurify prevents script injections
     const res = await axios.post(`${ulrPath}login`, {
       username: DOMPurify.sanitize(formik.values.username),
       password: DOMPurify.sanitize(formik.values.password),

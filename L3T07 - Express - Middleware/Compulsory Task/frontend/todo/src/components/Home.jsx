@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
-import TodoItem from "./TodoItem";
 import AddTodo from "./AddTodo";
+import TodoItem from "./TodoItem";
 
 const ulrPath = "http://localhost:8080/todos/";
 
