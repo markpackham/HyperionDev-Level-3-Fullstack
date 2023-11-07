@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
 
-const NavMenu = () => {
+const Navbar = () => {
   return (
     <>
+      <h1>Car Inventory</h1>
       <nav className="navbar navbar-expand-lg mb-3 rounded">
         <div className="container">
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home
+                Home <i className="fa-solid fa-house"></i>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/olderThan5">
+                Older Cars <i className="fa-solid fa-car"></i>
               </Link>
             </li>
           </ul>
@@ -19,4 +25,4 @@ const NavMenu = () => {
   );
 };
 
-export default NavMenu;
+export default Navbar;

@@ -1,208 +1,214 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import DOMPurify from "dompurify";
+import Swal from "sweetalert2";
+import CarItem from "./CarItem";
+import CarAdd from "./CarAdd";
+import CarUpdateAll from "./CarUpdateAll";
 
-import Register from "./Register";
-import Login from "./Login";
+const ulrPath = "http://localhost:8080/cars";
 
-const Home = () => {
-  const ulrPath = "http://localhost:8080/";
-  const jwt_token = sessionStorage.getItem("jwt_token");
+function Home() {
+  const [cars, setCars] = useState([]);
 
-  const fetchTodos = () => {
-    axios
-      .get(`${ulrPath}login/data`, {
-        headers: {
-          Authorization:
-            "Bearer " +
-            "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJAZ21haWwuY29tIn0.tsLERQIYGO9HiohxL677uVFuK-Am-6WmrEfufRnBUcU",
-        },
-      })
-      .then((res) => {
-        setTodos(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // Axios grab todos
+  // READ / GET
+  // Fetch All cars
   useEffect(() => {
-    fetchTodos();
+    fetch(`${ulrPath}`)
+      .then((res) => res.json())
+      // Show latest additions first
+      .then((data) => setCars(data.reverse()));
   }, []);
 
-  // Full todos list
-  const [todos, setTodos] = useState([
-    {
-      todo_id: self.crypto.randomUUID(),
-      todo_name: "mow lawn",
-      todo_description: "mow lawn in garden",
-    },
-  ]);
-
-  // State variables
-  const [todo, setTodo] = useState({
-    todo_id: "",
-    todo_name: "",
-    todo_description: "",
-  });
-
-  // Add todo
-  const addTodo = (event) => {
+  // CREATE / POST
+  // Add a car
+  const handleAddCar = (event) => {
     event.preventDefault();
 
-    let todo_id = self.crypto.randomUUID();
-    let todo_name = document.getElementById("add_todo_name").value;
-    let todo_description = document.getElementById(
-      "add_todo_description"
-    ).value;
+    let model = Number(document.getElementById("carModelAdd").value);
+    let make = document.getElementById("carMakeAdd").value;
+    let owner = document.getElementById("carOwnerAdd").value;
+    let reg = document.getElementById("carRegistrationAdd").value;
+    let address = document.getElementById("carAddressAdd").value;
 
-    const todo = {
-      todo_id: DOMPurify.sanitize(todo_id),
-      todo_name: DOMPurify.sanitize(todo_name),
-      todo_description: DOMPurify.sanitize(todo_description),
+    if (
+      model < 1900 ||
+      make.length < 1 ||
+      owner.length < 1 ||
+      reg.length < 1 ||
+      address.length < 1
+    ) {
+      Swal.fire({
+        title: `All fields required!`,
+        icon: "error",
+      });
+      // Escape method if user has failed to provide all fields
+      return;
+    }
+
+    const car = {
+      Model: DOMPurify.sanitize(model),
+      Make: DOMPurify.sanitize(make),
+      Owner: DOMPurify.sanitize(owner),
+      Registration: DOMPurify.sanitize(reg),
+      Address: DOMPurify.sanitize(address),
     };
     // Send Post method to Express
-    fetch(`${ulrPath}add`, {
+    fetch(`${ulrPath}/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(todo),
+      body: JSON.stringify(car),
     })
       .then((res) => {
         console.log(res);
         // Update state with new car
-        setTodos([todo, ...todos]);
+        setCars([car, ...cars]);
+      })
+      .then(() => {
+        Swal.fire({
+          title: `Car created!`,
+          icon: "success",
+        });
       })
       .catch((error) => {
         console.log(error);
       });
-
-    clearAddForm();
   };
 
-  // Delete todo
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.todo_id !== id));
+  // CLEAR ADD CAR Form
+  const handleClearAddCar = () => {
+    document.getElementById("carModelAdd").value = 0;
+    document.getElementById("carMakeAdd").value = "";
+    document.getElementById("carOwnerAdd").value = "";
+    document.getElementById("carRegistrationAdd").value = "";
+    document.getElementById("carAddressAdd").value = "";
   };
 
-  // Update todo
-  const updateTodo = (id, updatedTodo) => {
-    setTodos(todos.map((todo) => (todo.todo_id === id ? updatedTodo : todo)));
+  // DELETE
+  const deleteCar = async (reg) => {
+    const url = `${ulrPath}/delete-car/${reg}`;
+    const res = await fetch(url, { method: "DELETE" });
+    if (res.ok) {
+      Swal.fire({
+        title: `Car with reg: ${reg} deleted.`,
+        icon: "warning",
+      });
+      // Update the state to avoid having to refresh
+      setCars(cars.filter((car) => car.Registration !== reg));
+    } else {
+      console.error(`Failed to delete car reg: ${reg}.`);
+    }
   };
 
-  // Update state as I type in form
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setTodo({
-      ...todo,
-      [name]: value,
+  // UPDATE
+  const updateCar = (reg) => {
+    // All input fields have unique ids thanks to the reg being unique
+    // so basic input field name + reg thus only the correct car is updated
+    const upCar = {
+      Model: DOMPurify.sanitize(
+        Number(document.getElementById(`carModel-${reg}`).value)
+      ),
+      Make: DOMPurify.sanitize(document.getElementById(`carMake-${reg}`).value),
+      Owner: DOMPurify.sanitize(
+        document.getElementById(`carOwner-${reg}`).value
+      ),
+      Registration: DOMPurify.sanitize(
+        document.getElementById(`carRegistration-${reg}`).value
+      ),
+      Address: DOMPurify.sanitize(
+        document.getElementById(`carAddress-${reg}`).value
+      ),
+    };
+
+    // Find car we want to update
+    const updatedCar = cars.find((car) => car.Registration === reg);
+    setCars(cars.map((car) => (car.Registration === reg ? updatedCar : car)));
+
+    Swal.fire({
+      title: `Car with reg: ${reg} updated.`,
+      icon: "info",
     });
+
+    // PUT request to server
+    const url = `${ulrPath}/update-car/${reg}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(upCar),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   };
 
-  // Clear out Add Todo Fields
-  const clearAddForm = () => {
-    setTodo({
-      todo_id: "",
-      todo_name: "",
-      todo_description: "",
+  // UPDATE ALL based on Owner
+  const handleUpdateAllOwner = () => {
+    // Allow for page refresh rather than preventing default
+    // too tricky to update state a cleaner way
+
+    let model = Number(document.getElementById("carModelUpdateAll").value);
+    let make = document.getElementById("carMakeUpdateAll").value;
+    let owner = document.getElementById("carOwnerUpdateAll").value;
+    let reg = document.getElementById("carRegistrationUpdateAll").value;
+    let address = document.getElementById("carAddressUpdateAll").value;
+
+    if (
+      model < 1900 ||
+      make.length < 1 ||
+      owner.length < 1 ||
+      reg.length < 1 ||
+      address.length < 1
+    ) {
+      Swal.fire({
+        title: `All fields required!`,
+        icon: "error",
+      });
+      return;
+    }
+
+    const upCar = {
+      Model: DOMPurify.sanitize(model),
+      Make: DOMPurify.sanitize(make),
+      Owner: DOMPurify.sanitize(owner),
+      Registration: DOMPurify.sanitize(reg),
+      Address: DOMPurify.sanitize(address),
+    };
+
+    //PUT request to server
+    const url = `${ulrPath}/update-many/${owner}`;
+
+    Swal.fire({
+      title: `Mass update done!`,
+      icon: "info",
     });
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(upCar),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
   };
 
   return (
-    <div>
-      <Register ulrPath={ulrPath} />
-      <Login ulrPath={ulrPath} />
+    <div className="container">
+      <CarAdd
+        handleAddCar={handleAddCar}
+        handleClearAddCar={handleClearAddCar}
+      />
 
-      <>
-        <h4>Add Todo</h4>
-        <form onSubmit={addTodo}>
-          <label>
-            Todo Name:
-            <input
-              id="add_todo_name"
-              type="text"
-              name="todo_name"
-              value={todo.todo_name}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <label>
-            Todo Description:
-            <input
-              id="add_todo_description"
-              type="text"
-              name="todo_description"
-              value={todo.todo_description}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <button type="submit" className="btn btn-primary">
-            Add Todo
-          </button>
-        </form>
+      <CarUpdateAll handleUpdateAllOwner={handleUpdateAllOwner} />
 
-        <h4>Todos</h4>
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.todo_id}>
-              <label>
-                Todo Name:
-                <input
-                  type="text"
-                  name="todo_name"
-                  value={todo.todo_name}
-                  onChange={(event) =>
-                    updateTodo(todo.todo_id, {
-                      ...todo,
-                      todo_name: event.target.value,
-                    })
-                  }
-                />
-              </label>
-              <br />
-              <label>
-                Todo Description:
-                <input
-                  type="text"
-                  name="todo_description"
-                  value={todo.todo_description}
-                  onChange={(event) =>
-                    updateTodo(todo.todo_id, {
-                      ...todo,
-                      todo_description: event.target.value,
-                    })
-                  }
-                />
-              </label>
-              <br />
-              <button
-                onClick={() => deleteTodo(todo.todo_id)}
-                className="btn btn-danger"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() =>
-                  updateTodo(todo.todo_id, {
-                    ...todo,
-                    todo_name: todo.todo_name,
-                    todo_description: todo.todo_description,
-                  })
-                }
-                className="btn btn-warning"
-              >
-                Update
-              </button>
-            </li>
-          ))}
-        </ul>
-      </>
+      <CarItem cars={cars} updateCar={updateCar} deleteCar={deleteCar} />
     </div>
   );
-};
+}
 
 export default Home;
