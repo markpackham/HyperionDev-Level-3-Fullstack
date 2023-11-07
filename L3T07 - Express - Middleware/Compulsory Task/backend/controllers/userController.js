@@ -8,7 +8,7 @@ dotenv.config();
 const jwt_key = process.env.JWT_KEY;
 
 // Define the login controller functions
-const userController = (req, res) => {
+exports.login = (req, res) => {
   //Get the username and password from the request query
   const { username, password } = req.query;
   //Find the user in the database - returns a boolean
