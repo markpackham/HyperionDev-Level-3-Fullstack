@@ -4,7 +4,6 @@ import { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import DOMPurify from "dompurify";
-import PropTypes from "prop-types";
 
 const Login = () => {
   const [token, setToken] = useState("");
@@ -102,10 +101,6 @@ const Login = () => {
       </div>
     </>
   );
-};
-
-Login.propTypes = {
-  ulrPath: PropTypes.string,
 };
 
 export default Login;

@@ -12,6 +12,7 @@ const cors = require("cors");
 // Import routes
 const getTodos = require("./routes/getTodos");
 const login = require("./routes/login");
+const register = require("./routes/register");
 
 // Initialize middleware
 const app = express();
@@ -48,6 +49,7 @@ app.use(express.json());
 // Set up routes to be handled from: http://localhost:8080/todos
 app.use("/todos", getTodos);
 app.use("/todos", login);
+app.use("/todos", register);
 
 // Start up express server
 app.listen(PORT, () => {

@@ -34,3 +34,8 @@ exports.login = (req, res) => {
     token: token,
   });
 };
+
+exports.register = (req, res) => {
+  const { username } = req.body;
+  console.log(username);
+};
