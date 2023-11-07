@@ -29,6 +29,8 @@ exports.login = (req, res) => {
     algorithm: "HS256",
   });
   //The res.send() function sends a string to the client
-  console.log(`User ${username} logged in`);
-  res.send({ message: `Welcome back ${username}`, token: token });
+  res.send({
+    message: `Welcome back ${username} please go Home to add todos!`,
+    token: token,
+  });
 };

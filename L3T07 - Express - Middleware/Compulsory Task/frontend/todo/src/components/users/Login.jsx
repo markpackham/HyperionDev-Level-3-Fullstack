@@ -7,8 +7,6 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
 
   const ulrPath = "http://localhost:8080/todos/";
@@ -32,8 +30,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const res = await axios.post(`${ulrPath}login`, {
-      username: formik.values.username,
-      password: formik.values.password,
+      username: DOMPurify.sanitize(formik.values.username),
+      password: DOMPurify.sanitize(formik.values.password),
     });
 
     if (res.status === 403) {
