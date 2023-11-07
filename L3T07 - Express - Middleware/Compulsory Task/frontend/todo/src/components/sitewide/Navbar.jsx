@@ -12,11 +12,6 @@ const Navbar = () => {
                 Home <i className="fa-solid fa-house"></i>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/olderThan5">
-                Older Cars <i className="fa-solid fa-car"></i>
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
-import CarItem from "./CarItem";
+import TodoItem from "./TodoItem";
 import AddTodo from "./AddTodo";
 
 const ulrPath = "http://localhost:8080/todos/";
@@ -150,7 +150,7 @@ function Home() {
         handleClearAddTodo={handleClearAddTodo}
       />
 
-      <CarItem cars={cars} updateCar={updateCar} deleteCar={deleteCar} />
+      <TodoItem todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
     </div>
   );
 }

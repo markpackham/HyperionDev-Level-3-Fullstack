@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const CarItem = ({ cars, updateCar, deleteCar }) => {
+const TodoItem = ({ cars, updateCar, deleteCar }) => {
   return (
     <>
       <h5 className="mb-2">
@@ -91,10 +91,10 @@ const CarItem = ({ cars, updateCar, deleteCar }) => {
   );
 };
 
-CarItem.propTypes = {
+TodoItem.propTypes = {
   cars: PropTypes.array.isRequired,
   updateCar: PropTypes.func.isRequired,
   deleteCar: PropTypes.func.isRequired,
 };
 
-export default CarItem;
+export default TodoItem;
