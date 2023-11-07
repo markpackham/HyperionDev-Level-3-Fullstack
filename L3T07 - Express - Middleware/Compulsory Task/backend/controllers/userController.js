@@ -64,6 +64,28 @@ const getTodos = (req, res) => {
 };
 
 // Create todo
+exports.create = async (req, res) => {
+  try {
+    const todoModel = new Todo({
+      todo_id: req.body.todo_id,
+      todo_name: req.body.todo_id,
+      todo_description: req.body.todo_description,
+    });
+
+    // Save the new todo in the database
+    const saveTodo = await todoModel.save();
+
+    // Success response
+    console.log(saveTodo);
+    res.send("The todo has been added");
+  } catch (error) {
+    // Error response
+    console.error(error);
+    res.status(500).send({
+      message: "Some error occurred while creating the todo.",
+    });
+  }
+};
 
 //export controller functions to be used on the myLoggerRoute.js/routes
 module.exports = {
