@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
 const TodoItem = ({ todos, updateTodo, deleteTodo }) => {
-  const token = sessionStorage.getItem("jwt_token");
+  const token_storage = sessionStorage.getItem("jwt_token");
 
   return (
     <>
-      {token && (
+      {token_storage && (
         <>
           <h5 className="mb-2">Name - Description</h5>
           <div className="list-group">

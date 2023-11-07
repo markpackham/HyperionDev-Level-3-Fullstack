@@ -17,11 +17,11 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
     validationSchema,
   });
 
-  const token = sessionStorage.getItem("jwt_token");
+  const token_storage = sessionStorage.getItem("jwt_token");
 
   return (
     <>
-      {token ? (
+      {token_storage ? (
         <>
           {" "}
           <h4>Add Todo</h4>

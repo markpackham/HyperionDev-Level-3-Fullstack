@@ -4,6 +4,7 @@ import DOMPurify from "dompurify";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +12,8 @@ const Login = () => {
   const [token, setToken] = useState("");
 
   const ulrPath = "http://localhost:8080/todos/";
+
+  const token_storage = sessionStorage.getItem("jwt_token");
 
   const validationSchema = Yup.object({
     username: Yup.string().required("Username required"),
@@ -46,6 +49,12 @@ const Login = () => {
 
   return (
     <>
+      {token_storage && (
+        <h4 className="text-success">
+          Congrats, you are logged in, please go <Link to="/">Home</Link> to
+          added todos!
+        </h4>
+      )}
       <h4>Login</h4>
       <div className="list-group">
         <form onSubmit={handleLogin}>
