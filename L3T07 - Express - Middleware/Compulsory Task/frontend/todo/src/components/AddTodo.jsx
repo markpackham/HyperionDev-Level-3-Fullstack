@@ -21,7 +21,7 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
 
   return (
     <>
-      {token && (
+      {token ? (
         <>
           {" "}
           <h4>Add Todo</h4>
@@ -68,6 +68,8 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
             </button>
           </form>
         </>
+      ) : (
+        <h4>Please login or register to use this app.</h4>
       )}
     </>
   );
