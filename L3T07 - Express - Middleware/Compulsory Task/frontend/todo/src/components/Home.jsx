@@ -78,10 +78,10 @@ function Home() {
   // UPDATE
   const updateTodo = (todo_id) => {
     const upTodo = {
-      Make: DOMPurify.sanitize(
+      todo_name: DOMPurify.sanitize(
         document.getElementById(`todo_name-${todo_id}`).value
       ),
-      Owner: DOMPurify.sanitize(
+      todo_description: DOMPurify.sanitize(
         document.getElementById(`todo_description-${todo_id}`).value
       ),
     };

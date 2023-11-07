@@ -39,7 +39,8 @@ exports.findAll = (req, res) => {
 exports.updateById = async (req, res) => {
   try {
     // Grab specific todo to update by id
-    const reg = req.params.todo_id;
+    const todo_id = req.params.todo_id;
+    console.log(req.body);
 
     // Define the new data to update
     const update = {
