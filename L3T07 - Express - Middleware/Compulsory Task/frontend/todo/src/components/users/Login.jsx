@@ -16,7 +16,7 @@ const Login = () => {
   const token_storage = sessionStorage.getItem("jwt_token");
 
   const validationSchema = Yup.object({
-    username: Yup.string().required("Username required"),
+    username: Yup.string().email().required("Username as gmail required"),
     password: Yup.string().required("Password required"),
   });
 
