@@ -43,7 +43,7 @@ mongoose.connect(uri, { useNewUrlParser: true }).then(
 
 // Allow app to accept json and url encoded values
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Set up routes to be handled from: http://localhost:8080/todos
 app.use("/todos", getTodos);

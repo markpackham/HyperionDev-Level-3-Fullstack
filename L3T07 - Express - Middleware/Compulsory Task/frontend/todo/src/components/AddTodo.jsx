@@ -17,52 +17,58 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
     validationSchema,
   });
 
+  const token = sessionStorage.getItem("jwt_token");
+
   return (
     <>
-      <h4>Add Todo</h4>
+      {token && (
+        <>
+          {" "}
+          <h4>Add Todo</h4>
+          <form className="form-group col-sm-12 col-md-6">
+            <label htmlFor="todo_name_add">Name:</label>
+            <input
+              id="todo_name_add"
+              type="text"
+              className="form-control"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.todo_name_add}
+            />
 
-      <form className="form-group col-sm-12 col-md-6">
-        <label htmlFor="todo_name_add">Name:</label>
-        <input
-          id="todo_name_add"
-          type="text"
-          className="form-control"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.todo_name_add}
-        />
+            {formik.touched.todo_name_add && formik.errors.todo_name_add ? (
+              <div className="fw-bold text-danger mb-1">
+                {formik.errors.todo_name_add}
+              </div>
+            ) : null}
 
-        {formik.touched.todo_name_add && formik.errors.todo_name_add ? (
-          <div className="fw-bold text-danger mb-1">
-            {formik.errors.todo_name_add}
-          </div>
-        ) : null}
+            <label htmlFor="todo_description_add">Description:</label>
+            <input
+              id="todo_description_add"
+              type="text"
+              className="form-control"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.todo_description_add}
+            />
 
-        <label htmlFor="todo_description_add">Description:</label>
-        <input
-          id="todo_description_add"
-          type="text"
-          className="form-control"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.todo_description_add}
-        />
+            {formik.touched.todo_description_add &&
+            formik.errors.todo_description_add ? (
+              <div className="fw-bold text-danger mb-1">
+                {formik.errors.todo_description_add}
+              </div>
+            ) : null}
 
-        {formik.touched.todo_description_add &&
-        formik.errors.todo_description_add ? (
-          <div className="fw-bold text-danger mb-1">
-            {formik.errors.todo_description_add}
-          </div>
-        ) : null}
+            <button onClick={handleAddTodo} className="btn btn-success">
+              Add Todo
+            </button>
 
-        <button onClick={handleAddTodo} className="btn btn-success">
-          Add Todo
-        </button>
-
-        <button onClick={handleClearAddTodo} className="btn btn-primary">
-          Clear
-        </button>
-      </form>
+            <button onClick={handleClearAddTodo} className="btn btn-primary">
+              Clear
+            </button>
+          </form>
+        </>
+      )}
     </>
   );
 };
