@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import DOMPurify from "dompurify";
 import PropTypes from "prop-types";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,6 +12,19 @@ const Login = () => {
 
   const ulrPath = "http://localhost:8080/todos/";
 
+  const validationSchema = Yup.object({
+    username: Yup.string().required("Username required"),
+    password: Yup.string().required("Password required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema,
+  });
+
   // Login
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -16,9 +32,6 @@ const Login = () => {
       username,
       password,
     });
-
-    console.log("This ran");
-    console.log(res);
 
     if (res.status === 403) {
       alert(res.data.message);
@@ -41,23 +54,37 @@ const Login = () => {
               <label>
                 Username: user@gmail.com
                 <input
+                  id="username"
                   type="text"
-                  value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  onBlur={formik.handleBlur}
+                  value={formik.username}
                   className="form-control"
                 />
               </label>
+              {formik.touched.username && formik.errors.username ? (
+                <div className="fw-bold text-danger mb-1">
+                  {formik.errors.username}
+                </div>
+              ) : null}
             </div>
             <div className="col-sm-6 col-md-3">
               <label>
                 Password: password
                 <input
+                  id="password"
                   type="password"
-                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onBlur={formik.handleBlur}
+                  value={formik.password}
                   className="form-control"
                 />
               </label>
+              {formik.touched.password && formik.errors.password ? (
+                <div className="fw-bold text-danger mb-1">
+                  {formik.errors.password}
+                </div>
+              ) : null}
             </div>
           </div>
           <button type="submit" className="btn btn-success">
