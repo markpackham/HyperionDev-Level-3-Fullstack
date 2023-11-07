@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import DOMPurify from "dompurify";
+
 import Register from "./Register";
 import Login from "./Login";
 
@@ -48,9 +50,38 @@ const Home = () => {
   // Add todo
   const addTodo = (event) => {
     event.preventDefault();
-    setTodos([...todos, { ...todo, todo_id: self.crypto.randomUUID() }]);
+
+    let todo_id = self.crypto.randomUUID();
+    let todo_name = document.getElementById("add_todo_name").value;
+    let todo_description = document.getElementById(
+      "add_todo_description"
+    ).value;
+
+    const todo = {
+      todo_id: DOMPurify.sanitize(todo_id),
+      todo_name: DOMPurify.sanitize(todo_name),
+      todo_description: DOMPurify.sanitize(todo_description),
+    };
+    // Send Post method to Express
+    fetch(`${ulrPath}add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    })
+      .then((res) => {
+        console.log(res);
+        // Update state with new car
+        setTodos([todo, ...todos]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     clearAddForm();
   };
+
   // Delete todo
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.todo_id !== id));
@@ -84,94 +115,92 @@ const Home = () => {
       <Register ulrPath={ulrPath} />
       <Login ulrPath={ulrPath} />
 
-      {jwt_token !== null && (
-        <>
-          <h4>Add Todo</h4>
-          <form onSubmit={addTodo}>
-            <label>
-              Todo Name:
-              <input
-                id="add_todo_name"
-                type="text"
-                name="todo_name"
-                value={todo.todo_name}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Todo Description:
-              <input
-                id="add_todo_description"
-                type="text"
-                name="todo_description"
-                value={todo.todo_description}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <button type="submit" className="btn btn-primary">
-              Add Todo
-            </button>
-          </form>
+      <>
+        <h4>Add Todo</h4>
+        <form onSubmit={addTodo}>
+          <label>
+            Todo Name:
+            <input
+              id="add_todo_name"
+              type="text"
+              name="todo_name"
+              value={todo.todo_name}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <label>
+            Todo Description:
+            <input
+              id="add_todo_description"
+              type="text"
+              name="todo_description"
+              value={todo.todo_description}
+              onChange={handleChange}
+            />
+          </label>
+          <br />
+          <button type="submit" className="btn btn-primary">
+            Add Todo
+          </button>
+        </form>
 
-          <h4>Todos</h4>
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.todo_id}>
-                <label>
-                  Todo Name:
-                  <input
-                    type="text"
-                    name="todo_name"
-                    value={todo.todo_name}
-                    onChange={(event) =>
-                      updateTodo(todo.todo_id, {
-                        ...todo,
-                        todo_name: event.target.value,
-                      })
-                    }
-                  />
-                </label>
-                <br />
-                <label>
-                  Todo Description:
-                  <input
-                    type="text"
-                    name="todo_description"
-                    value={todo.todo_description}
-                    onChange={(event) =>
-                      updateTodo(todo.todo_id, {
-                        ...todo,
-                        todo_description: event.target.value,
-                      })
-                    }
-                  />
-                </label>
-                <br />
-                <button
-                  onClick={() => deleteTodo(todo.todo_id)}
-                  className="btn btn-danger"
-                >
-                  Delete
-                </button>
-                <button
-                  onClick={() =>
+        <h4>Todos</h4>
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.todo_id}>
+              <label>
+                Todo Name:
+                <input
+                  type="text"
+                  name="todo_name"
+                  value={todo.todo_name}
+                  onChange={(event) =>
                     updateTodo(todo.todo_id, {
                       ...todo,
-                      todo_name: todo.todo_name,
-                      todo_description: todo.todo_description,
+                      todo_name: event.target.value,
                     })
                   }
-                  className="btn btn-warning"
-                >
-                  Update
-                </button>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+                />
+              </label>
+              <br />
+              <label>
+                Todo Description:
+                <input
+                  type="text"
+                  name="todo_description"
+                  value={todo.todo_description}
+                  onChange={(event) =>
+                    updateTodo(todo.todo_id, {
+                      ...todo,
+                      todo_description: event.target.value,
+                    })
+                  }
+                />
+              </label>
+              <br />
+              <button
+                onClick={() => deleteTodo(todo.todo_id)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() =>
+                  updateTodo(todo.todo_id, {
+                    ...todo,
+                    todo_name: todo.todo_name,
+                    todo_description: todo.todo_description,
+                  })
+                }
+                className="btn btn-warning"
+              >
+                Update
+              </button>
+            </li>
+          ))}
+        </ul>
+      </>
     </div>
   );
 };
