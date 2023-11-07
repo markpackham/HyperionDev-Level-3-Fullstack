@@ -1,4 +1,4 @@
-const Car = require("../models/todo.model");
+const Todo = require("../models/todo.model");
 
 exports.create = async (req, res) => {
   try {
@@ -68,8 +68,7 @@ exports.updateById = async (req, res) => {
 exports.deleteById = async (req, res) => {
   try {
     const todo_id = req.params.reg;
-    // Remove a car with the specified reg gained from the url sent ":reg"
-    const deleteResult = await Car.deleteOne({ todo_id: todo_id });
+    const deleteResult = await Todo.deleteOne({ todo_id: todo_id });
 
     if (deleteResult.deletedCount > 0) {
       res.send("Successfully deleted the todo.");
