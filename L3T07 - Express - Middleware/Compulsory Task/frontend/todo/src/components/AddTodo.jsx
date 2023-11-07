@@ -38,20 +38,20 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
           </div>
         ) : null}
 
-        <label htmlFor="todo_name_description">Description:</label>
+        <label htmlFor="todo_description_add">Description:</label>
         <input
-          id="todo_name_description"
+          id="todo_description_add"
           type="text"
           className="form-control"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.todo_name_description}
+          value={formik.values.todo_description_add}
         />
 
-        {formik.touched.todo_name_description &&
-        formik.errors.todo_name_description ? (
+        {formik.touched.todo_description_add &&
+        formik.errors.todo_description_add ? (
           <div className="fw-bold text-danger mb-1">
-            {formik.errors.todo_name_description}
+            {formik.errors.todo_description_add}
           </div>
         ) : null}
 
