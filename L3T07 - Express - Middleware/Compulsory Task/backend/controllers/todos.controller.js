@@ -39,8 +39,7 @@ exports.findAll = (req, res) => {
 exports.updateById = async (req, res) => {
   try {
     // Grab specific todo to update by id
-    const todo_id = req.params.todo_id;
-    console.log(req.body);
+    const todo_id = req.params.id;
 
     // Define the new data to update
     const update = {
@@ -68,7 +67,7 @@ exports.updateById = async (req, res) => {
 
 exports.deleteById = async (req, res) => {
   try {
-    const todo_id = req.params.reg;
+    const todo_id = req.params.id;
     const deleteResult = await Todo.deleteOne({ todo_id: todo_id });
 
     if (deleteResult.deletedCount > 0) {
