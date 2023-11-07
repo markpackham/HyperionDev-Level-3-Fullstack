@@ -22,6 +22,7 @@ const Login = ({ ulrPath }) => {
     if (res.status === 200 && res.data != "Incorrect user credentials") {
       alert(res.data.message);
       setToken[res.data.token];
+      sessionStorage.setItem("jwt_token", res.data.token);
     }
   };
 

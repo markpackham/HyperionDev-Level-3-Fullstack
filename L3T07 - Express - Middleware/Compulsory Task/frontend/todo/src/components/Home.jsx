@@ -5,6 +5,7 @@ import Login from "./Login";
 
 const Home = () => {
   const ulrPath = "http://localhost:8080/";
+  const jwt_token = sessionStorage.getItem("jwt_token");
 
   const fetchTodos = () => {
     axios
@@ -83,90 +84,94 @@ const Home = () => {
       <Register ulrPath={ulrPath} />
       <Login ulrPath={ulrPath} />
 
-      <h4>Add Todo</h4>
-      <form onSubmit={addTodo}>
-        <label>
-          Todo Name:
-          <input
-            id="add_todo_name"
-            type="text"
-            name="todo_name"
-            value={todo.todo_name}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Todo Description:
-          <input
-            id="add_todo_description"
-            type="text"
-            name="todo_description"
-            value={todo.todo_description}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <button type="submit" className="btn btn-primary">
-          Add Todo
-        </button>
-      </form>
-
-      <h4>Todos</h4>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.todo_id}>
+      {jwt_token !== null && (
+        <>
+          <h4>Add Todo</h4>
+          <form onSubmit={addTodo}>
             <label>
               Todo Name:
               <input
+                id="add_todo_name"
                 type="text"
                 name="todo_name"
                 value={todo.todo_name}
-                onChange={(event) =>
-                  updateTodo(todo.todo_id, {
-                    ...todo,
-                    todo_name: event.target.value,
-                  })
-                }
+                onChange={handleChange}
               />
             </label>
             <br />
             <label>
               Todo Description:
               <input
+                id="add_todo_description"
                 type="text"
                 name="todo_description"
                 value={todo.todo_description}
-                onChange={(event) =>
-                  updateTodo(todo.todo_id, {
-                    ...todo,
-                    todo_description: event.target.value,
-                  })
-                }
+                onChange={handleChange}
               />
             </label>
             <br />
-            <button
-              onClick={() => deleteTodo(todo.todo_id)}
-              className="btn btn-danger"
-            >
-              Delete
+            <button type="submit" className="btn btn-primary">
+              Add Todo
             </button>
-            <button
-              onClick={() =>
-                updateTodo(todo.todo_id, {
-                  ...todo,
-                  todo_name: todo.todo_name,
-                  todo_description: todo.todo_description,
-                })
-              }
-              className="btn btn-warning"
-            >
-              Update
-            </button>
-          </li>
-        ))}
-      </ul>
+          </form>
+
+          <h4>Todos</h4>
+          <ul>
+            {todos.map((todo) => (
+              <li key={todo.todo_id}>
+                <label>
+                  Todo Name:
+                  <input
+                    type="text"
+                    name="todo_name"
+                    value={todo.todo_name}
+                    onChange={(event) =>
+                      updateTodo(todo.todo_id, {
+                        ...todo,
+                        todo_name: event.target.value,
+                      })
+                    }
+                  />
+                </label>
+                <br />
+                <label>
+                  Todo Description:
+                  <input
+                    type="text"
+                    name="todo_description"
+                    value={todo.todo_description}
+                    onChange={(event) =>
+                      updateTodo(todo.todo_id, {
+                        ...todo,
+                        todo_description: event.target.value,
+                      })
+                    }
+                  />
+                </label>
+                <br />
+                <button
+                  onClick={() => deleteTodo(todo.todo_id)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() =>
+                    updateTodo(todo.todo_id, {
+                      ...todo,
+                      todo_name: todo.todo_name,
+                      todo_description: todo.todo_description,
+                    })
+                  }
+                  className="btn btn-warning"
+                >
+                  Update
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
