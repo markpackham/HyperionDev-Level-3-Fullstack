@@ -2,12 +2,12 @@
 const userInformation = [
   {
     id: 1,
-    username: "user1",
-    password: "password1",
+    username: "user@gmail.com",
+    password: "password",
   },
   {
     id: 2,
-    username: "user2",
+    username: "user2@gmail.com",
     password: "password2",
   },
 ];

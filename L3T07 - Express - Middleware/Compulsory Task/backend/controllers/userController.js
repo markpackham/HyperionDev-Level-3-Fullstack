@@ -31,7 +31,3 @@ exports.login = (req, res) => {
   console.log(`User ${username} logged in`);
   res.send({ message: `Welcome back ${username}`, token: token });
 };
-
-module.exports = {
-  userController,
-};

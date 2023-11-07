@@ -17,6 +17,9 @@ const Login = () => {
       password,
     });
 
+    console.log("This ran");
+    console.log(res);
+
     if (res.status === 403) {
       alert(res.data.message);
     }
@@ -36,7 +39,7 @@ const Login = () => {
           <div className="row">
             <div className="col-sm-6 col-md-3">
               <label>
-                Username (user@gmail.com):
+                Username: user@gmail.com
                 <input
                   type="text"
                   value={username}
@@ -47,7 +50,7 @@ const Login = () => {
             </div>
             <div className="col-sm-6 col-md-3">
               <label>
-                Password (password1):
+                Password: password
                 <input
                   type="password"
                   value={password}
