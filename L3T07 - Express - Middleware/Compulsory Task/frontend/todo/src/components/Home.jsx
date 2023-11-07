@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
 import CarItem from "./CarItem";
-import CarAdd from "./CarAdd";
-import CarUpdateAll from "./CarUpdateAll";
+import AddTodo from "./AddTodo";
 
-const ulrPath = "http://localhost:8080/cars";
+const ulrPath = "http://localhost:8080/todos/";
 
 function Home() {
   const [cars, setCars] = useState([]);
@@ -21,7 +20,7 @@ function Home() {
 
   // CREATE / POST
   // Add a car
-  const handleAddCar = (event) => {
+  const handleAddTodo = (event) => {
     event.preventDefault();
 
     let model = Number(document.getElementById("carModelAdd").value);
@@ -77,7 +76,7 @@ function Home() {
   };
 
   // CLEAR ADD CAR Form
-  const handleClearAddCar = () => {
+  const handleClearAddTodo = () => {
     document.getElementById("carModelAdd").value = 0;
     document.getElementById("carMakeAdd").value = "";
     document.getElementById("carOwnerAdd").value = "";
@@ -144,67 +143,12 @@ function Home() {
       .catch((error) => console.error(error));
   };
 
-  // UPDATE ALL based on Owner
-  const handleUpdateAllOwner = () => {
-    // Allow for page refresh rather than preventing default
-    // too tricky to update state a cleaner way
-
-    let model = Number(document.getElementById("carModelUpdateAll").value);
-    let make = document.getElementById("carMakeUpdateAll").value;
-    let owner = document.getElementById("carOwnerUpdateAll").value;
-    let reg = document.getElementById("carRegistrationUpdateAll").value;
-    let address = document.getElementById("carAddressUpdateAll").value;
-
-    if (
-      model < 1900 ||
-      make.length < 1 ||
-      owner.length < 1 ||
-      reg.length < 1 ||
-      address.length < 1
-    ) {
-      Swal.fire({
-        title: `All fields required!`,
-        icon: "error",
-      });
-      return;
-    }
-
-    const upCar = {
-      Model: DOMPurify.sanitize(model),
-      Make: DOMPurify.sanitize(make),
-      Owner: DOMPurify.sanitize(owner),
-      Registration: DOMPurify.sanitize(reg),
-      Address: DOMPurify.sanitize(address),
-    };
-
-    //PUT request to server
-    const url = `${ulrPath}/update-many/${owner}`;
-
-    Swal.fire({
-      title: `Mass update done!`,
-      icon: "info",
-    });
-
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(upCar),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
-  };
-
   return (
     <div className="container">
-      <CarAdd
-        handleAddCar={handleAddCar}
-        handleClearAddCar={handleClearAddCar}
+      <AddTodo
+        handleAddTodo={handleAddTodo}
+        handleClearAddTodo={handleClearAddTodo}
       />
-
-      <CarUpdateAll handleUpdateAllOwner={handleUpdateAllOwner} />
 
       <CarItem cars={cars} updateCar={updateCar} deleteCar={deleteCar} />
     </div>
