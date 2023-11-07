@@ -7,66 +7,45 @@ import AddTodo from "./AddTodo";
 const ulrPath = "http://localhost:8080/todos/";
 
 function Home() {
-  const [cars, setCars] = useState([]);
+  const [todos, setTodos] = useState([]);
 
-  // READ / GET
-  // Fetch All cars
+  // READ
   useEffect(() => {
     fetch(`${ulrPath}`)
       .then((res) => res.json())
       // Show latest additions first
-      .then((data) => setCars(data.reverse()));
+      .then((data) => setTodos(data.reverse()));
   }, []);
 
-  // CREATE / POST
-  // Add a car
+  // CREATE
   const handleAddTodo = (event) => {
     event.preventDefault();
 
-    let model = Number(document.getElementById("carModelAdd").value);
-    let make = document.getElementById("carMakeAdd").value;
-    let owner = document.getElementById("carOwnerAdd").value;
-    let reg = document.getElementById("carRegistrationAdd").value;
-    let address = document.getElementById("carAddressAdd").value;
+    let todo_name = document.getElementById("todo_name_add").value;
+    let todo_description = document.getElementById(
+      "todo_description_add"
+    ).value;
 
-    if (
-      model < 1900 ||
-      make.length < 1 ||
-      owner.length < 1 ||
-      reg.length < 1 ||
-      address.length < 1
-    ) {
-      Swal.fire({
-        title: `All fields required!`,
-        icon: "error",
-      });
-      // Escape method if user has failed to provide all fields
-      return;
-    }
-
-    const car = {
-      Model: DOMPurify.sanitize(model),
-      Make: DOMPurify.sanitize(make),
-      Owner: DOMPurify.sanitize(owner),
-      Registration: DOMPurify.sanitize(reg),
-      Address: DOMPurify.sanitize(address),
+    const todo = {
+      todo_id: self.crypto.randomUUID(),
+      todo_name: DOMPurify.sanitize(todo_name),
+      todo_description: DOMPurify.sanitize(todo_description),
     };
-    // Send Post method to Express
+    // Send Post to Express
     fetch(`${ulrPath}/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(car),
+      body: JSON.stringify(todo),
     })
       .then((res) => {
         console.log(res);
-        // Update state with new car
-        setCars([car, ...cars]);
+        setTodos([todo, ...todos]);
       })
       .then(() => {
         Swal.fire({
-          title: `Car created!`,
+          title: `Todo created!`,
           icon: "success",
         });
       })
@@ -75,68 +54,57 @@ function Home() {
       });
   };
 
-  // CLEAR ADD CAR Form
+  // CLEAR ADD Form
   const handleClearAddTodo = () => {
-    document.getElementById("carModelAdd").value = 0;
-    document.getElementById("carMakeAdd").value = "";
-    document.getElementById("carOwnerAdd").value = "";
-    document.getElementById("carRegistrationAdd").value = "";
-    document.getElementById("carAddressAdd").value = "";
+    document.getElementById("todo_name_add").value = "";
+    document.getElementById("todo_description_add").value = "";
   };
 
   // DELETE
-  const deleteCar = async (reg) => {
-    const url = `${ulrPath}/delete-car/${reg}`;
+  const deleteTodo = async (todo_id) => {
+    const url = `${ulrPath}/delete-todo/${todo_id}`;
     const res = await fetch(url, { method: "DELETE" });
     if (res.ok) {
       Swal.fire({
-        title: `Car with reg: ${reg} deleted.`,
+        title: `Todo deleted.`,
         icon: "warning",
       });
-      // Update the state to avoid having to refresh
-      setCars(cars.filter((car) => car.Registration !== reg));
+      setTodos(todos.filter((todo) => todo.todo_id !== todo_id));
     } else {
-      console.error(`Failed to delete car reg: ${reg}.`);
+      console.error(`Failed to delete todo:`);
     }
   };
 
   // UPDATE
-  const updateCar = (reg) => {
-    // All input fields have unique ids thanks to the reg being unique
-    // so basic input field name + reg thus only the correct car is updated
-    const upCar = {
-      Model: DOMPurify.sanitize(
-        Number(document.getElementById(`carModel-${reg}`).value)
+  const updateTodo = (todo_id) => {
+    const upTodo = {
+      Make: DOMPurify.sanitize(
+        document.getElementById(`todo_name-${todo_id}`).value
       ),
-      Make: DOMPurify.sanitize(document.getElementById(`carMake-${reg}`).value),
       Owner: DOMPurify.sanitize(
-        document.getElementById(`carOwner-${reg}`).value
-      ),
-      Registration: DOMPurify.sanitize(
-        document.getElementById(`carRegistration-${reg}`).value
-      ),
-      Address: DOMPurify.sanitize(
-        document.getElementById(`carAddress-${reg}`).value
+        document.getElementById(`todo_description-${todo_id}`).value
       ),
     };
 
-    // Find car we want to update
-    const updatedCar = cars.find((car) => car.Registration === reg);
-    setCars(cars.map((car) => (car.Registration === reg ? updatedCar : car)));
+    // Find todo to update
+    const updatedTodo = todos.find((todo) => todo.todo_id === todo_id);
+    setTodos(
+      todos.map((todo) => (todo.todo_id === todo_id ? updatedTodo : todo))
+    );
 
     Swal.fire({
-      title: `Car with reg: ${reg} updated.`,
+      title: `Todo updated.`,
       icon: "info",
     });
 
-    // PUT request to server
-    const url = `${ulrPath}/update-car/${reg}`;
+    // PUT
+    const url = `${ulrPath}update-todo/${todo_id}`;
     fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(upCar),
+      body: JSON.stringify(upTodo),
     })
       .then((res) => res.json())
       .then((data) => console.log(data))

@@ -1,21 +1,13 @@
 import PropTypes from "prop-types";
 
-const TodoItem = ({ cars, updateCar, deleteCar }) => {
+const TodoItem = ({ todos, updateCar, deleteCar }) => {
   return (
     <>
       <h5 className="mb-2">
         Model Year - Make - Registration - Owner - Address
       </h5>
       <div className="list-group">
-        {(cars.length > 0 &&
-          // Ideally the car._id that MongoDB creates on its own would be enough for the key
-          // however the state would take too long to retrieve it so I have to make do with the
-          // car.Registration which should be unique, adding the car._id to is is a safe guard
-          // against user data entry
-
-          // Bootstrap list group used so input fields look less messy
-          // Mark Otto, J.T. (no date) List group, · Bootstrap v5.0.
-          // Available at: https://getbootstrap.com/docs/5.0/components/list-group/ (Accessed: 01 November 2023).
+        {(todos.length > 0 &&
           cars.map((car) => (
             <div
               className="list-group-item list-group-item-action"
