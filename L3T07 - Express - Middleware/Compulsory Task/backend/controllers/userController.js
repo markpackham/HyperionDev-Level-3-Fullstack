@@ -64,7 +64,7 @@ const getTodos = (req, res) => {
 };
 
 // Create todo
-exports.create = async (req, res) => {
+const createTodo = async (req, res) => {
   try {
     const todoModel = new Todo({
       todo_id: req.body.todo_id,
@@ -89,6 +89,7 @@ exports.create = async (req, res) => {
 
 //export controller functions to be used on the myLoggerRoute.js/routes
 module.exports = {
+  createTodo,
   userController,
   getTodos,
 };
