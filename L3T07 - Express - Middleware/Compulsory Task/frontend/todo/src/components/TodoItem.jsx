@@ -16,7 +16,7 @@ const TodoItem = ({ todos, updateTodo, deleteTodo }) => {
                   <input
                     id={`todo_name-${todo.todo_id}`}
                     className="form-control"
-                    type="number"
+                    type="text"
                     defaultValue={todo.todo_name}
                     title="todo_name"
                   />

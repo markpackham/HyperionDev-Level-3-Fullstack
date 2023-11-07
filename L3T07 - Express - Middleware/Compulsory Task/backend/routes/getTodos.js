@@ -3,20 +3,20 @@ const express = require("express");
 const router = express.Router();
 const todoController = require("../controllers/todos.controller");
 
-// POST
-// eg http://localhost:8080/todos/add
-router.post("/add", todoController.create);
-
-// GET
+// GET (default path)
 // http://localhost:8080/todos
 router.get("/", todoController.findAll);
 
+// POST
+// /add
+router.post("/add", todoController.create);
+
 // PUT
-// http://localhost:8080/todos/update-todo/123
+// /update-todo/123
 router.put("/update-todo/:id", todoController.updateById);
 
 // DELETE
-// http://localhost:8080/todos/delete-todo/ZZZ111
+// /delete-todo/ZZZ111
 router.delete("/delete-todo/:id", todoController.deleteById);
 
 module.exports = router;
