@@ -10,12 +10,13 @@ const jwt_key = process.env.JWT_KEY;
 // Define the login controller functions
 exports.login = (req, res) => {
   //Get the username and password from the request query
-  const { username, password } = req.query;
-  //Find the user in the database - returns a boolean
+  const { username, password } = req.body;
+
+  //Find the user in the database
   const user = userInformation.find(
     (user) => user.username === username && user.password === password
   );
-  //If the user is not found, return an error message - end the request
+
   if (!user) {
     return res.send("Incorrect user credentials");
   }
