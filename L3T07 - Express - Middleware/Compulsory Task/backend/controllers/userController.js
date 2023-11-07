@@ -62,6 +62,9 @@ const getTodos = (req, res) => {
     res.send("User not found.");
   }
 };
+
+// Create todo
+
 //export controller functions to be used on the myLoggerRoute.js/routes
 module.exports = {
   userController,
