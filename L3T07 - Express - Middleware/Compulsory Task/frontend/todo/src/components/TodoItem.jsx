@@ -21,7 +21,7 @@ const TodoItem = ({ todos, updateTodo, deleteTodo }) => {
                     title="todo_name"
                   />
                 </div>
-                <div className="col-sm-6 col-md-3">
+                <div className="col-sm-6 col-md-6">
                   <input
                     id={`todo_description-${todo.todo_id}`}
                     className="form-control"
