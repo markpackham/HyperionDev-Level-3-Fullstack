@@ -6,8 +6,7 @@ import Login from "./Login";
 const Home = () => {
   const ulrPath = "http://localhost:8080/";
 
-  // Axios grab todos
-  useEffect(() => {
+  const fetchTodos = () => {
     axios
       .get(`${ulrPath}login/data`, {
         headers: {
@@ -22,6 +21,11 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // Axios grab todos
+  useEffect(() => {
+    fetchTodos();
   }, []);
 
   // Full todos list

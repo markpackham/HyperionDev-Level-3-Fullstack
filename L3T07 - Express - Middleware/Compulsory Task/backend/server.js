@@ -9,13 +9,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const { jsonCheckMiddleware } = require("./middleware/jsonCheckMiddleware");
-
 // Initialize express & use cors along with json handling middleware
 const app = express();
 app.use(cors());
-// Check we are dealing with Json only
-app.use(jsonCheckMiddleware);
 app.use(express.json());
 
 // Import routes
