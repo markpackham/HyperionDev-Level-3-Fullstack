@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
-  // Use Formik and Yup to tell user off for not filling in fields
+  // Use Formik and Yup for field validation
   const validationSchema = Yup.object({
     todo_name_add: Yup.string().required("Todo name is required"),
     todo_description_add: Yup.string().required("Todo description is required"),

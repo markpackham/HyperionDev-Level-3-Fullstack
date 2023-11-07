@@ -7,16 +7,12 @@ const password = process.env.MONGODB_PASSWORD;
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
-// Handle Cors errors when I have both React & Express running
-// Cors (no date) Express cors middleware.
-//Available at: https://expressjs.com/en/resources/middleware/cors.html (Accessed: 30 October 2023).
 const cors = require("cors");
 
 // Import routes
 const getTodos = require("./routes/getTodos");
 
-// Initialize express & use cors
+// Initialize middleware
 const app = express();
 app.use(cors());
 
@@ -48,8 +44,8 @@ mongoose.connect(uri, { useNewUrlParser: true }).then(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Set up routes to be handled from: http://localhost:8080/cars
-app.use("/cars", getTodos);
+// Set up routes to be handled from: http://localhost:8080/todos
+app.use("/todos", getTodos);
 
 // Start up express server
 app.listen(PORT, () => {
