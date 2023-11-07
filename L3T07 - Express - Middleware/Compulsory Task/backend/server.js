@@ -13,6 +13,7 @@ const cors = require("cors");
 // Initialize express & use cors along with json handling middleware
 const app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Connect to the database
