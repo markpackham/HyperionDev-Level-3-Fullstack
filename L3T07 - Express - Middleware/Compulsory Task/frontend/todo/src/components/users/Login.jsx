@@ -59,7 +59,7 @@ const Login = () => {
           <div className="row">
             <div className="col-sm-6 col-md-3">
               <label>
-                Username: user@gmail.com
+                Username: bob@gmail.com
                 <input
                   id="username"
                   type="text"
@@ -77,7 +77,7 @@ const Login = () => {
             </div>
             <div className="col-sm-6 col-md-3">
               <label>
-                Password: password
+                Password: Password9#
                 <input
                   id="password"
                   type="password"
