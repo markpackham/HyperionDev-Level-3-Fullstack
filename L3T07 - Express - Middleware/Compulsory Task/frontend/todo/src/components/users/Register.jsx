@@ -103,7 +103,7 @@ const Register = () => {
         <label htmlFor="password">Password:</label>
         <input
           id="password"
-          type="text"
+          type="password"
           className="form-control"
           {...formik.getFieldProps("password")}
           value={formik.values.password}

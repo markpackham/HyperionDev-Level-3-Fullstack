@@ -1,8 +1,8 @@
 // userController.js
 // Require the user data from simulated database
 const userInformation = require("./userDB");
-const jwt = require("jsonwebtoken");
 
+const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
 const dotenv = require("dotenv");
@@ -41,4 +41,24 @@ exports.register = (req, res) => {
   const { username, password } = req.body;
 
   res.status(200).send("User added");
+};
+
+exports.register = async (req, res) => {
+  try {
+    const userModel = new User({
+      username: req.body.username,
+      password: req.body.password,
+    });
+
+    const saveUser = await userModel.save();
+    console.log(saveUser);
+
+    res.status(200).send("User added");
+  } catch (error) {
+    // Error response
+    console.error(error);
+    res.status(500).send({
+      message: "Some error occurred while creating the todo.",
+    });
+  }
 };
