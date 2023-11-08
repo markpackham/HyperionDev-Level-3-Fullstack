@@ -55,6 +55,15 @@ const Register = () => {
       });
   };
 
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+      password_confirm: "",
+    },
+    validationSchema,
+  });
+
   // Use Formik and Yup for field validation
   const validationSchema = Yup.object({
     username: Yup.string().email().required("Gmail is required"),
@@ -67,15 +76,6 @@ const Register = () => {
     password_confirm: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Required"),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-      password_confirm: "",
-    },
-    validationSchema,
   });
 
   return (
