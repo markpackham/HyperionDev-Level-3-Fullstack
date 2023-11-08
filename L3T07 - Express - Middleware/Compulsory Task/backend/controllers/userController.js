@@ -37,6 +37,6 @@ exports.login = (req, res) => {
 
 exports.register = (req, res) => {
   const { username, password } = req.body;
-  console.log(username);
-  console.log(password);
+
+  res.status(200).send("User added");
 };

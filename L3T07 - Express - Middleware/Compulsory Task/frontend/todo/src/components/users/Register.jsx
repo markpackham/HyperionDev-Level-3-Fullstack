@@ -1,32 +1,60 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import DOMPurify from "dompurify";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ulrPath = "http://localhost:8080/todos/";
 
-const handleRegister = (event) => {
-  event.preventDefault();
-
-  let username = document.getElementById("username").value;
-  let password = document.getElementById("password").value;
-
-  const user = {
-    username: DOMPurify.sanitize(username),
-    password: DOMPurify.sanitize(password),
-  };
-  // Send Post to Express
-  fetch(`${ulrPath}/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  }).catch((error) => {
-    console.log(error);
-  });
-};
-
 const Register = () => {
+  const navigate = useNavigate();
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    const user = {
+      username: DOMPurify.sanitize(username),
+      password: DOMPurify.sanitize(password),
+    };
+
+    // Send Post to Express
+    fetch(`${ulrPath}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          // Registration successful, redirect to login
+          Swal.fire({
+            title: `You're registered`,
+            icon: "success",
+          });
+          navigate("/login");
+        } else {
+          console.error("Registration failed:", res.statusText);
+          Swal.fire({
+            title: "Registration Failed",
+            text: res.statusText,
+            icon: "error",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Registration error:", error);
+        Swal.fire({
+          title: "Registration Error",
+          text: error.message,
+          icon: "error",
+        });
+      });
+  };
+
   // Use Formik and Yup for field validation
   const validationSchema = Yup.object({
     username: Yup.string().email().required("Gmail is required"),
