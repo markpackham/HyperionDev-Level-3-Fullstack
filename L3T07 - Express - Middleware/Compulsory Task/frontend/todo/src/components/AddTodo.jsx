@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import PropTypes from "prop-types";
 
 const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
+  const token_storage = sessionStorage.getItem("jwt_token");
+
   // Use Formik and Yup for field validation
   const validationSchema = Yup.object({
     todo_name_add: Yup.string().max(100).required("Todo name is required"),
@@ -18,8 +20,6 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
     },
     validationSchema,
   });
-
-  const token_storage = sessionStorage.getItem("jwt_token");
 
   return (
     <>
