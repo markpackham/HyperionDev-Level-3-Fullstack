@@ -1,4 +1,4 @@
-// Connect to database using password in .env via dotenv module hidden by gitignore
+// Connect to database using password in .env
 const dotenv = require("dotenv");
 dotenv.config();
 const password = process.env.MONGODB_PASSWORD;
