@@ -22,10 +22,21 @@ function Home() {
   const handleAddTodo = (event) => {
     event.preventDefault();
 
-    let todo_name = document.getElementById("todo_name_add").value;
-    let todo_description = document.getElementById(
+    const todo_name = document.getElementById("todo_name_add").value;
+    const todo_description = document.getElementById(
       "todo_description_add"
     ).value;
+
+    // Don't allow empty todos to be sent to db
+    // can't currently handle error with formik
+    if (todo_name.length < 1 || todo_description.length < 1) {
+      Swal.fire({
+        title: `All Todos need names & descriptions.`,
+        icon: "warning",
+      });
+
+      return;
+    }
 
     const todo = {
       todo_id: self.crypto.randomUUID(),
@@ -96,8 +107,6 @@ function Home() {
       document.getElementById(`todo_description-${todo_id}`).value
     );
 
-    // Don't allow empty todos to be sent to db
-    // can't currently handle error with formik
     if (todo_name.length < 1 || todo_description.length < 1) {
       Swal.fire({
         title: `All Todos need names & descriptions.`,
