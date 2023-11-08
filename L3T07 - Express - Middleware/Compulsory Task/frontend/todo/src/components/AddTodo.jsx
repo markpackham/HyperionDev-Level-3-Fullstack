@@ -5,8 +5,10 @@ import PropTypes from "prop-types";
 const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
   // Use Formik and Yup for field validation
   const validationSchema = Yup.object({
-    todo_name_add: Yup.string().required("Todo name is required"),
-    todo_description_add: Yup.string().required("Todo description is required"),
+    todo_name_add: Yup.string().max(100).required("Todo name is required"),
+    todo_description_add: Yup.string()
+      .max(140)
+      .required("Todo description is required"),
   });
 
   const formik = useFormik({
@@ -42,7 +44,9 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
               </div>
             ) : null}
 
-            <label htmlFor="todo_description_add">Description:</label>
+            <label htmlFor="todo_description_add">
+              Description (Max 140 characters):
+            </label>
             <input
               id="todo_description_add"
               type="text"

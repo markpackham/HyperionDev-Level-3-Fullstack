@@ -1,12 +1,16 @@
+// Don't allow descriptions longer than 140 characters to enter the database
 const todoTooLargeMiddleware = (req, res, next) => {
+  const { todo_description } = req.body;
 
-    const todo_description = "";
-
-    if (todo_description.length > 140)) {
-        return res.status(400).send("Todo description is far too long");
-      }
-
-  next();
+  try {
+    if (todo_description.length > 140) {
+      res.status(400).json({ message: "400 Todo description is far too long" });
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = { todoTooLargeMiddleware };
