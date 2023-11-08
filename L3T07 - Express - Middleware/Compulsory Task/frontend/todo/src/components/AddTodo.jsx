@@ -33,8 +33,7 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
               id="todo_name_add"
               type="text"
               className="form-control"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              {...formik.getFieldProps("todo_name_add")}
               value={formik.values.todo_name_add}
             />
 
@@ -51,8 +50,7 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
               id="todo_description_add"
               type="text"
               className="form-control"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              {...formik.getFieldProps("todo_description_add")}
               value={formik.values.todo_description_add}
             />
 
@@ -63,7 +61,11 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
               </div>
             ) : null}
 
-            <button onClick={handleAddTodo} className="btn btn-success">
+            <button
+              onClick={handleAddTodo}
+              disabled={!formik.isValid}
+              className="btn btn-success"
+            >
               Add Todo
             </button>
 
