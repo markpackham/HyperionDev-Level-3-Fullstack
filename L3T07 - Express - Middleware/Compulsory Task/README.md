@@ -10,6 +10,7 @@ It includes the following:
 - Express to run as the backend server
 - Formik for form validation feedback
 - Jsonwebtoken to identify users and their access rights
+- MongoDB to store users, jwt tokens and todos
 - Mongoose to connect to Mongo DB
 - Nodemon to save the dev from having to constantly restart the server after changes
 - React is used for the frontend created via Vite
@@ -26,7 +27,6 @@ Demo use of JMT with access to a todo list that has CRUD functionality.
 ## Requirements
 
 Code was written in Node.JS version 21. Node should be at the very least version 18.
-
 
 
 ## Check node version
@@ -50,3 +50,15 @@ npm start
 cd frontend
 npm start
 ```
+
+### Usage
+
+1) Go to the Register page in the React App with a gmail address for a username and a password.
+
+Password must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special case character.
+
+A jwt token gets store in the MongoDB Database.
+
+2) Use the same username and password to login in the Login page.
+
+3) You can now Add, Delete and Update todos
