@@ -91,7 +91,6 @@ const Register = () => {
           type="text"
           className="form-control"
           {...formik.getFieldProps("username")}
-          value={formik.values.username}
         />
 
         {formik.touched.username && formik.errors.username ? (
@@ -106,7 +105,6 @@ const Register = () => {
           type="password"
           className="form-control"
           {...formik.getFieldProps("password")}
-          value={formik.values.password}
         />
 
         {formik.touched.password && formik.errors.password ? (
@@ -121,7 +119,6 @@ const Register = () => {
           type="password"
           className="form-control"
           {...formik.getFieldProps("password_confirm")}
-          value={formik.values.password_confirm}
         />
 
         {formik.touched.password_confirm && formik.errors.password_confirm ? (
