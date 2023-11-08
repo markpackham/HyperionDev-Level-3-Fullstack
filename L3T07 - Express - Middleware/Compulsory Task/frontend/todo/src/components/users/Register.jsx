@@ -61,22 +61,21 @@ const Register = () => {
       password: "",
       password_confirm: "",
     },
-    validationSchema,
+    validationSchema: Yup.object({
+      username: Yup.string().email().required("Gmail is required"),
+      password: Yup.string()
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+          "Must Contain At Least 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        )
+        .required("Required"),
+      password_confirm: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Required"),
+    }),
   });
 
   // Use Formik and Yup for field validation
-  const validationSchema = Yup.object({
-    username: Yup.string().email().required("Gmail is required"),
-    password: Yup.string()
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-        "Must Contain At Least 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-      )
-      .required("Required"),
-    password_confirm: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Required"),
-  });
 
   return (
     <>
@@ -86,14 +85,16 @@ const Register = () => {
         password must be at least 8 characters with 1 uppercase, one lower case
         and 1 special character e.g. <strong>Password9#</strong>
       </p>
-      <form className="form-group col-sm-12 col-md-6">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="form-group col-sm-12 col-md-6"
+      >
         <label htmlFor="username">Username Gmail Account:</label>
         <input
           id="username"
           type="text"
           className="form-control"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("username")}
           value={formik.values.username}
         />
 
@@ -108,8 +109,7 @@ const Register = () => {
           id="password"
           type="text"
           className="form-control"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("password")}
           value={formik.values.password}
         />
 
@@ -124,8 +124,7 @@ const Register = () => {
           id="password_confirm"
           type="password"
           className="form-control"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps("password_confirm")}
           value={formik.values.password_confirm}
         />
 
