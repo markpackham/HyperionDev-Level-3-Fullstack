@@ -4,6 +4,7 @@ import { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import DOMPurify from "dompurify";
+import Swal from "sweetalert2";
 
 const Login = () => {
   // Do redirect after form submission
@@ -40,7 +41,13 @@ const Login = () => {
     }
 
     if (res.status === 200 && res.data != "Incorrect user credentials") {
-      alert(res.data.message);
+      //alert(res.data.message);
+
+      Swal.fire({
+        title: res.data.message,
+        icon: "success",
+      });
+
       setToken[res.data.token];
       sessionStorage.setItem("jwt_token", res.data.token);
       navigate("/");
