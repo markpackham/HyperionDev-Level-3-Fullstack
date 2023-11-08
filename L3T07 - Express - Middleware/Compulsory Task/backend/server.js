@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 // Import routes
-const getTodos = require("./routes/getTodos");
+const getTodos = require("./routes/secure/getTodos");
 const login = require("./routes/login");
 const register = require("./routes/register");
 

@@ -11,7 +11,7 @@ function Home() {
 
   // READ
   useEffect(() => {
-    fetch(`${ulrPath}`)
+    fetch(`${ulrPath}secure/`)
       .then((res) => res.json())
       // Show latest additions first
       .then((data) => setTodos(data.reverse()));
@@ -32,7 +32,7 @@ function Home() {
       todo_description: DOMPurify.sanitize(todo_description),
     };
     // Send Post to Express
-    fetch(`${ulrPath}/add`, {
+    fetch(`${ulrPath}secure/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ function Home() {
 
   // DELETE
   const deleteTodo = async (todo_id) => {
-    const url = `${ulrPath}/delete-todo/${todo_id}`;
+    const url = `${ulrPath}secure/delete-todo/${todo_id}`;
     const res = await fetch(url, { method: "DELETE" });
     if (res.ok) {
       Swal.fire({
@@ -98,7 +98,7 @@ function Home() {
     });
 
     // PUT
-    const url = `${ulrPath}update-todo/${todo_id}`;
+    const url = `${ulrPath}secure/update-todo/${todo_id}`;
     fetch(url, {
       method: "PUT",
       headers: {
