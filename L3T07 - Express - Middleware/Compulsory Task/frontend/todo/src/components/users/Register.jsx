@@ -9,52 +9,6 @@ const ulrPath = "http://localhost:8080/todos/";
 const Register = () => {
   const navigate = useNavigate();
 
-  const handleRegister = (event) => {
-    event.preventDefault();
-
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-
-    const user = {
-      username: DOMPurify.sanitize(username),
-      password: DOMPurify.sanitize(password),
-    };
-
-    // Send Post to Express
-    fetch(`${ulrPath}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          // Registration successful, redirect to login
-          Swal.fire({
-            title: `You're registered`,
-            icon: "success",
-          });
-          navigate("/login");
-        } else {
-          console.error("Registration failed:", res.statusText);
-          Swal.fire({
-            title: "Registration Failed",
-            text: res.statusText,
-            icon: "error",
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Registration error:", error);
-        Swal.fire({
-          title: "Registration Error",
-          text: error.message,
-          icon: "error",
-        });
-      });
-  };
-
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -73,6 +27,49 @@ const Register = () => {
         .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Required"),
     }),
+    onSubmit: () => {
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+
+      const user = {
+        username: DOMPurify.sanitize(username),
+        password: DOMPurify.sanitize(password),
+      };
+
+      // Send Post to Express
+      fetch(`${ulrPath}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            // Registration successful, redirect to login
+            Swal.fire({
+              title: `You're registered`,
+              icon: "success",
+            });
+            navigate("/login");
+          } else {
+            console.error("Registration failed:", res.statusText);
+            Swal.fire({
+              title: "Registration Failed",
+              text: res.statusText,
+              icon: "error",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Registration error:", error);
+          Swal.fire({
+            title: "Registration Error",
+            text: error.message,
+            icon: "error",
+          });
+        });
+    },
   });
 
   // Use Formik and Yup for field validation
@@ -134,7 +131,7 @@ const Register = () => {
           </div>
         ) : null}
 
-        <button onClick={handleRegister} className="btn btn-success">
+        <button type="submit" className="btn btn-success">
           Register
         </button>
       </form>
