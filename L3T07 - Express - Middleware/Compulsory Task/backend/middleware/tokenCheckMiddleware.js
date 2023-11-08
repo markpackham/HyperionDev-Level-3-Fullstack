@@ -7,7 +7,7 @@ const tokenCheckMiddleware = (req, res, next) => {
   try {
     User.findOne({ user_jwt: token_storage }).then((user) => {
       if (!user) {
-        res.status(401).json({ message: "401 Error, user is not known" });
+        res.status(401).send({ message: "401 Error, user is not known" });
       } else {
         next();
       }

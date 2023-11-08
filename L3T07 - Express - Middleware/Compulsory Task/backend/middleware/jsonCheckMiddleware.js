@@ -10,7 +10,7 @@ const jsonCheckMiddleware = (req, res, next) => {
     if (!contentType || !contentType.startsWith("application/json")) {
       res
         .status(400)
-        .json({ message: "This site only accepts JSON requests!" });
+        .send({ message: "This site only accepts JSON requests!" });
     } else {
       next();
     }
