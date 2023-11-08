@@ -88,13 +88,28 @@ function Home() {
 
   // UPDATE
   const updateTodo = (todo_id) => {
+    const todo_name = DOMPurify.sanitize(
+      document.getElementById(`todo_name-${todo_id}`).value
+    );
+
+    const todo_description = DOMPurify.sanitize(
+      document.getElementById(`todo_description-${todo_id}`).value
+    );
+
+    // Don't allow empty todos to be sent to db
+    // can't currently handle error with formik
+    if (todo_name.length < 1 || todo_description.length < 1) {
+      Swal.fire({
+        title: `All Todos need names & descriptions.`,
+        icon: "warning",
+      });
+
+      return;
+    }
+
     const upTodo = {
-      todo_name: DOMPurify.sanitize(
-        document.getElementById(`todo_name-${todo_id}`).value
-      ),
-      todo_description: DOMPurify.sanitize(
-        document.getElementById(`todo_description-${todo_id}`).value
-      ),
+      todo_name: todo_name,
+      todo_description: todo_description,
       token_storage: token_storage,
     };
 
