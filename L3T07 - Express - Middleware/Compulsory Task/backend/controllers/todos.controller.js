@@ -1,6 +1,18 @@
 const Todo = require("../models/todo.model");
+const User = require("../models/user.model");
 
 exports.create = async (req, res) => {
+  const { token_storage } = req.body;
+
+  User.findOne({ user_jwt: token_storage }).then((user) => {
+    if (!user) {
+      //res.status(401).json("401 Error, user is not known");
+      console.log("User is not known");
+    } else {
+      console.log("User known");
+    }
+  });
+
   try {
     const todoModel = new Todo({
       todo_id: req.body.todo_id,
