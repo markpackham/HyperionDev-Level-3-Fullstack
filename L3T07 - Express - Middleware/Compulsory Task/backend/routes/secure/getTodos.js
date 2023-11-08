@@ -20,7 +20,11 @@ router.post(
 );
 
 // PUT
-router.put("/secure/update-todo/:todo_id", todoController.updateById);
+router.put(
+  "/secure/update-todo/:todo_id",
+  [todoTooLargeMiddleware, jsonCheckMiddleware],
+  todoController.updateById
+);
 
 // DELETE
 router.delete("/secure/delete-todo/:todo_id", todoController.deleteById);
