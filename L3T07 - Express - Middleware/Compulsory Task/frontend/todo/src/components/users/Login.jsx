@@ -6,11 +6,11 @@ import axios from "axios";
 import DOMPurify from "dompurify";
 
 const Login = () => {
+  // Do redirect after form submission
   const navigate = useNavigate();
   const [token, setToken] = useState("");
 
   const ulrPath = "http://localhost:8080/todos/";
-
   const token_storage = sessionStorage.getItem("jwt_token");
 
   const validationSchema = Yup.object({

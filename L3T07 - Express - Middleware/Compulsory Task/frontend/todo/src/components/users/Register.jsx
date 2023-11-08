@@ -1,11 +1,10 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
 
 const ulrPath = "http://localhost:8080/todos/";
-
 const token_storage = sessionStorage.getItem("jwt_token");
 
 const Register = () => {
