@@ -7,8 +7,8 @@ const ulrPath = "http://localhost:8080/todos/";
 const handleRegister = (event) => {
   event.preventDefault();
 
-  let username = document.getElementById("username_add").value;
-  let password = document.getElementById("password_add").value;
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
 
   const user = {
     username: DOMPurify.sanitize(username),
@@ -29,23 +29,23 @@ const handleRegister = (event) => {
 const Register = () => {
   // Use Formik and Yup for field validation
   const validationSchema = Yup.object({
-    username_add: Yup.string().required("Gmail is required"),
-    password_add: Yup.string()
+    username: Yup.string().email().required("Gmail is required"),
+    password: Yup.string()
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
         "Must Contain At Least 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
       )
       .required("Required"),
-    password_confirm_add: Yup.string()
+    password_confirm: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      username_add: "",
-      password_add: "",
-      password_confirm_add: "",
+      username: "",
+      password: "",
+      password_confirm: "",
     },
     validationSchema,
   });
@@ -59,52 +59,51 @@ const Register = () => {
         and 1 special character e.g. <strong>Password9#</strong>
       </p>
       <form className="form-group col-sm-12 col-md-6">
-        <label htmlFor="username_add">Gmail Account:</label>
+        <label htmlFor="username">Username Gmail Account:</label>
         <input
-          id="username_add"
+          id="username"
           type="text"
           className="form-control"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.username_add}
+          value={formik.values.username}
         />
 
-        {formik.touched.username_add && formik.errors.username_add ? (
+        {formik.touched.username && formik.errors.username ? (
           <div className="fw-bold text-danger mb-1">
-            {formik.errors.username_add}
+            {formik.errors.username}
           </div>
         ) : null}
 
-        <label htmlFor="password_add">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
-          id="password_add"
+          id="password"
           type="text"
           className="form-control"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password_add}
+          value={formik.values.password}
         />
 
-        {formik.touched.password_add && formik.errors.password_add ? (
+        {formik.touched.password && formik.errors.password ? (
           <div className="fw-bold text-danger mb-1">
-            {formik.errors.password_add}
+            {formik.errors.password}
           </div>
         ) : null}
 
-        <label htmlFor="password_confirm_add">Password Again:</label>
+        <label htmlFor="password_confirm">Password Again:</label>
         <input
-          id="password_confirm_add"
+          id="password_confirm"
           type="password"
           className="form-control"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password_confirm_add}
+          value={formik.values.password_confirm}
         />
 
-        {formik.touched.password_confirm_add &&
-        formik.errors.password_confirm_add ? (
+        {formik.touched.password_confirm && formik.errors.password_confirm ? (
           <div className="fw-bold text-danger mb-1">
-            {formik.errors.password_confirm_add}
+            {formik.errors.password_confirm}
           </div>
         ) : null}
 
