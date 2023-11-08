@@ -34,7 +34,6 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
               type="text"
               className="form-control"
               {...formik.getFieldProps("todo_name_add")}
-              value={formik.values.todo_name_add}
             />
 
             {formik.touched.todo_name_add && formik.errors.todo_name_add ? (
@@ -51,7 +50,6 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
               type="text"
               className="form-control"
               {...formik.getFieldProps("todo_description_add")}
-              value={formik.values.todo_description_add}
             />
 
             {formik.touched.todo_description_add &&
