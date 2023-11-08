@@ -2,9 +2,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ulrPath = "http://localhost:8080/todos/";
+
+const token_storage = sessionStorage.getItem("jwt_token");
 
 const Register = () => {
   const navigate = useNavigate();
@@ -76,6 +78,12 @@ const Register = () => {
   return (
     <>
       <h4>Register</h4>
+      {token_storage && (
+        <h4 className="text-success">
+          Congrats, you are registered, please go <Link to="/">Home</Link> to
+          added todos!
+        </h4>
+      )}
       <p>
         Username must end in @gmail.com e.g. <strong>bob@gmail.com</strong> and
         password must be at least 8 characters with 1 uppercase, one lower case
