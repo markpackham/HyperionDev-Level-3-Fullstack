@@ -11,11 +11,10 @@ const {
 } = require("../../middleware/tokenCheckMiddleware");
 
 // GET (default path)
-// http://localhost:8080/todos
+// http://localhost:8080/todos/secure/
 router.get("/secure/", todoController.findAll);
 
 // POST
-// /add
 router.post(
   "/secure/add",
   [todoTooLargeMiddleware, jsonCheckMiddleware, tokenCheckMiddleware],
@@ -25,7 +24,7 @@ router.post(
 // PUT
 router.put(
   "/secure/update-todo/:todo_id",
-  [todoTooLargeMiddleware, jsonCheckMiddleware],
+  [todoTooLargeMiddleware, jsonCheckMiddleware, tokenCheckMiddleware],
   todoController.updateById
 );
 

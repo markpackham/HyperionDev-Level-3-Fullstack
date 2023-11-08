@@ -86,6 +86,7 @@ function Home() {
       todo_description: DOMPurify.sanitize(
         document.getElementById(`todo_description-${todo_id}`).value
       ),
+      token_storage: token_storage,
     };
 
     // Find todo to update
