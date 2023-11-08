@@ -8,10 +8,10 @@ exports.create = async (req, res) => {
       todo_description: req.body.todo_description,
     });
 
-    // const saveTodo = await todoModel.save();
+    const saveTodo = await todoModel.save();
 
-    // // Success response
-    // console.log(saveTodo);
+    // Success response
+    console.log(saveTodo);
     res.status(200).send("The todo has been added");
   } catch (error) {
     // Error response
