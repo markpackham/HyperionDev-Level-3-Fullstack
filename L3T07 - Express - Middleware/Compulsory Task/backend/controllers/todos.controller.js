@@ -23,7 +23,6 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  console.log(req.params);
   Todo.find()
     .then((todos) => {
       res.send(todos);
