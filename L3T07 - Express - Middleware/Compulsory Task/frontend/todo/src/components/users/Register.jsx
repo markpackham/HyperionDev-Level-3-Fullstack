@@ -9,6 +9,7 @@ const ulrPath = "http://localhost:8080/todos/";
 const Register = () => {
   const navigate = useNavigate();
 
+  // No submission or redirects to login till formik & yup are happy
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -71,8 +72,6 @@ const Register = () => {
         });
     },
   });
-
-  // Use Formik and Yup for field validation
 
   return (
     <>

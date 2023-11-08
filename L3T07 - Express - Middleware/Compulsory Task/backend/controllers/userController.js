@@ -3,6 +3,8 @@
 const userInformation = require("./userDB");
 const jwt = require("jsonwebtoken");
 
+const User = require("../models/user.model");
+
 const dotenv = require("dotenv");
 dotenv.config();
 const jwt_key = process.env.JWT_KEY;
