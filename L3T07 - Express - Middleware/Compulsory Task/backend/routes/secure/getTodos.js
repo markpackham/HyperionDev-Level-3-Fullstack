@@ -6,6 +6,9 @@ const { jsonCheckMiddleware } = require("../../middleware/jsonCheckMiddleware");
 const {
   todoTooLargeMiddleware,
 } = require("../../middleware/todoTooLargeMiddleware");
+const {
+  tokenCheckMiddleware,
+} = require("../../middleware/tokenCheckMiddleware");
 
 // GET (default path)
 // http://localhost:8080/todos
