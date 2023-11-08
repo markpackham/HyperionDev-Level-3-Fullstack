@@ -140,6 +140,10 @@ function Home() {
 
   return (
     <div className="container">
+      {/* Force user to fetch todos manually so can use POST
+      try idea in morning
+      <button>Fetch Todos</button> */}
+
       <AddTodo
         handleAddTodo={handleAddTodo}
         handleClearAddTodo={handleClearAddTodo}
