@@ -35,10 +35,19 @@ exports.login = (req, res) => {
 
 // REGISTER
 exports.register = async (req, res) => {
+  const payload = {
+    name: req.body.username,
+  };
+
+  const token = jwt.sign(JSON.stringify(payload), jwt_key, {
+    algorithm: "HS256",
+  });
+
   try {
     const userModel = new User({
       username: req.body.username,
       password: req.body.password,
+      user_jwt: token,
     });
 
     const saveUser = await userModel.save();
