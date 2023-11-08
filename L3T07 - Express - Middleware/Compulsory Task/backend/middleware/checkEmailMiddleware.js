@@ -4,11 +4,15 @@ const checkEmailMiddleware = (req, res, next) => {
 
   const { username } = req.body;
 
-  if (!emailRegex.test(username)) {
-    res.status(403).json({ message: "403 Error Email must @gmail.com" });
+  try {
+    if (!emailRegex.test(username)) {
+      res.status(403).json({ message: "403 Error Email must @gmail.com" });
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.log(error);
   }
-
-  next();
 };
 
 module.exports = { checkEmailMiddleware };
