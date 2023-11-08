@@ -1,10 +1,11 @@
 const checkEmailMiddleware = (req, res, next) => {
-  // Regular Expression for @gmail.com
+  // Regex for @gmail.com
   const emailRegex = /@gmail.com$/;
 
+  const { username } = req.body;
+
   if (!emailRegex.test(username)) {
-    res.send({ message: `403 Error Email must @gmail.com` });
-    res.status(403);
+    res.status(403).json({ message: "403 Error Email must @gmail.com" });
   }
 
   next();
