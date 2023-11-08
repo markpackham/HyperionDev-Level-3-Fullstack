@@ -1,104 +1,117 @@
-import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import { useState } from "react";
 import * as Yup from "yup";
-import axios from "axios";
 import DOMPurify from "dompurify";
 
+const ulrPath = "http://localhost:8080/todos/";
+
+const handleRegister = (event) => {
+  event.preventDefault();
+
+  let username = document.getElementById("username_add").value;
+  let password = document.getElementById("password_add").value;
+
+  const user = {
+    username: DOMPurify.sanitize(username),
+    password: DOMPurify.sanitize(password),
+  };
+  // Send Post to Express
+  fetch(`${ulrPath}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  }).catch((error) => {
+    console.log(error);
+  });
+};
+
 const Register = () => {
-  const [token, setToken] = useState("");
-
-  const ulrPath = "http://localhost:8080/todos/";
-
-  const token_storage = sessionStorage.getItem("jwt_token");
-
+  // Use Formik and Yup for field validation
   const validationSchema = Yup.object({
-    username: Yup.string().email().required("Username as gmail required"),
-    password: Yup.string().required("Password required"),
+    username_add: Yup.string().required("Gmail is required"),
+    password_add: Yup.string()
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+        "Must Contain At Least 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+      )
+      .required("Required"),
+    password_confirm_add: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      username: "",
-      password: "",
+      username_add: "",
+      password_add: "",
+      password_confirm_add: "",
     },
     validationSchema,
   });
 
-  // Register
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    // DOMPurify prevents script injections
-    const res = await axios.post(`${ulrPath}register`, {
-      username: DOMPurify.sanitize(formik.values.username),
-      password: DOMPurify.sanitize(formik.values.password),
-    });
-
-    if (res.status === 403) {
-      alert(res.data.message);
-    }
-
-    if (res.status === 200 && res.data != "Incorrect user credentials") {
-      alert(res.data.message);
-      setToken[res.data.token];
-      sessionStorage.setItem("jwt_token", res.data.token);
-    }
-  };
-
   return (
     <>
-      {token_storage && (
-        <h4 className="text-success">
-          Congrats, you are registered, please go <Link to="/">Home</Link> to
-          added todos!
-        </h4>
-      )}
       <h4>Register</h4>
-      <div className="list-group">
-        <form onSubmit={handleLogin}>
-          <div className="row">
-            <div className="col-sm-6 col-md-3">
-              <label>
-                Username: user@gmail.com
-                <input
-                  id="username"
-                  type="text"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.username}
-                  className="form-control"
-                />
-              </label>
-              {formik.touched.username && formik.errors.username ? (
-                <div className="fw-bold text-danger mb-1">
-                  {formik.errors.username}
-                </div>
-              ) : null}
-            </div>
-            <div className="col-sm-6 col-md-3">
-              <label>
-                Password: password
-                <input
-                  id="password"
-                  type="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  className="form-control"
-                />
-              </label>
-              {formik.touched.password && formik.errors.password ? (
-                <div className="fw-bold text-danger mb-1">
-                  {formik.errors.password}
-                </div>
-              ) : null}
-            </div>
+      <p>
+        Username must end in @gmail.com e.g. <strong>bob@gmail.com</strong> and
+        password must be at least 8 characters with 1 uppercase, one lower case
+        and 1 special character e.g. <strong>Password9#</strong>
+      </p>
+      <form className="form-group col-sm-12 col-md-6">
+        <label htmlFor="username_add">Gmail Account:</label>
+        <input
+          id="username_add"
+          type="text"
+          className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.username_add}
+        />
+
+        {formik.touched.username_add && formik.errors.username_add ? (
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.username_add}
           </div>
-          <button type="submit" className="btn btn-success">
-            Register
-          </button>
-        </form>
-      </div>
+        ) : null}
+
+        <label htmlFor="password_add">Password:</label>
+        <input
+          id="password_add"
+          type="text"
+          className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password_add}
+        />
+
+        {formik.touched.password_add && formik.errors.password_add ? (
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.password_add}
+          </div>
+        ) : null}
+
+        <label htmlFor="password_confirm_add">Password Again:</label>
+        <input
+          id="password_confirm_add"
+          type="password"
+          className="form-control"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password_confirm_add}
+        />
+
+        {formik.touched.password_confirm_add &&
+        formik.errors.password_confirm_add ? (
+          <div className="fw-bold text-danger mb-1">
+            {formik.errors.password_confirm_add}
+          </div>
+        ) : null}
+
+        <button onClick={handleRegister} className="btn btn-success">
+          Register
+        </button>
+      </form>
     </>
   );
 };

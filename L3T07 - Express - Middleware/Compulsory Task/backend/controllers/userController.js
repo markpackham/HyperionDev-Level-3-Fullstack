@@ -36,6 +36,7 @@ exports.login = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  const { username } = req.body;
+  const { username, password } = req.body;
   console.log(username);
+  console.log(password);
 };
