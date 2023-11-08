@@ -11,6 +11,24 @@ const jwt_key = process.env.JWT_KEY;
 
 // Define the login controller functions
 exports.login = (req, res) => {
+  let usersList = [];
+
+  User.find()
+    .then((user) => {
+      // Send users
+      console.log(user);
+      usersList.push(user);
+    })
+    .catch((err) => {
+      // Error response
+      console.log(err);
+      res.status(500).send({
+        message: "Error",
+      });
+    });
+
+  console.log(usersList);
+
   //Get the username and password from the request query
   const { username, password } = req.body;
 
@@ -37,10 +55,9 @@ exports.login = (req, res) => {
   });
 };
 
-exports.register = (req, res) => {
-  const { username, password } = req.body;
-
-  res.status(200).send("User added");
+// Test I can find all users
+exports.findAll = (req, res) => {
+  res.status(200).send("Users found");
 };
 
 exports.register = async (req, res) => {
