@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
   const token_storage = sessionStorage.getItem("jwt_token");
@@ -73,7 +74,10 @@ const AddTodo = ({ handleAddTodo, handleClearAddTodo }) => {
           </form>
         </>
       ) : (
-        <h4>Please login or register to use this app.</h4>
+        <h4>
+          Please <Link to="/login">login</Link> or{" "}
+          <Link to="/register">register</Link> to use this app.
+        </h4>
       )}
     </>
   );
