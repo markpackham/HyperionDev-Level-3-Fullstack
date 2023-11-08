@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
@@ -6,6 +6,7 @@ import axios from "axios";
 import DOMPurify from "dompurify";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [token, setToken] = useState("");
 
   const ulrPath = "http://localhost:8080/todos/";
@@ -42,6 +43,7 @@ const Login = () => {
       alert(res.data.message);
       setToken[res.data.token];
       sessionStorage.setItem("jwt_token", res.data.token);
+      navigate("/");
     }
   };
 
