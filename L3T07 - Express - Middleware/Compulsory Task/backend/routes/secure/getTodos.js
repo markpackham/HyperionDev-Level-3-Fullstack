@@ -12,25 +12,25 @@ const {
 
 // GET (default path)
 // http://localhost:8080/todos/secure/
-router.get("/secure/", todoController.findAll);
+router.get("/", todoController.findAll);
 
 // POST
 router.post(
-  "/secure/add",
+  "/add",
   [todoTooLargeMiddleware, jsonCheckMiddleware, tokenCheckMiddleware],
   todoController.create
 );
 
 // PUT
 router.put(
-  "/secure/update-todo/:todo_id",
+  "/update-todo/:todo_id",
   [todoTooLargeMiddleware, jsonCheckMiddleware, tokenCheckMiddleware],
   todoController.updateById
 );
 
 // DELETE
 router.delete(
-  "/secure/delete-todo/:todo_id",
+  "/delete-todo/:todo_id",
   tokenCheckMiddleware,
   todoController.deleteById
 );

@@ -28,10 +28,9 @@ app.use((err, req, res, next) => {
 // Set up port for server to listen on
 const PORT = process.env.PORT || 8080;
 
-// ! [IMPORTANT]: Replace with your mongoDB URI string. You can get it from your Atlas cluster.
 const uri = `mongodb+srv://graveofmine99:${password}@hyperiondevlearning.dpl6f6p.mongodb.net/?retryWrites=true&w=majority`;
 
-// Connect to the database
+// Connect to db
 mongoose.Promise = global.Promise;
 mongoose.connect(uri, { useNewUrlParser: true }).then(
   () => {
@@ -47,7 +46,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set up routes to be handled from: http://localhost:8080/todos
-app.use("/todos", getTodos);
+app.use("/todos/secure", getTodos);
 app.use("/todos", login);
 app.use("/todos", register);
 
