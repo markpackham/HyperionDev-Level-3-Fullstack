@@ -11,13 +11,10 @@ const jwt_key = process.env.JWT_KEY;
 
 // Define the login controller functions
 exports.login = (req, res) => {
-  let usersList = [];
-
   User.find()
     .then((user) => {
       // Send users
       console.log(user);
-      usersList.push(user);
     })
     .catch((err) => {
       // Error response
