@@ -151,7 +151,10 @@ function Home() {
     <div className="container">
       {/* Force user to fetch todos manually so can use POST
       try idea in morning
-      <button>Fetch Todos</button> */}
+      <button>Fetch Todos</button> 
+      Or create a function that checks for user tokens then runs a Get Fetch
+      in useEffect
+      */}
 
       <AddTodo
         handleAddTodo={handleAddTodo}
