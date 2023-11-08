@@ -18,7 +18,7 @@ router.get("/secure/", todoController.findAll);
 // /add
 router.post(
   "/secure/add",
-  [todoTooLargeMiddleware, jsonCheckMiddleware],
+  [todoTooLargeMiddleware, jsonCheckMiddleware, tokenCheckMiddleware],
   todoController.create
 );
 
