@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "654ba013d74051566b58ea7a"
+  },
+  "username": "bob@gmail.com",
+  "password": "Password9#",
+  "user_jwt": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiYm9iQGdtYWlsLmNvbSJ9.THiL1HO217NjPS1xjiuk5ZOhWnLg-IIrGLdDngBueSE",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "654bbd9b49591eae4613dd4c"
+  },
+  "username": "john@gmail.com",
+  "password": "Password9#99",
+  "user_jwt": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiam9obkBnbWFpbC5jb20ifQ.SKG54nJ8NEn-QxfPfpI81V41HX0NXWDeYHkIWOz0fMQ",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "654bd13236b0f4160d8769fc"
+  },
+  "username": "daveD9@gmail.com",
+  "password": "daveD9@gmail.com",
+  "user_jwt": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiZGF2ZUQ5QGdtYWlsLmNvbSJ9.e8jA1VJBDvlMwf8obs_pXH60_UGtU0HaP6N2CbzWovg",
+  "__v": 0
+}]

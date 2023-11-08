@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "654a18dd1aa036819f649a28"
+  },
+  "todo_id": "25b6e392-6c6a-445e-bbd1-7cb4885cda27",
+  "todo_name": "shopping",
+  "todo_description": "buy cheese, chips and fish",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "654a199a1aa036819f649a2c"
+  },
+  "todo_id": "4f3832b0-8055-454b-b369-7ecf032ddf1d",
+  "todo_name": "mow lawn",
+  "todo_description": "mow lawn in front garden after watering",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "654a6f880eba3c4d8d037c88"
+  },
+  "todo_id": "7f9ae4e5-358c-475a-bf3c-77147279b76a",
+  "todo_name": "exercise",
+  "todo_description": "lift weights and go for a run",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "654bd34836b0f4160d876a27"
+  },
+  "todo_id": "83905f4d-85cc-4953-ad19-c4b50695161c",
+  "todo_name": "swimming",
+  "todo_description": "go to local pool for a swim",
+  "__v": 0
+}]
