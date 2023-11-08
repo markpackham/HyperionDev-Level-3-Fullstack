@@ -50,7 +50,6 @@ app.use("/todos/secure", getTodos);
 app.use("/todos", login);
 app.use("/todos", register);
 
-// Start up express server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

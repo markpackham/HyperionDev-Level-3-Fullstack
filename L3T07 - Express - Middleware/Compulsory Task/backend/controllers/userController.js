@@ -25,8 +25,8 @@ exports.login = (req, res) => {
         token: token,
       });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
       res.status(500).send({
         message: "Error",
       });
@@ -39,6 +39,7 @@ exports.register = async (req, res) => {
     name: req.body.username,
   };
 
+  // Create token
   const token = jwt.sign(JSON.stringify(payload), jwt_key, {
     algorithm: "HS256",
   });

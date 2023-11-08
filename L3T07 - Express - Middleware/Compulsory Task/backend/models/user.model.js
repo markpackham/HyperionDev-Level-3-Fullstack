@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// store jwt tokens in database
 const userSchema = mongoose.Schema({
   username: {
     type: String,

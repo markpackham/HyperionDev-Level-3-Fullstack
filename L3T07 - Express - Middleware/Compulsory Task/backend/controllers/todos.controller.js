@@ -10,11 +10,11 @@ exports.create = async (req, res) => {
 
     const saveTodo = await todoModel.save();
 
-    // Success response
+    // Success res
     console.log(saveTodo);
     res.status(200).send("The todo has been added");
   } catch (error) {
-    // Error response
+    // Error res
     console.error(error);
     res.status(500).send({
       message: "Some error occurred while creating the todo.",
@@ -28,8 +28,8 @@ exports.findAll = (req, res) => {
     .then((todos) => {
       res.send(todos);
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      console.log(error);
       res.status(500).send({
         message: "An error occurred while retrieving todos",
       });
@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
 
 exports.updateById = async (req, res) => {
   try {
-    // Grab specific todo to update by id
+    // Grab todo to update by id
     const todo_id = req.params.todo_id;
 
     // Define the new data to update
@@ -57,11 +57,11 @@ exports.updateById = async (req, res) => {
     if (updatedTodo) {
       res.status(200);
     } else {
-      res.status(404).send("Todo not found");
+      res.status(404).json({ message: "Todo not found" });
     }
   } catch (error) {
     console.error("Something went wrong when updating data.", error);
-    res.status(500).send("An error occurred while updating.");
+    res.status(500).json({ message: "An error occurred while updating." });
   }
 };
 
@@ -77,6 +77,8 @@ exports.deleteById = async (req, res) => {
     }
   } catch (error) {
     console.error("An error occurred while removing the todo.", error);
-    res.status(500).send("An error occurred while removing the todo.");
+    res
+      .status(500)
+      .json({ message: "An error occurred while removing the todo." });
   }
 };

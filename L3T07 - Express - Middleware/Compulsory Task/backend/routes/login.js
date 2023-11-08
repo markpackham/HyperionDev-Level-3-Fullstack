@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const { login } = require("../controllers/userController");
 
+// login & register are public facing routes
 router.post("/login", login);
 
 module.exports = router;
