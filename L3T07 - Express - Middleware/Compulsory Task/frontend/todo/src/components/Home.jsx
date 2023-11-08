@@ -65,7 +65,16 @@ function Home() {
   // DELETE
   const deleteTodo = async (todo_id) => {
     const url = `${ulrPath}secure/delete-todo/${todo_id}`;
-    const res = await fetch(url, { method: "DELETE" });
+
+    // Make sure token_storage is added to body
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token_storage }),
+    });
+
     if (res.ok) {
       Swal.fire({
         title: `Todo deleted.`,

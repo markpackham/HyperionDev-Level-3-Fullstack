@@ -29,6 +29,10 @@ router.put(
 );
 
 // DELETE
-router.delete("/secure/delete-todo/:todo_id", todoController.deleteById);
+router.delete(
+  "/secure/delete-todo/:todo_id",
+  tokenCheckMiddleware,
+  todoController.deleteById
+);
 
 module.exports = router;
