@@ -8,6 +8,7 @@ const ulrPath = "http://localhost:8080/todos/";
 
 function Home() {
   const [todos, setTodos] = useState([]);
+  const token_storage = sessionStorage.getItem("jwt_token");
 
   // READ
   useEffect(() => {
@@ -30,6 +31,7 @@ function Home() {
       todo_id: self.crypto.randomUUID(),
       todo_name: DOMPurify.sanitize(todo_name),
       todo_description: DOMPurify.sanitize(todo_description),
+      token_storage: token_storage,
     };
     // Send Post to Express
     fetch(`${ulrPath}secure/add`, {
