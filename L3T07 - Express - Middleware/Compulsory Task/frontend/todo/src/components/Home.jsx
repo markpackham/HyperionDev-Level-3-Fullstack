@@ -12,10 +12,13 @@ function Home() {
 
   // READ
   useEffect(() => {
-    fetch(`${ulrPath}secure/`)
-      .then((res) => res.json())
-      // Show latest additions first
-      .then((data) => setTodos(data.reverse()));
+    // Only call if we have a jwt token
+    if (token_storage) {
+      fetch(`${ulrPath}secure/`)
+        .then((res) => res.json())
+        // Show latest additions first
+        .then((data) => setTodos(data.reverse()));
+    }
   }, []);
 
   // CREATE
