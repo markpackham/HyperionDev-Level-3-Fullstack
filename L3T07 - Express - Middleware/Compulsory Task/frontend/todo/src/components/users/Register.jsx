@@ -3,8 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
+import { urlPath } from "../../global";
 
-const ulrPath = "http://localhost:8080/todos/";
 const token_storage = sessionStorage.getItem("jwt_token");
 
 const Register = () => {
@@ -39,7 +39,7 @@ const Register = () => {
       };
 
       // Send Post to Express
-      fetch(`${ulrPath}/register`, {
+      fetch(`${urlPath}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

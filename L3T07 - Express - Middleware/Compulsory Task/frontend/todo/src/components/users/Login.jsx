@@ -5,13 +5,13 @@ import * as Yup from "yup";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
+import { urlPath } from "../../global";
 
 const Login = () => {
   // Do redirect after form submission
   const navigate = useNavigate();
   const [token, setToken] = useState("");
 
-  const ulrPath = "http://localhost:8080/todos/";
   const token_storage = sessionStorage.getItem("jwt_token");
 
   const validationSchema = Yup.object({
@@ -31,7 +31,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     // DOMPurify prevents script injections
-    const res = await axios.post(`${ulrPath}login`, {
+    const res = await axios.post(`${urlPath}login`, {
       username: DOMPurify.sanitize(formik.values.username),
       password: DOMPurify.sanitize(formik.values.password),
     });

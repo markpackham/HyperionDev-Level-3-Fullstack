@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import AddTodo from "./AddTodo";
 import TodoItem from "./TodoItem";
 
-const ulrPath = "http://localhost:8080/todos/";
+import { urlPath } from "../global";
 
 function Home() {
   const [todos, setTodos] = useState([]);
@@ -20,7 +20,7 @@ function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token_storage }),
       };
-      fetch(`${ulrPath}secure/`, requestOptions)
+      fetch(`${urlPath}secure/`, requestOptions)
         .then((res) => res.json())
         // Show latest first
         .then((data) => setTodos(data.reverse()));
@@ -54,7 +54,7 @@ function Home() {
       token_storage: token_storage,
     };
     // Send Post to Express
-    fetch(`${ulrPath}secure/add`, {
+    fetch(`${urlPath}secure/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ function Home() {
 
   // DELETE
   const deleteTodo = async (todo_id) => {
-    const url = `${ulrPath}secure/delete-todo/${todo_id}`;
+    const url = `${urlPath}secure/delete-todo/${todo_id}`;
 
     // Make sure token_storage is added to body
     const res = await fetch(url, {
@@ -143,7 +143,7 @@ function Home() {
     });
 
     // PUT
-    const url = `${ulrPath}secure/update-todo/${todo_id}`;
+    const url = `${urlPath}secure/update-todo/${todo_id}`;
     fetch(url, {
       method: "PUT",
       headers: {
