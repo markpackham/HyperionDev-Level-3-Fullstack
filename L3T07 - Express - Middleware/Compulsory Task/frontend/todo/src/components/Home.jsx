@@ -14,17 +14,15 @@ function Home() {
   useEffect(() => {
     // Only call if we have a jwt token
     // Need to use POST instead of GET to send token
-    if (token_storage) {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token_storage }),
-      };
-      fetch(`${urlPath}secure/`, requestOptions)
-        .then((res) => res.json())
-        // Show latest first
-        .then((data) => setTodos(data.reverse()));
-    }
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token_storage }),
+    };
+    fetch(`${urlPath}secure/`, requestOptions)
+      .then((res) => res.json())
+      // Show latest first
+      .then((data) => setTodos(data.reverse()));
   }, [token_storage]);
 
   // CREATE
