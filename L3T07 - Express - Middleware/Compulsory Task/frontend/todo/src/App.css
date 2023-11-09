@@ -6,6 +6,10 @@
   --card-bg-color-secondary: hsl(60, 59%, 75%);
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 body {
   background-color: var(--background-color-main);
   color: hsl(0, 4%, 14%);
