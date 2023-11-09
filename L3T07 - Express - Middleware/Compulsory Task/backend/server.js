@@ -31,7 +31,6 @@ const PORT = process.env.PORT || 8080;
 const uri = `mongodb+srv://graveofmine99:${password}@hyperiondevlearning.dpl6f6p.mongodb.net/?retryWrites=true&w=majority`;
 
 // Connect to db
-mongoose.Promise = global.Promise;
 mongoose.connect(uri, { useNewUrlParser: true }).then(
   () => {
     console.log("Successfully connected to the database!");
