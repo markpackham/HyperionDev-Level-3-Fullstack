@@ -61,4 +61,6 @@ A jwt token gets store in the MongoDB Database.
 
 2) Use the same username and password to login in the Login page.
 
-3) You can now Add, Delete, Read and Update todos
+3) You can now Add, Delete, Read and Update todos.
+
+4) If this was a live site I'd hide the "Login" & "Register" when a user obtained a token but I've kept them visible so the site is easier to test.

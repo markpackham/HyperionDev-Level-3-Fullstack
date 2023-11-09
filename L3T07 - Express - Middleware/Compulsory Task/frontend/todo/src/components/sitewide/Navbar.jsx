@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const token_storage = sessionStorage.getItem("jwt_token");
+
+  const handleLogout = () => {
+    // Delete token
+    sessionStorage.setItem("jwt_token", "");
+    navigate("/login");
+  };
+
   return (
     <>
       <h1>Todos</h1>
@@ -22,6 +31,13 @@ const Navbar = () => {
                 Register <i className="fa-solid fa-registered" />
               </Link>
             </li>
+            {token_storage && (
+              <li className="nav-item">
+                <a onClick={handleLogout} className="nav-link" to="/register">
+                  Logout <i className="fa-solid fa-right-from-bracket"></i>
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
