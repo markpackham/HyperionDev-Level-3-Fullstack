@@ -13,10 +13,16 @@ function Home() {
   // READ
   useEffect(() => {
     // Only call if we have a jwt token
+    // Need to use POST instead of GET to send token
     if (token_storage) {
-      fetch(`${ulrPath}secure/`)
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token_storage }),
+      };
+      fetch(`${ulrPath}secure/`, requestOptions)
         .then((res) => res.json())
-        // Show latest additions first
+        // Show latest first
         .then((data) => setTodos(data.reverse()));
     }
   }, []);
@@ -152,13 +158,6 @@ function Home() {
 
   return (
     <div className="container">
-      {/* Force user to fetch todos manually so can use POST
-      try idea in morning
-      <button>Fetch Todos</button> 
-      Or create a function that checks for user tokens then runs a Get Fetch
-      in useEffect
-      */}
-
       <AddTodo
         handleAddTodo={handleAddTodo}
         handleClearAddTodo={handleClearAddTodo}

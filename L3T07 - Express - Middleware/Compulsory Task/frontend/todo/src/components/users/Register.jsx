@@ -88,6 +88,7 @@ const Register = () => {
         password must be at least 8 characters with 1 uppercase, one lower case
         and 1 special character e.g. <strong>Password9#</strong>
       </p>
+      <p>When you have registered your will be asked to login.</p>
       <form
         onSubmit={formik.handleSubmit}
         className="form-group col-sm-12 col-md-6"

@@ -53,7 +53,7 @@ npm start
 
 ### Usage
 
-1) Go to the Register page in the React App with a gmail address for a username and a password.
+1) Go to the Register page in the React App with a gmail address for a username and a password meeting the criteria below.
 
 Password must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special case character.
 
@@ -61,4 +61,4 @@ A jwt token gets store in the MongoDB Database.
 
 2) Use the same username and password to login in the Login page.
 
-3) You can now Add, Delete and Update todos
+3) You can now Add, Delete, Read and Update todos

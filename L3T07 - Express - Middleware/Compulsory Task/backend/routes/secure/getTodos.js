@@ -15,7 +15,7 @@ const {
 // Can't send tokens in a GET request to be verified so the most I can do
 // to stop users seeing todos is hide them at the the frontend
 // if user lacks a jwt token (although they could fake one in their browser)
-router.get("/", todoController.findAll);
+router.post("/", tokenCheckMiddleware, todoController.findAll);
 
 // POST
 router.post(

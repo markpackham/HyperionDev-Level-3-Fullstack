@@ -63,12 +63,16 @@ const Login = () => {
           added todos!
         </h4>
       )}
+      <p>
+        Example username & password: <strong>bob@gmail.com</strong>{" "}
+        <strong>Password9#</strong>
+      </p>
       <div className="list-group">
         <form onSubmit={handleLogin}>
           <div className="row">
             <div className="col-sm-6 col-md-3">
               <label>
-                Username: bob@gmail.com
+                Username:
                 <input
                   id="username"
                   type="text"
@@ -86,7 +90,7 @@ const Login = () => {
             </div>
             <div className="col-sm-6 col-md-3">
               <label>
-                Password: Password9#
+                Password:
                 <input
                   id="password"
                   type="password"
