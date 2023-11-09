@@ -47,7 +47,7 @@ npm start
 
 #### Second from within this directory start the React frontend
 ```
-cd frontend
+cd frontend/todo
 npm start
 ```
 
