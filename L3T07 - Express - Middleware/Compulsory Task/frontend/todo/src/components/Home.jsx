@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import DOMPurify from "dompurify";
 import Swal from "sweetalert2";
+import { urlPath } from "../global";
 import AddTodo from "./AddTodo";
 import TodoItem from "./TodoItem";
 
-import { urlPath } from "../global";
-
 function Home() {
   const [todos, setTodos] = useState([]);
+  // Grab session storage, will be empty for logged out users
   const token_storage = sessionStorage.getItem("jwt_token");
 
   // READ
@@ -25,7 +25,7 @@ function Home() {
         // Show latest first
         .then((data) => setTodos(data.reverse()));
     }
-  }, []);
+  }, [token_storage]);
 
   // CREATE
   const handleAddTodo = (event) => {

@@ -64,7 +64,7 @@ const Login = () => {
         </h4>
       )}
       <p>
-        Example username & password: <strong>bob@gmail.com</strong>{" "}
+        Example username & password: <strong>bob@gmail.com</strong> -{" "}
         <strong>Password9#</strong>
       </p>
       <div className="list-group">
